@@ -1,170 +1,168 @@
-# Disaster Relief Logistics
+# Disaster Relief Logistics System
 
-**DSA Assignment II — Project-Based Assessment**  
-**Team 8 | KPR Institute of Engineering and Technology**  
-**Department of Artificial Intelligence and Data Science**  
-**II Year, Section C**
+A console-based Data Structures and Algorithms project developed for **DSA Assignment II** at **KPR Institute of Engineering and Technology**.
 
-## Overview
-
-A console-based disaster relief management system that organizes regions, districts, shelters, relief camps, depots, supply inventory and road networks. The system implements core data structures (General Tree, BST, AVL Tree, Expression Tree) and graph algorithms (BFS, DFS, Dijkstra, Prim, Kruskal) from scratch in Python.
+The system simulates disaster-relief operations using tree structures, graph algorithms, scheduling, and performance analysis. Users can enter their own scenario, execute algorithms on the entered data, and save or reload scenarios using JSON.
 
 ## Features
 
-- **Location Hierarchy** (General Tree): Region → District → Shelter management
-- **Supply Inventory** (BST): Insert, delete, search, range query, traversals
-- **Relief-Camp Index** (AVL Tree): Self-balancing BST with all rotations
-- **Expression Calculator**: Infix/postfix → expression tree → safe evaluation + infix
-- **Road Network** (Graph ADT): Adjacency list & matrix, directed/undirected
-- **BFS**: Fewest-edge routes, nearest depot search
-- **DFS**: Timestamps, edge classification, connected/strongly-connected components
-- **Dijkstra**: Shortest weighted paths (array-based, no heapq)
-- **Prim & Kruskal MST**: Minimum spanning forest, disconnected graph support
-- **Scheduling**: Topological sort (Kahn + DFS), cycle detection, critical path
-- **Benchmarks**: Empirical timing with CSV/markdown output
+### 1. Location Hierarchy — General Tree
+- Create a hierarchy of regions, districts, and shelters.
+- Insert, search, and delete locations where supported.
+- Display preorder, postorder, and level-order traversals.
 
-## Folder Structure
+### 2. Supply Inventory — Binary Search Tree
+- Add and search supply records using unique IDs.
+- Update quantities and delete records.
+- Find minimum and maximum IDs.
+- Perform range queries and inorder traversal.
+- Demonstrate the performance limitations of an unbalanced BST.
 
-```
+### 3. Relief-Camp Index — AVL Tree
+- Insert, search, and delete camp records.
+- Maintain balance using AVL rotations.
+- Inspect tree height and balancing behaviour.
+
+### 4. Expression Tree
+- Parse and evaluate mathematical expressions.
+- Display infix expressions while preserving grouping.
+- Handle invalid expressions, undefined variables, and division by zero.
+
+### 5. Graph and Route Planning
+- Construct directed or undirected graphs.
+- Add and remove connections and inspect adjacency lists and matrices.
+- Compare adjacency-list and adjacency-matrix representations.
+
+### 6. Graph Algorithms
+- **BFS:** Find routes with the fewest edges and locate the nearest reachable depot.
+- **DFS:** Analyse traversal timestamps, edge classifications, and connectivity.
+- **Dijkstra:** Calculate weighted shortest paths and display distance tables.
+- **Prim and Kruskal:** Construct minimum spanning trees or minimum spanning forests.
+- **Union-Find:** Support efficient component merging and cycle checks.
+
+### 7. Scheduling and Critical Path
+- Model tasks, durations, and dependencies.
+- Perform topological sorting using Kahn's algorithm and DFS.
+- Detect dependency cycles.
+- Calculate earliest start and finish times and the critical path where supported.
+
+### 8. Scenario Builder and Persistence
+- Enter a custom disaster-relief scenario.
+- Reuse scenario data across supported structures and algorithms.
+- Save and load scenario data using JSON.
+- Validate input and handle missing or malformed saved data.
+
+### 9. Benchmarking and Analysis
+- Compare BST and AVL behaviour on sorted and random inputs.
+- Compare Prim and Kruskal on sparse and dense graphs.
+- Record reproducible benchmark workloads using a seed.
+- Generate CSV results and benchmark summaries.
+
+### 10. Testing and Diagnostics
+- Run the automated test suite from a dedicated testing submenu.
+- Run available tree, graph, scheduling, and persistence test groups.
+- Inspect actual test results and diagnose failures.
+
+## Technology
+
+- **Language:** Python
+- **Data storage:** JSON for saved scenarios
+- **Testing:** Python `unittest`
+- **Benchmark output:** CSV and Markdown summaries
+
+The project uses manually implemented data structures and algorithms for the assignment requirements rather than relying on external graph or priority-queue libraries.
+
+## Project Structure
+
+```text
 DisasterReliefLogistics/
-├── main.py              # Application entry point, integrated menu
-├── console_app.py       # Shared-state interactive menus and guided builder
-├── scenario.py          # In-memory scenario and JSON persistence
-├── trees.py             # General Tree + BST
-├── avl_expression.py    # AVL Tree + Expression Tree
-├── graph.py             # Graph ADT, BFS, DFS, SCC, Dijkstra
-├── mst.py               # Prim, Kruskal, Union-Find, merge sort
-├── scheduling.py        # Topological sort, cycle detection, critical path
-├── analysis.py          # Benchmarks and complexity analysis
-├── tests.py             # Automated unittest suite
-├── README.md            # This file
-├── report/              # Project report and documentation
-│   ├── project_report.md
-│   ├── pseudocode.md
-│   ├── complexity_analysis.md
-│   └── test_results.md
-├── results/             # Benchmark output
-│   ├── benchmark_results.csv
-│   └── benchmark_summary.md
-└── docs/
-    └── FUNCTION_GUIDE.md
+├── main.py
+├── console_app.py
+├── scenario.py
+├── trees.py
+├── avl_expression.py
+├── graph.py
+├── mst.py
+├── scheduling.py
+├── analysis.py
+├── tests.py
+├── data/
+├── docs/
+├── report/
+├── results/
+├── README.md
+└── .gitignore
 ```
 
-## Requirements
+## Installation and Execution
 
-- **Python 3.10+** (tested with Python 3.14.0)
-- **No external dependencies** — uses only the Python standard library
-- Compatible with Windows and VS Code terminal
+Python 3 is required.
 
-## How to Run
+Clone the repository:
 
-### Launch the Application
+```bash
+git clone https://github.com/Naveen-Prakash-SK/Disaster-Relief-Logistics.git
+cd Disaster-Relief-Logistics
+```
+
+Start the application:
+
 ```bash
 python main.py
 ```
 
-### Run Automated Tests
+Run the complete automated test suite:
+
 ```bash
 python -m unittest -v
 ```
 
-### Run Benchmarks Only
-```bash
-python -c "from analysis import run_tree_benchmarks, run_graph_benchmarks, save_benchmark_results; t = run_tree_benchmarks(seed=42); g = run_graph_benchmarks(seed=42); save_benchmark_results(t, g, seed=42)"
-```
-Or use menu option **12** and enter safe sizes and a seed.
+## Using the Application
 
-## Menu Options
+1. Start the application.
+2. Create a new disaster-relief scenario or use the available sample scenario.
+3. Enter locations, supplies, roads, depots, and task dependencies as prompted.
+4. Run the relevant tree, graph, or scheduling algorithms.
+5. Inspect the computed routes, traversals, spanning forests, and scheduling results.
+6. Save the scenario if you want to reuse it later.
+7. Open **Testing and Diagnostics** to run automated tests.
 
-| # | Feature | Module |
-|---|---------|--------|
-| 1 | Guided scenario builder; offers manual entry or demonstration data | console_app.py |
-| 2 | Edit, display/search, traverse and delete location subtrees | trees.py |
-| 3 | Supply insert/update/search/delete, min/max/range/list/tree shape | trees.py |
-| 4 | Manage AVL camps and expression calculator | avl_expression.py |
-| 5 | Add/remove graph vertices/edges and inspect road network | graph.py |
-| 6 | BFS to selected or saved depots (fewest edges) | graph.py |
-| 7 | Array-based Dijkstra shortest route | graph.py |
-| 8 | DFS timestamps, classifications, components/SCC | graph.py |
-| 9 | Prim minimum spanning forest on active undirected graph | mst.py |
-| 10 | Kruskal minimum spanning forest on active undirected graph | mst.py |
-| 11 | Add tasks/dependencies; topological orders and critical path | scheduling.py |
-| 12 | BST/AVL and Prim/Kruskal benchmarks with configurable seed/sizes | analysis.py |
-| 13–15 | Save, load, and reset active scenario | scenario.py |
-| 16 | Testing and diagnostics submenu | tests.py |
-| 17 | Exit | console_app.py |
+The exact options depend on the current application implementation.
 
-The testing submenu runs all tests or tree, graph, scheduling, and scenario
-persistence categories on request; it can also display the last actual test
-summary from the current application session. Tests are not run at startup.
+## Algorithmic Analysis
 
-## Design Restrictions
+The project studies the following theoretical complexities:
 
-1. All trees, graphs and algorithms are manually implemented
-2. No NetworkX, heapq, or built-in priority queue
-3. Array-based Dijkstra and Prim (no heap)
-4. Edge sorting in Kruskal uses a manually-coded merge sort
-5. No `eval()` for expression evaluation
-6. Deterministic test data with fixed random seeds
+| Algorithm or structure | Expected or worst-case time |
+|---|---|
+| General tree traversal | \(O(n)\) |
+| BST search, insertion, deletion | Average \(O(\log n)\); worst \(O(n)\) |
+| AVL search, insertion, deletion | \(O(\log n)\) |
+| BFS and DFS | \(O(V+E)\) with adjacency lists |
+| Array-based Dijkstra | \(O(V^2+E)\) |
+| Array-based Prim | \(O(V^2)\) for the array-scan implementation |
+| Kruskal | \(O(E\log E)\), dominated by edge sorting |
+| Topological sorting | \(O(V+E)\) |
 
-## Algorithm Notes
+These are theoretical bounds under the corresponding algorithm and representation assumptions. Empirical benchmark timings can vary by machine and workload.
 
-- **Dijkstra** rejects negative edge weights with an explanatory error
-- **BFS** finds fewest-edge routes (not shortest weighted distance)
-- **Prim** and **Kruskal** produce matching MST costs on connected graphs
-- **AVL** tree is verified after every operation in the stress test
-- **Expression tree** detects invalid postfix, division by zero, undefined variables
+## Reports and Documentation
 
-## Guided scenario and persistence
+See the `docs/` directory for function explanations and the `report/` and `results/` directories for project documentation, test reports, and benchmark outputs.
 
-Start with an empty scenario, then select **1**, followed by guided entry.
-The builder collects a
-network name, hierarchical locations, supplies, camp IDs, directed or
-undirected road vertices/connections and weights, depot vertices, task
-durations, and dependencies. These same in-memory structures are used by all
-algorithm options.
+## Team Members
 
-Select **13** to save JSON records to `data/scenario.json`. If the file exists,
-the program asks before overwriting. After restarting with `python main.py`,
-select **14** to load it; malformed input is reported without replacing the
-active scenario. **15** resets only in-memory data after confirmation. The
-program starts normally if there is no saved file.
+- 25AD101
+- 25AD105
+- 25AD116
+- 25AD203
 
-Text/numeric prompts accept `q` to cancel. Blank depot selection uses the
-saved depot list. Benchmarks limit sizes to 5,000 tree nodes and 500 graph
-vertices. Enter finite edge weights; Dijkstra refuses negative weights.
+## Academic Project
 
-### Example custom scenario
+**Institution:** KPR Institute of Engineering and Technology  
+**Department:** Artificial Intelligence and Data Science  
+**Course:** Data Structures and Algorithms  
+**Project:** Disaster Relief Logistics System
 
-Choose option **1**, then guided entry, and enter a small network:
+---
 
-```text
-Network name: North Relief
-Regions: 1; Region: North; Districts: 1; District: River Town
-Shelters: 1; Shelter: School Shelter
-Supply records: 1; ID: 10; Name: Water; Quantity: 50
-Camps: 1; ID: 21; Name: Camp One
-Directed graph: no
-Vertices: Depot, School Shelter
-Road: Depot -> School Shelter, weight 7
-Depots: Depot
-Tasks: Assess (3), Deliver (4); dependency: Assess -> Deliver
-```
-
-Choose **6**, enter `School Shelter`, and leave depot selection blank: BFS
-reports the route to `Depot` in one edge. Choose **7** with source `Depot` and
-destination `School Shelter`: Dijkstra reports weight 7. Choose **13** to save;
-after restarting, choose **14** and rerun the route to verify the restored
-graph.
-
-See [docs/FUNCTION_GUIDE.md](docs/FUNCTION_GUIDE.md) for public function
-signatures, examples, algorithms, complexities, and data-structure details.
-
-## Team
-
-| Reg. No. | Name |
-|----------|------|
-| 25AD101 | (To be filled) |
-| 25AD105 | (To be filled) |
-| 25AD116 | (To be filled) |
-| 25AD203 | (To be filled) |
