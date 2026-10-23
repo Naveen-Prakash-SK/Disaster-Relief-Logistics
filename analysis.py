@@ -1,8 +1,8 @@
 """Algorithm Analysis — empirical timing, complexity notes, benchmarks.
 
 Measures actual elapsed times using time.perf_counter().
-Generates CSV and summary reports.
-Uses deterministic seeds and multiple repetitions.
+Generates CSV and summary reports. Workloads use deterministic seeds;
+timings are single-run samples and vary by machine and system load.
 """
 
 import os
@@ -24,7 +24,7 @@ def _ensure_results_dir():
 
 
 def _measure(func, *args, repetitions=3, **kwargs):
-    """Run func(*args) multiple times, return average elapsed seconds."""
+    """Run func(*args) repeatedly and return average elapsed seconds."""
     total = 0.0
     result = None
     for _ in range(repetitions):
@@ -90,9 +90,10 @@ def _bench_avl_random(n, seed=42):
     return elapsed, h
 
 
-def run_tree_benchmarks():
-    """BST vs AVL on sorted and random input for required sizes."""
-    sizes = [1000, 5000, 20000]
+def run_tree_benchmarks(sizes=None, seed=42):
+    """BST vs AVL for requested sizes using a reproducible random seed."""
+    if sizes is None:
+        sizes = [1000, 5000, 20000]
     rows = []
     print("\n--- Tree Benchmarks: BST vs AVL ---")
     print(f"{'n':>7} {'Type':>8} {'Input':>8} "
@@ -103,8 +104,8 @@ def run_tree_benchmarks():
         t_bst_s, h_bst_s = _bench_bst_sorted(n)
         t_avl_s, h_avl_s = _bench_avl_sorted(n)
         # Random input
-        t_bst_r, h_bst_r = _bench_bst_random(n)
-        t_avl_r, h_avl_r = _bench_avl_random(n)
+        t_bst_r, h_bst_r = _bench_bst_random(n, seed=seed)
+        t_avl_r, h_avl_r = _bench_avl_random(n, seed=seed)
 
         entries = [
             (n, "BST", "sorted", t_bst_s, h_bst_s),
@@ -160,20 +161,20 @@ def _build_random_graph(V, E, seed=42):
     return g
 
 
-def run_graph_benchmarks():
-    """Prim vs Kruskal on sparse and dense graphs."""
+def run_graph_benchmarks(vertex_sizes=None, seed=42):
+    """Prim vs Kruskal on sparse and dense graphs for requested sizes."""
     from mst import prim_mst, kruskal_mst
 
+    if vertex_sizes is None:
+        vertex_sizes = [200, 1000, 2000]
     configs = []
-    for V in [200, 1000, 2000]:
+    for V in vertex_sizes:
         E_sparse = 2 * V
         E_dense = V * V // 4
         configs.append((V, E_sparse, "sparse"))
-        # Only do dense for smaller sizes to avoid very long runtimes.
         if V <= 1000:
             configs.append((V, E_dense, "dense"))
         else:
-            # For V=2000, use a moderately dense graph.
             configs.append((V, min(E_dense, 50000), "dense*"))
 
     rows = []
@@ -183,7 +184,7 @@ def run_graph_benchmarks():
     print("-" * 65)
 
     for V, E, gtype in configs:
-        g = _build_random_graph(V, E, seed=42)
+        g = _build_random_graph(V, E, seed=seed)
         actual_E = g.edge_count()
 
         t_prim, (pe, pc, _) = _measure(prim_mst, g, repetitions=1)
@@ -203,7 +204,7 @@ def run_graph_benchmarks():
 # SAVE RESULTS
 # ============================================================================
 
-def save_benchmark_results(tree_rows, graph_rows):
+def save_benchmark_results(tree_rows, graph_rows, seed=42):
     """Write results to CSV and summary markdown."""
     _ensure_results_dir()
 
@@ -212,17 +213,22 @@ def save_benchmark_results(tree_rows, graph_rows):
         writer = csv.writer(f)
         writer.writerow(["category", "n_or_V", "type", "input_or_E",
                          "time_s", "height_or_cost",
-                         "time2_s", "cost2"])
+                         "time2_s", "cost2", "seed", "runs"])
         for n, tp, inp, t, h in tree_rows:
-            writer.writerow(["tree", n, tp, inp, f"{t:.6f}", h, "", ""])
+            writer.writerow(["tree", n, tp, inp, f"{t:.6f}", h, "", "",
+                             seed, 1])
         for V, E, gtype, tp, tk, pc, kc in graph_rows:
             writer.writerow(["graph", V, gtype, E,
-                             f"{tp:.6f}", pc, f"{tk:.6f}", kc])
+                             f"{tp:.6f}", pc, f"{tk:.6f}", kc, seed, 1])
     print(f"\nBenchmark CSV saved to: {csv_path}")
 
     md_path = os.path.join(RESULTS_DIR, "benchmark_summary.md")
     with open(md_path, "w") as f:
         f.write("# Benchmark Summary\n\n")
+        f.write(f"Workloads use deterministic seed {seed}. Each displayed time is a "
+                "single `time.perf_counter()` sample, not an average; elapsed "
+                "times vary by machine and system load. Reproduce with the "
+                "benchmark command in `README.md`.\n\n")
         f.write("## Tree Benchmarks: BST vs AVL\n\n")
         f.write("| n | Type | Input | Time (s) | Height |\n")
         f.write("|---|------|-------|----------|--------|\n")
@@ -239,7 +245,7 @@ def save_benchmark_results(tree_rows, graph_rows):
                 "while AVL maintains O(log n).\n")
         f.write("- With random input, BST height is closer to "
                 "O(log n) on average.\n")
-        f.write("- Array-based Prim is O(V²), efficient for dense graphs.\n")
+        f.write("- Array-based Prim is O(V^2), efficient for dense graphs.\n")
         f.write("- Kruskal with merge sort is O(E log E), "
                 "efficient for sparse graphs.\n")
         f.write("- Both Prim and Kruskal produce the same MST cost "
@@ -271,7 +277,7 @@ def analysis_menu():
                 print("Running all benchmarks (this may take a while)...")
                 tree_rows = run_tree_benchmarks()
                 graph_rows = run_graph_benchmarks()
-                save_benchmark_results(tree_rows, graph_rows)
+                save_benchmark_results(tree_rows, graph_rows, seed=42)
             elif choice == "4":
                 _print_complexity_notes()
             elif choice == "0":

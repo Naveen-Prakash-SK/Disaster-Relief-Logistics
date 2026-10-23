@@ -41,7 +41,8 @@ class Graph:
         for u in self.adj_list:
             count += len(self.adj_list[u])
         if not self.directed:
-            count //= 2
+            self_loops = sum(1 for u in self.vertices if u in self.adj_list[u])
+            count = (count + self_loops) // 2
         return count
 
     def add_vertex(self, label):
@@ -56,6 +57,25 @@ class Graph:
         for row in self.adj_matrix:
             row.append(0)
         self.adj_matrix.append([0] * (idx + 1))
+
+    def remove_vertex(self, label):
+        """Remove a vertex and all incident edges; return whether it existed."""
+        if label not in self._index:
+            return False
+        index = self._index[label]
+        del self.adj_list[label]
+        for neighbours in self.adj_list.values():
+            neighbours.pop(label, None)
+        self.vertices.pop(index)
+        self.adj_matrix.pop(index)
+        for row in self.adj_matrix:
+            row.pop(index)
+        self._index = {vertex: i for i, vertex in enumerate(self.vertices)}
+        self._edge_set = {
+            (u, v) for u, neighbours in self.adj_list.items()
+            for v in neighbours
+        }
+        return True
 
     def add_edge(self, u, v, weight=1):
         """Add an edge u -> v (and v -> u if undirected)."""
@@ -232,7 +252,7 @@ def bfs_nearest_depot(graph, source, depots):
 # DFS with timestamps and edge classification
 # ============================================================================
 
-def dfs_full(graph):
+def dfs_full(graph, start=None):
     """Full DFS on the graph.
     Returns (discovery, finish, parent, edge_types, order).
     edge_types: dict of (u, v) -> 'tree'|'back'|'forward'|'cross'
@@ -267,7 +287,12 @@ def dfs_full(graph):
         finish[u] = time_counter[0]
         color[u] = BLACK
 
-    for v in graph.vertices:
+    if start is not None and start not in graph.adj_list:
+        raise ValueError(f"Unknown DFS start vertex '{start}'.")
+    traversal_roots = ([start] if start is not None else []) + [
+        vertex for vertex in graph.vertices if vertex != start
+    ]
+    for v in traversal_roots:
         if color[v] == WHITE:
             _dfs_visit(v)
 

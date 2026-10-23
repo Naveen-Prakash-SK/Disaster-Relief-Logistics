@@ -7,6 +7,7 @@ No built-in tree or eval() usage.
 """
 
 import random
+import re
 
 
 # ============================================================================
@@ -287,7 +288,62 @@ class ExpressionNode:
         self.right = None
 
 
-OPERATORS = {'+', '-', '*', '/'}
+OPERATORS = {'+', '-', '*', '/', 'neg'}
+
+
+def infix_to_postfix(expression):
+    """Convert arithmetic infix text to postfix without evaluating it."""
+    token_pattern = re.compile(
+        r"\d+(?:\.\d*)?(?:[eE][+-]?\d+)?|\.\d+(?:[eE][+-]?\d+)?|"
+        r"[A-Za-z_]\w*|[()+\-*/]")
+    tokens = token_pattern.findall(expression)
+    if not tokens or "".join(tokens) != re.sub(r"\s+", "", expression):
+        raise ValueError("Use numbers, variable names, + - * /, and parentheses.")
+
+    precedence = {'+': 1, '-': 1, '*': 2, '/': 2, 'neg': 3}
+    output = []
+    operators = []
+    expects_operand = True
+    for token in tokens:
+        if token == "(":
+            operators.append(token)
+            expects_operand = True
+        elif token == ")":
+            if expects_operand:
+                raise ValueError("Missing operand before ')'.")
+            while operators and operators[-1] != "(":
+                output.append(operators.pop())
+            if not operators:
+                raise ValueError("Unmatched closing parenthesis.")
+            operators.pop()
+            expects_operand = False
+        elif token in "+-*/":
+            if expects_operand:
+                if token != "-":
+                    raise ValueError(f"Operator '{token}' needs a left operand.")
+                operator = "neg"
+            else:
+                operator = token
+            while (operators and operators[-1] != "("
+                   and (precedence[operators[-1]] > precedence[operator]
+                        or (precedence[operators[-1]] == precedence[operator]
+                            and operator != "neg"))):
+                output.append(operators.pop())
+            operators.append(operator)
+            expects_operand = True
+        else:
+            if not expects_operand:
+                raise ValueError("Insert an operator between operands.")
+            output.append(token)
+            expects_operand = False
+    if expects_operand:
+        raise ValueError("Expression ends where an operand is required.")
+    while operators:
+        operator = operators.pop()
+        if operator == "(":
+            raise ValueError("Unmatched opening parenthesis.")
+        output.append(operator)
+    return output
 
 
 def build_expression_tree(postfix_tokens):
@@ -305,7 +361,13 @@ def build_expression_tree(postfix_tokens):
         raise ValueError("Empty expression.")
     stack = []
     for token in postfix_tokens:
-        if token in OPERATORS:
+        if token == "neg":
+            if not stack:
+                raise ValueError("Unary minus requires one operand.")
+            node = ExpressionNode(token)
+            node.right = stack.pop()
+            stack.append(node)
+        elif token in OPERATORS:
             if len(stack) < 2:
                 raise ValueError(
                     f"Operator '{token}' requires two operands, "
@@ -334,6 +396,8 @@ def evaluate_expression(root, variables=None):
         variables = {}
 
     def _eval(node):
+        if node.value == "neg":
+            return -_eval(node.right)
         if node.left is None and node.right is None:
             # Leaf: try numeric literal, then variable lookup.
             try:
@@ -363,9 +427,14 @@ def evaluate_expression(root, variables=None):
 
 def infix_string(root):
     """Return an infix string with minimal parentheses."""
-    _PREC = {'+': 1, '-': 1, '*': 2, '/': 2}
+    _PREC = {'+': 1, '-': 1, '*': 2, '/': 2, 'neg': 3}
 
     def _to_str(node, parent_op=None, is_right_child=False):
+        if node.value == "neg":
+            expression = f"-{_to_str(node.right, 'neg', True)}"
+            if node.right.value in _PREC:
+                expression = f"-({_to_str(node.right)})"
+            return expression
         if node.left is None and node.right is None:
             return str(node.value)
         left_s = _to_str(node.left, node.value, False)
@@ -374,12 +443,13 @@ def infix_string(root):
         if parent_op is not None:
             p_prec = _PREC.get(parent_op, 0)
             c_prec = _PREC.get(node.value, 0)
-            # Parenthesise if child precedence is lower, or if same
-            # precedence and this is the right child of - or /.
+            # Parenthesise lower-precedence children and right children whose
+            # grouping would change the represented operation sequence.
             if c_prec < p_prec:
                 expr = f"({expr})"
-            elif c_prec == p_prec and is_right_child and parent_op in ('-', '/'):
-                expr = f"({expr})"
+            elif c_prec == p_prec and is_right_child:
+                if parent_op in ('-', '/') or node.value != parent_op:
+                    expr = f"({expr})"
         return expr
 
     return _to_str(root)

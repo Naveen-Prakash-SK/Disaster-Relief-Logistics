@@ -156,6 +156,8 @@ def critical_path(dag):
     """Compute the critical path (longest path) in a DAG.
     Returns (path, total_duration, est_dict).
     """
+    if not dag.tasks:
+        return [], 0, {}
     est, order = earliest_start_times(dag)
     # The task with the highest (est + duration) finishes last.
     end_times = {t: est[t] + dag.duration[t] for t in dag.tasks}
@@ -163,18 +165,21 @@ def critical_path(dag):
     total_duration = end_times[last_task]
 
     # Trace the critical path backwards.
+    predecessors = {task: [] for task in dag.tasks}
+    for source in dag.tasks:
+        for target in dag.adj[source]:
+            predecessors[target].append(source)
     path = [last_task]
     current = last_task
     while True:
         # Find a predecessor on the critical path.
         found = False
-        for u in dag.tasks:
-            if current in dag.adj[u]:
-                if est[u] + dag.duration[u] == est[current]:
-                    path.append(u)
-                    current = u
-                    found = True
-                    break
+        for predecessor in predecessors[current]:
+            if est[predecessor] + dag.duration[predecessor] == est[current]:
+                path.append(predecessor)
+                current = predecessor
+                found = True
+                break
         if not found:
             break
 

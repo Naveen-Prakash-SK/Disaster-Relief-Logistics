@@ -46,7 +46,7 @@ During natural disasters, coordinating relief efforts requires efficient managem
 6. Validate through automated testing and empirical benchmarks
 
 ### Proposed System
-A modular console application with 14 menu options covering all required functionality. Each module is independently testable and integrates through a central main menu.
+A modular console application with 17 main-menu actions plus an exit option. The menu operates on one shared scenario and supports guided entry and JSON save/load. Each module is independently testable.
 
 ---
 
@@ -55,13 +55,15 @@ A modular console application with 14 menu options covering all required functio
 ### Architecture
 
 ```
-main.py ──┬── trees.py           (General Tree + BST)
+main.py ──┬── console_app.py     (Shared interactive scenario)
+          ├── scenario.py       (Validation and JSON persistence)
+          ├── trees.py           (General Tree + BST)
           ├── avl_expression.py  (AVL Tree + Expression Tree)
           ├── graph.py           (Graph ADT, BFS, DFS, SCC, Dijkstra)
           ├── mst.py             (Prim, Kruskal, Union-Find)
           ├── scheduling.py      (Topological Sort, Critical Path)
           ├── analysis.py        (Benchmarks, Complexity Notes)
-          └── tests.py           (62 Automated Tests)
+          └── tests.py           (80 Automated Tests)
 ```
 
 ### Data Structures
@@ -113,7 +115,7 @@ See [pseudocode.md](pseudocode.md) for detailed pseudocode of:
 ### Prim Correctness (Cut Property)
 **Theorem:** For any cut of the graph, the minimum-weight edge crossing the cut belongs to some MST.
 
-**Proof:** Suppose the minimum crossing edge e = (u,v) is not in MST T. Adding e to T creates a cycle. This cycle crosses the cut at least once more at some edge e'. Since w(e) ≤ w(e'), replacing e' with e yields a spanning tree of equal or lesser weight — contradiction with e not being in any MST.
+**Proof:** Let T be an MST. If the minimum crossing edge e = (u,v) is not in T, adding e creates a cycle. This cycle contains another cut-crossing edge e'. Since w(e) ≤ w(e'), replacing e' with e gives a spanning tree of no greater weight that includes e. It is therefore also an MST, proving that some MST contains the minimum crossing edge.
 
 ### AVL Height Bound
 **Claim:** An AVL tree with n nodes has height h = O(log n).
@@ -157,7 +159,7 @@ T(n) = T(n') + O(1) where n' ≤ n-1 and h = O(log n) → O(log n)
 See [test_results.md](test_results.md) for complete test output.
 
 ### Summary
-- **62 automated tests** across 9 test classes
+- **80 automated tests** across 12 test classes
 - All tests pass (0 failures, 0 errors)
 - Tests cover: General Tree, BST, AVL, Expression Tree, Graph/BFS/DFS/SCC/Dijkstra, MST, Scheduling, Union-Find, Empty structures
 
@@ -165,14 +167,17 @@ See [test_results.md](test_results.md) for complete test output.
 | Class | Tests | Coverage |
 |-------|-------|----------|
 | TestGeneralTree | 7 | Insert, hierarchy validation, delete, traversals |
-| TestSupplyBST | 14 | Search, delete cases, min/max, range query, iterative traversals |
+| TestSupplyBST | 14 | Search, delete cases, min/max, range query, iterative traversals and skewed-tree operations |
 | TestAVLTree | 8 | All rotations, delete rebalance, stress test |
-| TestExpressionTree | 6 | Evaluation, infix, errors |
-| TestGraph | 12 | BFS, DFS, Dijkstra, SCC, negative weights |
+| TestExpressionTree | 8 | Evaluation, infix grouping, unary minus, errors |
+| TestGraph | 15 | BFS, DFS, Dijkstra, SCC, disconnected graph and graph representation conditions |
 | TestMST | 5 | Prim/Kruskal agreement, disconnected, merge sort |
-| TestScheduling | 5 | Topological sort, cycle detection, critical path |
+| TestScheduling | 6 | Topological sort, cycle detection, critical path, empty DAG |
 | TestDisjointSet | 2 | Union-find correctness |
 | TestEmptyStructures | 4 | Edge cases |
+| TestScenarioPersistence | 7 | JSON round-trip, validation, graph/task reconstruction |
+| TestBenchmarkConfiguration | 1 | Custom sizes, seed and CSV metadata |
+| TestInteractiveScenarioWorkflow | 3 | Guided entry, persistence, routes and graph conversion |
 
 ---
 
@@ -182,18 +187,18 @@ See [test_results.md](test_results.md) for complete test output.
 
 | n | Type | Input | Time (s) | Height |
 |---|------|-------|----------|--------|
-| 1,000 | BST | sorted | 0.030 | 1,000 |
-| 1,000 | AVL | sorted | 0.006 | 10 |
-| 1,000 | BST | random | 0.001 | 21 |
-| 1,000 | AVL | random | 0.005 | 12 |
-| 5,000 | BST | sorted | 0.868 | 5,000 |
-| 5,000 | AVL | sorted | 0.048 | 13 |
-| 5,000 | BST | random | 0.010 | 28 |
-| 5,000 | AVL | random | 0.042 | 15 |
-| 20,000 | BST | sorted | 14.123 | 20,000 |
-| 20,000 | AVL | sorted | 0.197 | 15 |
-| 20,000 | BST | random | 0.037 | 35 |
-| 20,000 | AVL | random | 0.196 | 17 |
+| 1,000 | BST | sorted | 0.032684 | 1,000 |
+| 1,000 | AVL | sorted | 0.007379 | 10 |
+| 1,000 | BST | random | 0.001781 | 21 |
+| 1,000 | AVL | random | 0.009604 | 12 |
+| 5,000 | BST | sorted | 0.892764 | 5,000 |
+| 5,000 | AVL | sorted | 0.046385 | 13 |
+| 5,000 | BST | random | 0.008043 | 28 |
+| 5,000 | AVL | random | 0.051774 | 15 |
+| 20,000 | BST | sorted | 13.358428 | 20,000 |
+| 20,000 | AVL | sorted | 0.185719 | 15 |
+| 20,000 | BST | random | 0.036685 | 35 |
+| 20,000 | AVL | random | 0.195739 | 17 |
 
 **Observations:**
 - BST with sorted input shows O(n) height degradation (degenerate linked list)
@@ -205,18 +210,19 @@ See [test_results.md](test_results.md) for complete test output.
 
 | V | E | Type | Prim (s) | Kruskal (s) | Cost |
 |---|---|------|----------|-------------|------|
-| 200 | 400 | sparse | 0.003 | 0.002 | 5,340 |
-| 200 | 10,000 | dense | 0.006 | 0.090 | 343 |
-| 1,000 | 2,000 | sparse | 0.080 | 0.015 | 28,937 |
-| 1,000 | 250,000 | dense | 0.142 | 5.617 | 1,007 |
-| 2,000 | 4,000 | sparse | 0.380 | 0.045 | 58,334 |
-| 2,000 | 50,000 | dense* | 0.340 | 0.662 | 5,782 |
+| 200 | 400 | sparse | 0.004157 | 0.003964 | 5,340 |
+| 200 | 10,000 | dense | 0.006723 | 0.083455 | 343 |
+| 1,000 | 2,000 | sparse | 0.086595 | 0.012993 | 28,937 |
+| 1,000 | 250,000 | dense | 0.147201 | 6.450146 | 1,007 |
+| 2,000 | 4,000 | sparse | 0.380274 | 0.041227 | 58,334 |
+| 2,000 | 50,000 | dense* | 0.332871 | 0.637205 | 5,782 |
 
 **Observations:**
 - Array-based Prim is O(V²) — time depends on V, not E. Better for dense graphs.
 - Kruskal is O(E log E) — fast for sparse graphs, slow when E is large.
 - Both produce identical MST costs, confirming correctness.
-- For V=1000 dense: Prim (0.14s) vastly outperforms Kruskal (5.6s).
+- For V=1000 dense: Prim (0.147201s) outperforms Kruskal (6.450146s).
+- These are single-run timings on deterministic inputs; elapsed times vary by environment and system load.
 
 ---
 
@@ -229,31 +235,32 @@ python main.py
 
 ### Menu
 ```
-====================================================
-       DISASTER RELIEF LOGISTICS SYSTEM
-====================================================
- 1. Location hierarchy (General Tree)
- 2. Relief supply inventory (BST)
- 3. Relief-camp index (AVL) & Expression calculator
- ...
-13. Display sample scenario
- 0. Exit
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camp index (AVL) and expression tree
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
 ```
 
-### BFS Nearest Depot (Option 5)
-```
-Your location: ShelterN1a
-Nearest depot: DepotA (3 edges)
-Route: ShelterN1a -> DistrictN1 -> RegionNorth -> DepotA
-```
-
-### Dijkstra Shortest Route (Option 6)
-```
-Source: DepotA
-Destination: ShelterN1a
-Shortest distance: 18
-Path: DepotA -> RegionNorth -> DistrictN1 -> ShelterN1a
-```
+This menu was observed by launching `python main.py` with `0` as input.
+The automated workflow test separately verifies building and saving a
+scenario, restarting, loading it, and calculating a route.
 
 ---
 
@@ -261,7 +268,7 @@ Path: DepotA -> RegionNorth -> DistrictN1 -> ShelterN1a
 
 ### Limitations
 1. Dense graph benchmarks for V=2000 use reduced edge count (50,000 instead of 1,000,000) to keep runtime practical
-2. Python's recursion limit requires iterative BST insert for sorted inputs of n > 1000
+2. Recursive BST traversal helpers may hit Python's recursion limit on highly skewed trees; interactive display, range query and deletion are iterative.
 3. No graphical visualisation — text-based output only (as specified)
 4. Sample data is synthetic; real disaster data would require external integration
 
@@ -271,7 +278,7 @@ The system successfully demonstrates all required data structures and algorithms
 - Graph algorithms (BFS, DFS, SCC, Dijkstra, Prim, Kruskal) on a realistic sample network
 - Scheduling with topological sort, cycle detection and critical path
 - Empirical benchmarks confirming theoretical complexity predictions
-- 62 automated tests providing comprehensive validation
+- 80 automated tests covering data structures, algorithms, persistence and interactive workflows
 
 The modular architecture allows independent testing and extension of each component.
 

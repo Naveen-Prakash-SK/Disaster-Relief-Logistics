@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "network_name": "Disaster Relief Network",
+  "locations": [],
+  "supplies": [],
+  "camps": [],
+  "graph": {
+    "directed": false,
+    "vertices": [],
+    "edges": []
+  },
+  "depots": [],
+  "tasks": []
+}

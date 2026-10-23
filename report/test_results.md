@@ -2,13 +2,13 @@
 
 ## Test Execution
 
-**Command:** `python -m unittest tests -v`
+**Command:** `python -m unittest -v`
 
-**Total Tests:** 62  
-**Passed:** 62  
+**Total Tests:** 80
+**Passed:** 80
 **Failed:** 0  
 **Errors:** 0  
-**Time:** ~6 seconds
+**Time:** 5.621 seconds (final workspace run).
 
 ## Detailed Results
 
@@ -38,13 +38,15 @@
 | test_empty_expression | ✓ OK |
 | test_empty_graph | ✓ OK |
 
-### TestExpressionTree (6 tests)
+### TestExpressionTree (8 tests)
 | Test | Status |
 |------|--------|
 | test_complex_expression | ✓ OK |
 | test_division_by_zero | ✓ OK |
 | test_invalid_postfix_extra_operands | ✓ OK |
 | test_invalid_postfix_too_few_operands | ✓ OK |
+| test_infix_preserves_right_child_grouping | ✓ OK |
+| test_infix_expression_unary_and_invalid_input | ✓ OK |
 | test_simple_expression | ✓ OK |
 | test_undefined_variable | ✓ OK |
 
@@ -59,7 +61,7 @@
 | test_invalid_hierarchy | ✓ OK |
 | test_traversals | ✓ OK |
 
-### TestGraph (12 tests)
+### TestGraph (15 tests)
 | Test | Status |
 |------|--------|
 | test_bfs_dijkstra_agree_uniform_weight | ✓ OK |
@@ -73,6 +75,9 @@
 | test_dijkstra_unreachable | ✓ OK |
 | test_edge_exists | ✓ OK |
 | test_scc_directed | ✓ OK |
+| test_sample_graph_conditions | ✓ OK |
+| test_undirected_self_loop_count | ✓ OK |
+| test_remove_vertex_cleans_incident_edges | ✓ OK |
 | test_vertex_count | ✓ OK |
 
 ### TestMST (5 tests)
@@ -84,7 +89,7 @@
 | test_prim_kruskal_agree | ✓ OK |
 | test_single_vertex | ✓ OK |
 
-### TestScheduling (5 tests)
+### TestScheduling (6 tests)
 | Test | Status |
 |------|--------|
 | test_critical_path | ✓ OK |
@@ -92,24 +97,20 @@
 | test_dfs_topo_acyclic | ✓ OK |
 | test_earliest_start_times | ✓ OK |
 | test_kahn_acyclic | ✓ OK |
+| test_empty_critical_path | ✓ OK |
 
 ### TestSupplyBST (14 tests)
-| Test | Status |
-|------|--------|
-| test_delete_leaf | ✓ OK |
-| test_delete_one_child | ✓ OK |
-| test_delete_two_children | ✓ OK |
-| test_height | ✓ OK |
-| test_inorder_sorted | ✓ OK |
-| test_iterative_traversals_match_recursive | ✓ OK |
-| test_minimum_maximum | ✓ OK |
-| test_negative_quantity_rejected | ✓ OK |
-| test_range_query | ✓ OK |
-| test_search_existing | ✓ OK |
-| test_search_missing | ✓ OK |
-| test_sorted_insert_height | ✓ OK |
-| test_successor_predecessor | ✓ OK |
-| test_height (empty tree) | ✓ OK |
+All 14 supply BST tests passed, including the regression test that performs
+iterative traversal, range query and deletion on a 1,500-node skewed tree.
+
+### Workflow and persistence tests
+
+Seven scenario persistence tests validate JSON round-trip, invalid records,
+structural reconstruction and task-name normalization. One benchmark test
+checks custom sizes, deterministic seed and CSV metadata. One interactive
+workflow class includes tests for bidirectional-preserving graph conversion,
+conflicting directed-edge weights, and building/saving/restarting/loading a
+scenario before calculating a route.
 
 ## Coverage Summary
 
@@ -118,10 +119,13 @@
 | trees.py (General Tree) | 7 | ✓ |
 | trees.py (BST) | 14 | ✓ |
 | avl_expression.py (AVL) | 8 | ✓ |
-| avl_expression.py (Expr) | 6 | ✓ |
-| graph.py (Graph + algos) | 12 | ✓ |
+| avl_expression.py (Expr) | 8 | ✓ |
+| graph.py (Graph + algos) | 15 | ✓ |
 | mst.py (Prim + Kruskal) | 5 | ✓ |
-| scheduling.py | 5 | ✓ |
+| scheduling.py | 6 | ✓ |
 | mst.py (Union-Find) | 2 | ✓ |
 | Edge cases | 4 | ✓ |
-| **Total** | **62** | **✓** |
+| Scenario persistence | 7 | ✓ |
+| Benchmark configuration | 1 | ✓ |
+| Interactive workflow and graph conversion | 3 | ✓ |
+| **Total** | **80** | **✓** |

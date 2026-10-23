@@ -129,7 +129,7 @@ For n = 1000: h ≤ 2 × 10 = 20 (our measured AVL height: 10, well within bound
 
 ### Formal Asymptotic Proof
 
-**Theorem:** Array-based Dijkstra is Θ(V²) for dense graphs.
+**Theorem:** Array-based Dijkstra has a Θ(V²) worst case.
 
 **Proof of O(V²):** (Upper bound)
 - V outer iterations × V inner scan = V² comparisons in find-minimum
@@ -137,8 +137,9 @@ For n = 1000: h ≤ 2 × 10 = 20 (our measured AVL height: 10, well within bound
 - Therefore T(V, E) = O(V²) ✓
 
 **Proof of Ω(V²):** (Lower bound)
-- The find-minimum loop always scans V vertices each of V iterations
-- Even with E = 0 edges, the algorithm performs V × V comparisons
+- On a connected graph, all V vertices are reachable from the source.
+- The algorithm therefore performs V iterations, scanning V vertices
+  for a minimum on each iteration.
 - Therefore T(V, E) ≥ c₂V² for some constant c₂
 - Therefore T(V, E) = Ω(V²) ✓
 

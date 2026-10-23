@@ -179,32 +179,33 @@ class SupplyBST:
         return None
 
     def delete(self, key):
-        self.root, deleted = self._delete(self.root, key)
-        return deleted
-
-    def _delete(self, node, key):
+        parent = None
+        node = self.root
+        while node is not None and node.key != key:
+            parent = node
+            node = node.left if key < node.key else node.right
         if node is None:
-            return None, False
-        if key < node.key:
-            node.left, deleted = self._delete(node.left, key)
-            return node, deleted
-        if key > node.key:
-            node.right, deleted = self._delete(node.right, key)
-            return node, deleted
+            return False
 
-        # Case 1: no child; Case 2: one child.
-        if node.left is None:
-            return node.right, True
-        if node.right is None:
-            return node.left, True
+        if node.left is not None and node.right is not None:
+            successor_parent = node
+            successor = node.right
+            while successor.left is not None:
+                successor_parent = successor
+                successor = successor.left
+            node.key = successor.key
+            node.item_name = successor.item_name
+            node.quantity = successor.quantity
+            parent, node = successor_parent, successor
 
-        # Case 3: two children. Replace with inorder successor.
-        successor = self._minimum_node(node.right)
-        node.key = successor.key
-        node.item_name = successor.item_name
-        node.quantity = successor.quantity
-        node.right, _ = self._delete(node.right, successor.key)
-        return node, True
+        child = node.left if node.left is not None else node.right
+        if parent is None:
+            self.root = child
+        elif parent.left is node:
+            parent.left = child
+        else:
+            parent.right = child
+        return True
 
     def _minimum_node(self, node):
         current = node
@@ -249,18 +250,25 @@ class SupplyBST:
 
     def range_query(self, low, high):
         """Return all supply records with IDs in inclusive range [low, high]."""
+        if low > high:
+            return []
         result = []
-        def visit(node):
-            if node is None:
-                return
-            if node.key > low:
-                visit(node.left)
-            if low <= node.key <= high:
-                result.append(node)
-            if node.key < high:
-                visit(node.right)
-        if low <= high:
-            visit(self.root)
+        stack = []
+        node = self.root
+        while node is not None or stack:
+            while node is not None:
+                if node.key >= low:
+                    stack.append(node)
+                    node = node.left
+                else:
+                    node = node.right
+            if not stack:
+                break
+            node = stack.pop()
+            if node.key > high:
+                break
+            result.append(node)
+            node = node.right
         return result
 
     def inorder(self):
@@ -396,7 +404,7 @@ def trees_menu():
     supply_tree = SupplyBST()
 
     while True:
-        print("\\n--- LOCATION TREE AND SUPPLY BST ---")
+        print("--- LOCATION TREE AND SUPPLY BST ---")
         print("1. Add region")
         print("2. Add district")
         print("3. Add shelter")
@@ -452,7 +460,7 @@ def trees_menu():
                 key = int(input("Supply ID to delete: "))
                 print("Deleted." if supply_tree.delete(key) else "Supply ID not found.")
             elif choice == "10":
-                records = supply_tree.inorder()
+                records = supply_tree.inorder_iterative()
                 if not records:
                     print("No supply records.")
                 for node in records:

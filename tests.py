@@ -7,6 +7,13 @@ Uses Python's standard unittest module.
 import unittest
 import sys
 import random
+import sys
+import tempfile
+import time
+import os
+from unittest.mock import patch
+from contextlib import redirect_stdout
+from io import StringIO
 
 
 # ============================================================================
@@ -147,6 +154,20 @@ class TestSupplyBST(unittest.TestCase):
         iter_post = [n.key for n in self.bst.postorder_iterative()]
         self.assertEqual(rec_post, iter_post)
 
+    def test_skewed_tree_iterative_queries(self):
+        from trees import SupplyBST
+        bst = SupplyBST()
+        for key in range(1, 1501):
+            bst.insert(key, f"item-{key}", key)
+
+        self.assertEqual(len(bst.inorder_iterative()), 1500)
+        self.assertEqual(
+            [node.key for node in bst.range_query(1200, 1210)],
+            list(range(1200, 1211)))
+        self.assertTrue(bst.delete(1500))
+        self.assertIsNone(bst.search(1500))
+        self.assertEqual(bst.height(), 1499)
+
     def test_height(self):
         h = self.bst.height()
         self.assertGreater(h, 0)
@@ -278,6 +299,27 @@ class TestExpressionTree(unittest.TestCase):
             root, {"distance": 10, "rate": 5, "toll": 3})
         self.assertAlmostEqual(result, 53.0)
 
+    def test_infix_preserves_right_child_grouping(self):
+        from avl_expression import (
+            build_expression_tree, infix_string, infix_to_postfix,
+        )
+
+        addition = build_expression_tree(["a", "b", "c", "-", "+"])
+        multiplication = build_expression_tree(["a", "b", "c", "/", "*"])
+        self.assertEqual(infix_string(addition), "a + (b - c)")
+        self.assertEqual(infix_string(multiplication), "a * (b / c)")
+        self.assertEqual(infix_to_postfix("a + b * 3"), ["a", "b", "3", "*", "+"])
+
+    def test_infix_expression_unary_and_invalid_input(self):
+        from avl_expression import (
+            build_expression_tree, evaluate_expression, infix_to_postfix,
+        )
+        postfix = infix_to_postfix("-(x + 2) * 3")
+        self.assertAlmostEqual(
+            evaluate_expression(build_expression_tree(postfix), {"x": 1}), -9)
+        with self.assertRaises(ValueError):
+            infix_to_postfix("a + (b *")
+
     def test_division_by_zero(self):
         from avl_expression import build_expression_tree, evaluate_expression
         root = build_expression_tree(["5", "0", "/"])
@@ -349,10 +391,38 @@ class TestGraph(unittest.TestCase):
         comps = connected_components_undirected(self.g)
         self.assertEqual(len(comps), 2)  # main + isolated pair
 
+    def test_sample_graph_conditions(self):
+        from graph import connected_components_undirected
+        self.assertGreaterEqual(self.g.vertex_count(), 12)
+        self.assertEqual(len(connected_components_undirected(self.g)), 2)
+        self.assertTrue(self.dg.directed)
+        self.assertFalse(self.g.directed)
+        self.assertGreater(self.dg.edge_count(), 0)
+
+    def test_undirected_self_loop_count(self):
+        from graph import Graph
+        g = Graph(directed=False)
+        g.add_edge("A", "A", 1)
+        self.assertEqual(g.edge_count(), 1)
+        self.assertEqual(len(g.all_edges()), 1)
+
+    def test_remove_vertex_cleans_incident_edges(self):
+        from graph import Graph
+        graph = Graph()
+        graph.add_edge("A", "B", 3)
+        graph.add_edge("B", "C", 4)
+        self.assertTrue(graph.remove_vertex("B"))
+        self.assertEqual(graph.vertices, ["A", "C"])
+        self.assertEqual(graph.edge_count(), 0)
+        self.assertEqual(graph.adj_matrix, [[0, 0], [0, 0]])
+        self.assertFalse(graph.remove_vertex("missing"))
+
     def test_scc_directed(self):
         from graph import scc_kosaraju
         comps = scc_kosaraju(self.dg)
-        self.assertGreater(len(comps), 0)
+        self.assertIn(
+            {"RegionSouth", "DistrictS1", "CampBeta"},
+            [set(component) for component in comps])
 
     def test_dijkstra_shortest_path(self):
         from graph import dijkstra_path
@@ -490,6 +560,10 @@ class TestScheduling(unittest.TestCase):
         est, order = earliest_start_times(dag)
         self.assertEqual(est["AssessDamage"], 0)
 
+    def test_empty_critical_path(self):
+        from scheduling import TaskDAG, critical_path
+        self.assertEqual(critical_path(TaskDAG()), ([], 0, {}))
+
 
 # ============================================================================
 # UNION-FIND TESTS
@@ -551,33 +625,221 @@ class TestEmptyStructures(unittest.TestCase):
             build_expression_tree([])
 
 
+class TestScenarioPersistence(unittest.TestCase):
+    """Tests for JSON record validation and data-structure reconstruction."""
+
+    def test_sample_round_trip_preserves_records_and_algorithms(self):
+        from scenario import Scenario
+        source = Scenario.sample()
+        loaded = Scenario.from_dict(source.to_dict())
+        self.assertEqual(source.to_dict(), loaded.to_dict())
+        from mst import prim_mst, kruskal_mst
+        self.assertEqual(prim_mst(loaded.graph)[1], kruskal_mst(loaded.graph)[1])
+
+    def test_json_save_load_and_overwrite_protection(self):
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "scenario.json")
+            scenario = Scenario.sample()
+            scenario.save(path)
+            loaded = Scenario.load(path)
+            self.assertEqual(scenario.to_dict(), loaded.to_dict())
+            with self.assertRaises(FileExistsError):
+                scenario.save(path)
+            scenario.save(path, overwrite=True)
+
+    def test_rejects_invalid_location_hierarchy(self):
+        from scenario import Scenario
+        data = Scenario.sample().to_dict()
+        data["locations"].append(
+            {"parent": "TamilNadu", "name": "InvalidShelter",
+             "type": "Shelter"})
+        with self.assertRaisesRegex(ValueError, "cannot contain"):
+            Scenario.from_dict(data)
+
+    def test_rejects_edges_to_missing_vertices(self):
+        from scenario import Scenario
+        data = Scenario.sample().to_dict()
+        data["graph"]["edges"][0]["to"] = "MissingLocation"
+        with self.assertRaisesRegex(ValueError, "endpoint"):
+            Scenario.from_dict(data)
+
+    def test_rejects_negative_supply_quantity(self):
+        from scenario import Scenario
+        data = Scenario.sample().to_dict()
+        data["supplies"][0]["quantity"] = -1
+        with self.assertRaisesRegex(ValueError, "negative"):
+            Scenario.from_dict(data)
+
+    def test_round_trip_normalizes_task_names(self):
+        from scenario import Scenario
+        data = Scenario.sample().to_dict()
+        data["tasks"][0]["name"] = " AssessDamage "
+        for record in data["tasks"]:
+            record["successors"] = [
+                " AssessDamage " if name == "AssessDamage" else name
+                for name in record["successors"]
+            ]
+        loaded = Scenario.from_dict(data)
+        self.assertEqual(loaded.tasks.tasks[0], "AssessDamage")
+
+    def test_guided_builder_scenario_drives_algorithms(self):
+        from console_app import _guided_builder
+        from graph import dijkstra_path
+        from scheduling import critical_path
+        answers = [
+            "User Network", "1", "North", "1", "Town", "1", "Shelter",
+            "1", "11", "Water", "50", "1", "21", "Camp",
+            "n", "2", "Depot", "Shelter", "1", "Depot", "Shelter", "7",
+            "1", "Depot", "2", "Assess", "3", "Deliver", "4", "1",
+            "Assess", "Deliver",
+        ]
+        with patch("builtins.input", side_effect=answers):
+            scenario = _guided_builder()
+        self.assertIsNotNone(scenario)
+        self.assertEqual(scenario.locations.find("Shelter").name, "Shelter")
+        self.assertEqual(scenario.supplies.search(11).quantity, 50)
+        self.assertEqual(dijkstra_path(scenario.graph, "Depot", "Shelter")[1], 7)
+        self.assertEqual(critical_path(scenario.tasks)[1], 7)
+
+
+class TestBenchmarkConfiguration(unittest.TestCase):
+    def test_custom_sizes_seed_and_csv_metadata(self):
+        import csv
+        import analysis
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(analysis, "RESULTS_DIR", directory):
+                with redirect_stdout(StringIO()):
+                    trees = analysis.run_tree_benchmarks([12], seed=7)
+                    graphs = analysis.run_graph_benchmarks([10], seed=7)
+                    analysis.save_benchmark_results(trees, graphs, seed=7)
+                with open(os.path.join(directory, "benchmark_results.csv"),
+                          newline="", encoding="utf-8") as file:
+                    rows = list(csv.DictReader(file))
+        self.assertEqual(len(rows), 6)
+        self.assertTrue(all(row["seed"] == "7" for row in rows))
+        self.assertTrue(all(row["runs"] == "1" for row in rows))
+
+
+class TestInteractiveScenarioWorkflow(unittest.TestCase):
+    def test_undirected_to_directed_preserves_both_directions(self):
+        from console_app import _converted_graph
+        from graph import Graph, dijkstra_path
+        original = Graph(directed=False)
+        original.add_edge("Depot", "Shelter", 7)
+        converted = _converted_graph(original, directed=True)
+        self.assertEqual(dijkstra_path(converted, "Depot", "Shelter")[1], 7)
+        self.assertEqual(dijkstra_path(converted, "Shelter", "Depot")[1], 7)
+
+    def test_directed_to_undirected_rejects_conflicting_weights(self):
+        from console_app import _converted_graph
+        from graph import Graph
+        original = Graph(directed=True)
+        original.add_edge("A", "B", 3)
+        original.add_edge("B", "A", 4)
+        with self.assertRaisesRegex(ValueError, "weights differ"):
+            _converted_graph(original, directed=False)
+
+    def test_build_save_restart_load_and_run_route(self):
+        from console_app import main
+        answers = [
+            "1", "1", "User Network", "1", "North", "1", "Town", "1", "Shelter",
+            "1", "11", "Water", "50", "1", "21", "Camp",
+            "n", "2", "Depot", "Shelter", "1", "Depot", "Shelter", "7",
+            "1", "Depot", "2", "Assess", "3", "Deliver", "4", "1",
+            "Assess", "Deliver", "13", "17",
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "scenario.json")
+            with patch("console_app.DATA_PATH", path):
+                with patch("builtins.input", side_effect=answers):
+                    with redirect_stdout(StringIO()):
+                        main()
+                restart_answers = ["14", "7", "Depot", "Shelter", "17"]
+                with patch("builtins.input", side_effect=restart_answers):
+                    output = StringIO()
+                    with redirect_stdout(output):
+                        main()
+        self.assertIn("Shortest route: Depot -> Shelter (weight 7.0)",
+                      output.getvalue())
+
+
 # ============================================================================
-# TEST RUNNER
+# TEST RUNNERS
 # ============================================================================
 
-def run_tests():
-    """Run all tests with verbose output, callable from the main menu."""
-    print("\n=== Running Automated Self-Tests ===\n")
+LAST_TEST_SUMMARY = None
+
+
+def _test_suite(category=None):
     loader = unittest.TestLoader()
+    if category is None:
+        return loader.loadTestsFromModule(sys.modules[__name__])
+
+    classes = {
+        "tree": [
+            TestGeneralTree, TestSupplyBST, TestAVLTree, TestExpressionTree,
+        ],
+        "graph": [TestGraph, TestMST, TestDisjointSet],
+        "scheduling": [TestScheduling],
+        "scenario": [
+            TestScenarioPersistence, TestBenchmarkConfiguration,
+            TestInteractiveScenarioWorkflow,
+        ],
+    }
+    if category not in classes:
+        raise ValueError(f"Unknown test category: {category}")
+
     suite = unittest.TestSuite()
+    for test_class in classes[category]:
+        suite.addTests(loader.loadTestsFromTestCase(test_class))
 
-    test_classes = [
-        TestGeneralTree,
-        TestSupplyBST,
-        TestAVLTree,
-        TestExpressionTree,
-        TestGraph,
-        TestMST,
-        TestScheduling,
-        TestDisjointSet,
-        TestEmptyStructures,
-    ]
-    for cls in test_classes:
-        suite.addTests(loader.loadTestsFromTestCase(cls))
+    empty_tests = loader.loadTestsFromTestCase(TestEmptyStructures)
+    empty_methods = {
+        "tree": {
+            "test_empty_bst", "test_empty_avl", "test_empty_expression",
+        },
+        "graph": {"test_empty_graph"},
+    }.get(category, set())
+    suite.addTests(test for test in empty_tests
+                   if test._testMethodName in empty_methods)
+    return suite
 
+
+def run_tests(category=None):
+    """Run all tests or a named suite category and retain its actual summary."""
+    global LAST_TEST_SUMMARY
+    labels = {
+        None: "all automated tests",
+        "tree": "tree tests",
+        "graph": "graph algorithm tests",
+        "scheduling": "scheduling tests",
+        "scenario": "scenario persistence tests",
+    }
+    if category not in labels:
+        raise ValueError(f"Unknown test category: {category}")
+    print(f"\n=== Running {labels[category]} ===\n")
+    started = time.perf_counter()
+    suite = _test_suite(category)
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)
+    elapsed = time.perf_counter() - started
+    LAST_TEST_SUMMARY = {
+        "category": labels[category],
+        "tests_run": result.testsRun,
+        "passed": result.testsRun - len(result.failures) - len(result.errors),
+        "failures": len(result.failures),
+        "errors": len(result.errors),
+        "seconds": elapsed,
+        "successful": result.wasSuccessful(),
+    }
     print(f"\nTests run: {result.testsRun}")
+    print(f"Passed: {LAST_TEST_SUMMARY['passed']}")
     print(f"Failures: {len(result.failures)}")
     print(f"Errors: {len(result.errors)}")
     return result
+
+
+def last_test_summary():
+    """Return a copy of the latest test summary, or None if tests have not run."""
+    return None if LAST_TEST_SUMMARY is None else dict(LAST_TEST_SUMMARY)
