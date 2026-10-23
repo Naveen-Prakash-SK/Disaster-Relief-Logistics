@@ -539,7 +539,7 @@ def graph_menu():
         print("12. Dijkstra: step-by-step table")
         print("13. Demonstrate Dijkstra negative-weight failure")
         print("0.  Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose a graph action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":
@@ -555,19 +555,19 @@ def graph_menu():
                     current, current_label = g, "undirected"
                 print(f"Switched to {current_label} graph.")
             elif choice == "5":
-                u = input("From vertex: ").strip()
-                v = input("To vertex: ").strip()
-                w = int(input("Weight: "))
+                u = input("Enter road connection source vertex name (must match an existing graph vertex, e.g. DEPOT): ").strip()
+                v = input("Enter road connection destination vertex name (must match an existing graph vertex, e.g. RIVERBEND): ").strip()
+                w = int(input("Enter road connection weight (integer, e.g. 4): "))
                 current.add_edge(u, v, w)
                 print("Edge added.")
             elif choice == "6":
-                u = input("From vertex: ").strip()
-                v = input("To vertex: ").strip()
+                u = input("Enter road connection source vertex name to remove (must match an existing graph vertex, e.g. DEPOT): ").strip()
+                v = input("Enter road connection destination vertex name to remove (must match an existing graph vertex, e.g. RIVERBEND): ").strip()
                 current.remove_edge(u, v)
                 print("Edge removed (if it existed).")
             elif choice == "7":
-                src = input("Start vertex: ").strip()
-                dst = input("End vertex: ").strip()
+                src = input("Enter start vertex name (must match an existing graph vertex, e.g. DEPOT): ").strip()
+                dst = input("Enter destination vertex name (must match an existing graph vertex, e.g. RIVERBEND): ").strip()
                 path, edges = bfs_path(current, src, dst)
                 if path is None:
                     print(f"No route from '{src}' to '{dst}' "
@@ -576,7 +576,7 @@ def graph_menu():
                     print(f"Route ({edges} edges): "
                           f"{' -> '.join(path)}")
             elif choice == "8":
-                src = input("Source location: ").strip()
+                src = input("Enter source vertex name to find the nearest depot (must match an existing graph vertex, e.g. DEPOT): ").strip()
                 depot, path, edges = bfs_nearest_depot(
                     current, src, depots)
                 if depot is None:
@@ -604,8 +604,8 @@ def graph_menu():
                 for i, comp in enumerate(comps, 1):
                     print(f"  Component {i}: {', '.join(comp)}")
             elif choice == "11":
-                src = input("Source vertex: ").strip()
-                dst = input("Destination vertex: ").strip()
+                src = input("Enter source vertex name to route from (must match an existing graph vertex, e.g. DEPOT): ").strip()
+                dst = input("Enter destination vertex name to route to (must match an existing graph vertex, e.g. RIVERBEND): ").strip()
                 path, dist = dijkstra_path(current, src, dst)
                 if path is None:
                     print(f"No path from '{src}' to '{dst}' "
@@ -614,8 +614,8 @@ def graph_menu():
                     print(f"Shortest distance: {dist}")
                     print(f"Path: {' -> '.join(path)}")
             elif choice == "12":
-                src = input("Source vertex: ").strip()
-                dst = input("Destination vertex: ").strip()
+                src = input("Enter source vertex name for the weighted distance table (must match an existing graph vertex, e.g. DEPOT): ").strip()
+                dst = input("Enter destination vertex name for the weighted distance table (must match an existing graph vertex, e.g. RIVERBEND): ").strip()
                 path, dist = dijkstra_path(current, src, dst,
                                            verbose=True)
                 if path is None:

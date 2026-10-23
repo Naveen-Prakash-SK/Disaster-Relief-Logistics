@@ -205,7 +205,7 @@ optional random seed.
 |---|---|
 | `Scenario(network_name: str)` | Owns the shared location tree, supply BST, camp AVL, active road graph, depot labels, and task DAG used by every menu action. |
 | `to_dict() -> dict` / `from_dict(data: dict) -> Scenario` | Convert to and validate JSON-friendly records; reconstructs the manual structures and rejects malformed records. |
-| `save(path=DATA_PATH, overwrite=False) -> None` | Writes atomically to `data/scenario.json` by default and refuses silent overwrite. |
+| `save(path=DATA_PATH, overwrite=False) -> None` | Writes atomically and refuses overwrite by default. The console saves successive snapshots as `data/scenarios/1.json`, `2.json`, and so on. |
 | `load(path=DATA_PATH) -> Scenario` | Reads, parses, validates, and reconstructs a scenario. |
 | `sample() -> Scenario` | Builds the explicitly labelled demonstration data. |
 
@@ -215,10 +215,12 @@ Example:
 from scenario import Scenario
 
 scenario = Scenario.sample()
-scenario.save()                 # raises FileExistsError if already saved
+scenario.save()                 # saves to data/scenario.json; raises if it exists
 restored = Scenario.load()
 ```
 
-The guided builder (menu option 14) collects the same records from a user;
-options 15–17 save, load, or reset in-memory data. Loading does not serialize
-Python object internals and malformed input leaves the active scenario intact.
+The console's **Save Scenario** action creates the next available numbered file
+under `data/scenarios/`. **Load Scenario** lists these files in numeric order
+and also offers the existing `data/scenario.json` as a legacy save when present.
+Loading does not serialize Python object internals, and malformed input leaves
+the active scenario intact.

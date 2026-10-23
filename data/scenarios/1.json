@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "network_name": "Disaster Relief Demonstration Network",
+  "locations": [
+    {
+      "name": "Western Relief Zone",
+      "type": "Region",
+      "parent": "Disaster Relief Demonstration Network"
+    },
+    {
+      "name": "Riverbend District",
+      "type": "District",
+      "parent": "Western Relief Zone"
+    },
+    {
+      "name": "RB-01 - Central School Shelter",
+      "type": "Shelter",
+      "parent": "Riverbend District"
+    },
+    {
+      "name": "RB-02 - Community Hall Shelter",
+      "type": "Shelter",
+      "parent": "Riverbend District"
+    },
+    {
+      "name": "Hillview District",
+      "type": "District",
+      "parent": "Western Relief Zone"
+    },
+    {
+      "name": "HV-01 - Hillview Government School",
+      "type": "Shelter",
+      "parent": "Hillview District"
+    },
+    {
+      "name": "HV-02 - Hillview Community Centre",
+      "type": "Shelter",
+      "parent": "Hillview District"
+    },
+    {
+      "name": "Eastern Relief Zone",
+      "type": "Region",
+      "parent": "Disaster Relief Demonstration Network"
+    },
+    {
+      "name": "Lakeside District",
+      "type": "District",
+      "parent": "Eastern Relief Zone"
+    },
+    {
+      "name": "LS-01 - Lakeside Relief Camp",
+      "type": "Shelter",
+      "parent": "Lakeside District"
+    },
+    {
+      "name": "LS-02 - Lakeside Primary School",
+      "type": "Shelter",
+      "parent": "Lakeside District"
+    },
+    {
+      "name": "Forest Edge District",
+      "type": "District",
+      "parent": "Eastern Relief Zone"
+    },
+    {
+      "name": "FE-01 - Forest Edge School",
+      "type": "Shelter",
+      "parent": "Forest Edge District"
+    },
+    {
+      "name": "FE-02 - Forest Edge Community Hall",
+      "type": "Shelter",
+      "parent": "Forest Edge District"
+    }
+  ],
+  "supplies": [
+    {
+      "id": 10,
+      "name": "Baby Supplies",
+      "quantity": 75
+    },
+    {
+      "id": 20,
+      "name": "Blankets",
+      "quantity": 300
+    },
+    {
+      "id": 30,
+      "name": "Drinking Water",
+      "quantity": 800
+    },
+    {
+      "id": 35,
+      "name": "Flashlights",
+      "quantity": 90
+    },
+    {
+      "id": 40,
+      "name": "Food Packs - replenishment update",
+      "quantity": 500
+    },
+    {
+      "id": 45,
+      "name": "Batteries",
+      "quantity": 250
+    },
+    {
+      "id": 50,
+      "name": "Rice",
+      "quantity": 500
+    },
+    {
+      "id": 60,
+      "name": "Medicines",
+      "quantity": 150
+    },
+    {
+      "id": 65,
+      "name": "Water Purification Tablets",
+      "quantity": 100
+    },
+    {
+      "id": 70,
+      "name": "First Aid Kits",
+      "quantity": 120
+    },
+    {
+      "id": 75,
+      "name": "Raincoats",
+      "quantity": 180
+    },
+    {
+      "id": 80,
+      "name": "Hygiene Kits",
+      "quantity": 200
+    }
+  ],
+  "camps": [
+    {
+      "id": 10,
+      "name": "School Emergency Camp (capacity 60)"
+    },
+    {
+      "id": 20,
+      "name": "Hilltop Rescue Camp (capacity 80)"
+    },
+    {
+      "id": 25,
+      "name": "Food Distribution Camp (capacity 110)"
+    },
+    {
+      "id": 30,
+      "name": "Community Aid Camp (capacity 105; updated)"
+    },
+    {
+      "id": 35,
+      "name": "Water Distribution Camp (capacity 130)"
+    },
+    {
+      "id": 40,
+      "name": "Riverside Medical Camp (capacity 120)"
+    },
+    {
+      "id": 50,
+      "name": "Mobile Medical Camp (capacity 70)"
+    },
+    {
+      "id": 55,
+      "name": "Emergency Supply Camp (capacity 75)"
+    },
+    {
+      "id": 60,
+      "name": "Lakeside Relief Camp (capacity 150)"
+    },
+    {
+      "id": 70,
+      "name": "Forest Rescue Camp (capacity 90)"
+    }
+  ],
+  "graph": {
+    "directed": false,
+    "vertices": [
+      "DEPOT",
+      "RIVERBEND",
+      "HILLVIEW",
+      "LAKESIDE",
+      "FOREST_EDGE",
+      "SHELTER_1",
+      "SHELTER_2",
+      "MEDICAL_CAMP",
+      "FOOD_CAMP",
+      "WATER_CAMP",
+      "BRIDGE",
+      "REMOTE_VILLAGE",
+      "ISOLATED_SHELTER"
+    ],
+    "edges": [
+      {
+        "from": "DEPOT",
+        "to": "RIVERBEND",
+        "weight": 4.0
+      },
+      {
+        "from": "DEPOT",
+        "to": "HILLVIEW",
+        "weight": 6.0
+      },
+      {
+        "from": "RIVERBEND",
+        "to": "HILLVIEW",
+        "weight": 2.0
+      },
+      {
+        "from": "RIVERBEND",
+        "to": "SHELTER_1",
+        "weight": 5.0
+      },
+      {
+        "from": "HILLVIEW",
+        "to": "SHELTER_2",
+        "weight": 3.0
+      },
+      {
+        "from": "HILLVIEW",
+        "to": "MEDICAL_CAMP",
+        "weight": 7.0
+      },
+      {
+        "from": "LAKESIDE",
+        "to": "WATER_CAMP",
+        "weight": 5.0
+      },
+      {
+        "from": "LAKESIDE",
+        "to": "FOREST_EDGE",
+        "weight": 4.0
+      },
+      {
+        "from": "LAKESIDE",
+        "to": "REMOTE_VILLAGE",
+        "weight": 8.0
+      },
+      {
+        "from": "FOREST_EDGE",
+        "to": "BRIDGE",
+        "weight": 3.0
+      },
+      {
+        "from": "SHELTER_1",
+        "to": "MEDICAL_CAMP",
+        "weight": 2.0
+      },
+      {
+        "from": "SHELTER_2",
+        "to": "FOOD_CAMP",
+        "weight": 4.0
+      },
+      {
+        "from": "MEDICAL_CAMP",
+        "to": "FOOD_CAMP",
+        "weight": 3.0
+      },
+      {
+        "from": "FOOD_CAMP",
+        "to": "WATER_CAMP",
+        "weight": 2.0
+      },
+      {
+        "from": "BRIDGE",
+        "to": "REMOTE_VILLAGE",
+        "weight": 6.0
+      }
+    ]
+  },
+  "depots": [
+    "DEPOT"
+  ],
+  "tasks": [
+    {
+      "name": "T1 - Assess affected regions",
+      "duration": 2.0,
+      "successors": [
+        "T2 - Prepare relief supplies",
+        "T3 - Arrange transport",
+        "T6 - Verify shelter readiness"
+      ]
+    },
+    {
+      "name": "T2 - Prepare relief supplies",
+      "duration": 3.0,
+      "successors": [
+        "T4 - Set up medical camps"
+      ]
+    },
+    {
+      "name": "T3 - Arrange transport",
+      "duration": 2.0,
+      "successors": [
+        "T4 - Set up medical camps"
+      ]
+    },
+    {
+      "name": "T4 - Set up medical camps",
+      "duration": 4.0,
+      "successors": [
+        "T5 - Distribute food and water"
+      ]
+    },
+    {
+      "name": "T5 - Distribute food and water",
+      "duration": 3.0,
+      "successors": []
+    },
+    {
+      "name": "T6 - Verify shelter readiness",
+      "duration": 1.0,
+      "successors": [
+        "T5 - Distribute food and water"
+      ]
+    }
+  ]
+}

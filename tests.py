@@ -755,13 +755,118 @@ class TestInteractiveScenarioWorkflow(unittest.TestCase):
                 with patch("builtins.input", side_effect=answers):
                     with redirect_stdout(StringIO()):
                         main()
-                restart_answers = ["14", "7", "Depot", "Shelter", "17"]
+                restart_answers = ["14", "1", "7", "Depot", "Shelter", "17"]
                 with patch("builtins.input", side_effect=restart_answers):
                     output = StringIO()
                     with redirect_stdout(output):
                         main()
         self.assertIn("Shortest route: Depot -> Shelter (weight 7.0)",
                       output.getvalue())
+
+    def test_numbered_saves_use_next_available_filename(self):
+        from console_app import _save
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            legacy_path = os.path.join(directory, "scenario.json")
+            with patch("console_app.DATA_PATH", legacy_path):
+                scenario = Scenario.sample()
+                output = StringIO()
+                with redirect_stdout(output):
+                    _save(scenario)
+                    _save(Scenario("Second Network"))
+                    _save(Scenario("Third Network"))
+                paths = [
+                    os.path.join(directory, "scenarios", f"{number}.json")
+                    for number in (1, 2, 3)
+                ]
+                self.assertTrue(all(os.path.isfile(path) for path in paths))
+                self.assertEqual(
+                    [Scenario.load(path).network_name for path in paths],
+                    ["Sample Disaster Relief Network", "Second Network",
+                     "Third Network"],
+                )
+                self.assertIn(os.path.abspath(paths[0]), output.getvalue())
+
+    def test_numbered_load_restores_selected_scenario(self):
+        from console_app import _load
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            legacy_path = os.path.join(directory, "scenario.json")
+            scenario_dir = os.path.join(directory, "scenarios")
+            os.makedirs(scenario_dir)
+            expected = [Scenario("First"), Scenario.sample(),
+                        Scenario("Third")]
+            for number, scenario in enumerate(expected, start=1):
+                scenario.save(os.path.join(scenario_dir, f"{number}.json"))
+            with patch("console_app.DATA_PATH", legacy_path):
+                for number, scenario in enumerate(expected, start=1):
+                    with patch("builtins.input", return_value=str(number)):
+                        output = StringIO()
+                        with redirect_stdout(output):
+                            loaded = _load(Scenario())
+                    self.assertEqual(loaded.to_dict(), scenario.to_dict())
+            self.assertIn("1. 1.json", output.getvalue())
+            self.assertIn("2. 2.json", output.getvalue())
+            self.assertIn("3. 3.json", output.getvalue())
+            self.assertIn("Loaded 'Third' from 3.json",
+                          output.getvalue())
+
+    def test_empty_and_invalid_scenario_selection_preserve_active_data(self):
+        from console_app import _load
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            legacy_path = os.path.join(directory, "scenario.json")
+            with patch("console_app.DATA_PATH", legacy_path):
+                active = Scenario.sample()
+                output = StringIO()
+                with redirect_stdout(output):
+                    empty_result = _load(active)
+                self.assertIs(empty_result, active)
+                self.assertIn("No saved scenarios", output.getvalue())
+
+                scenario_dir = os.path.join(directory, "scenarios")
+                os.makedirs(scenario_dir)
+                Scenario("Saved").save(os.path.join(scenario_dir, "1.json"))
+                with patch("builtins.input", side_effect=["3", "q"]):
+                    output = StringIO()
+                    with redirect_stdout(output):
+                        invalid_result = _load(active)
+                self.assertIs(invalid_result, active)
+                self.assertIn("Enter a number <= 2", output.getvalue())
+
+    def test_malformed_scenario_does_not_replace_active_data(self):
+        from console_app import _load
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            legacy_path = os.path.join(directory, "scenario.json")
+            scenario_dir = os.path.join(directory, "scenarios")
+            os.makedirs(scenario_dir)
+            with open(os.path.join(scenario_dir, "1.json"), "w",
+                      encoding="utf-8") as file:
+                file.write("{ invalid json")
+            with patch("console_app.DATA_PATH", legacy_path):
+                with patch("builtins.input", side_effect=["1", "y"]):
+                    output = StringIO()
+                    active = Scenario.sample()
+                    original = active.to_dict()
+                    with redirect_stdout(output):
+                        result = _load(active)
+            self.assertIs(result, active)
+            self.assertEqual(result.to_dict(), original)
+            self.assertIn("Load failed; active scenario is unchanged",
+                          output.getvalue())
+
+    def test_legacy_scenario_remains_loadable(self):
+        from console_app import _load
+        from scenario import Scenario
+        with tempfile.TemporaryDirectory() as directory:
+            legacy_path = os.path.join(directory, "scenario.json")
+            Scenario.sample().save(legacy_path)
+            with patch("console_app.DATA_PATH", legacy_path):
+                with patch("builtins.input", return_value="1"):
+                    with redirect_stdout(StringIO()):
+                        result = _load(Scenario())
+            self.assertEqual(result.to_dict(), Scenario.sample().to_dict())
 
 
 # ============================================================================

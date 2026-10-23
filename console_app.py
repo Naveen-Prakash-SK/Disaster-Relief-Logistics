@@ -2,6 +2,7 @@
 
 import math
 import os
+import re
 
 from scenario import DATA_PATH, Scenario
 
@@ -56,6 +57,38 @@ def _confirm(prompt):
     return input(f"{prompt} [y/N]: ").strip().lower() in ("y", "yes")
 
 
+def _describe_prompt(label, *, kind="text", example=None, minimum=None,
+                    maximum=None, current=None, total=None, parent=None):
+    if current is not None:
+        if total is not None:
+            title = f"{label} {current} of {total}"
+        else:
+            title = f"{label} {current}"
+    else:
+        title = label
+    if parent is not None:
+        title = f"{title} for {parent}"
+    details = []
+    if kind == "integer":
+        details.append("integer")
+        if minimum is not None:
+            details.append(f">= {minimum}")
+        if maximum is not None:
+            details.append(f"<= {maximum}")
+    elif kind == "number":
+        details.append("number")
+        if minimum is not None:
+            details.append(f">= {minimum}")
+    elif kind == "choice":
+        details.append("menu choice")
+    else:
+        details.append("text")
+    if example is not None:
+        details.append(f"e.g. {example}")
+    suffix = ", ".join(details)
+    return f"Enter {title} ({suffix}): "
+
+
 def _inventory_shape(tree):
     if tree.root is None:
         print("Inventory is empty.")
@@ -100,7 +133,7 @@ def _builder_action(scenario):
     print("1. Guided disaster scenario builder")
     print("2. Load demonstration scenario")
     print("0. Return to main menu")
-    choice = input("Choose an option: ").strip()
+    choice = input("Choose an action (enter 1 for guided builder, 2 for demo, or 0 to return): ").strip()
     if choice == "1":
         replacement = _guided_builder()
     elif choice == "2":
@@ -133,7 +166,7 @@ def _testing_menu():
         print("5. Run scenario persistence tests")
         print("6. View last test summary")
         print("7. Return to main menu")
-        choice = input("Choose a testing action: ").strip()
+        choice = input("Choose a testing action (enter the displayed number): ").strip()
         categories = {
             "1": None,
             "2": "tree",
@@ -165,18 +198,19 @@ def _location_menu(scenario):
         print(f"\n--- LOCATION HIERARCHY: {tree.root.name} ---")
         print("1 Add region  2 Add district  3 Add shelter")
         print("4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back")
-        choice = input("Action: ").strip()
+        choice = input("Choose a location action (enter the displayed number): ").strip()
         try:
             if choice == "1":
-                name = _text("Region name: ")
+                name = _text(_describe_prompt("region", kind="text", example="Western Relief Zone"))
                 if name is not None:
                     ok, message = tree.add_location(tree.root.name, name, "Region")
                     print(message)
                     if ok:
                         tree.display()
             elif choice in ("2", "3"):
-                parent = _text("Parent name: ")
-                name = _text("District name: " if choice == "2" else "Shelter name: ")
+                parent = _text(_describe_prompt("parent location", kind="text", example="Tamil Nadu"))
+                name = _text(_describe_prompt("district" if choice == "2" else "shelter", kind="text",
+                                             example="Riverbend District" if choice == "2" else "RB-01 Central School Shelter"))
                 if parent is not None and name is not None:
                     kind = "District" if choice == "2" else "Shelter"
                     ok, message = tree.add_location(parent, name, kind)
@@ -190,12 +224,12 @@ def _location_menu(scenario):
                 print("Postorder:  ", " -> ".join(tree.postorder()))
                 print("Level-order:", " -> ".join(tree.level_order()))
             elif choice == "6":
-                name = _text("Location name: ")
+                name = _text(_describe_prompt("location name", kind="text", example="RB-01 Central School Shelter"))
                 if name is not None:
                     node = tree.find(name)
                     print(f"Found {node!r}." if node else "Location not found.")
             elif choice == "7":
-                name = _text("Location/subtree to delete: ")
+                name = _text(_describe_prompt("location or subtree name to delete", kind="text", example="Coimbatore"))
                 if name is not None:
                     ok, message = tree.delete_subtree(name)
                     print(message)
@@ -215,25 +249,25 @@ def _supply_menu(scenario):
         print("\n--- SUPPLY INVENTORY (BST) ---")
         print("1 Insert/update  2 Search  3 Delete  4 Min/max")
         print("5 Range  6 Inorder  7 Tree shape/height  0 Back")
-        choice = input("Action: ").strip()
+        choice = input("Choose a supply action (enter the displayed number): ").strip()
         try:
             if choice == "1":
-                key = _integer("Supply ID: ")
-                name = _text("Supply name: ")
-                quantity = _integer("Quantity (>=0): ", minimum=0)
+                key = _integer(_describe_prompt("supply ID", kind="integer", example="50"))
+                name = _text(_describe_prompt("supply name", kind="text", example="Rice"))
+                quantity = _integer(_describe_prompt("supply quantity", kind="integer", example="500", minimum=0), minimum=0)
                 if key is not None and name is not None and quantity is not None:
                     existed = tree.search(key) is not None
                     tree.insert(key, name, quantity)
                     print("Supply updated." if existed else "Supply added.")
                     _inventory_shape(tree)
             elif choice == "2":
-                key = _integer("Supply ID to find: ")
+                key = _integer(_describe_prompt("supply ID to find", kind="integer", example="50"))
                 if key is not None:
                     node = tree.search(key)
                     print(f"{node.key}: {node.item_name}, quantity={node.quantity}"
                           if node else "Supply ID not found.")
             elif choice == "3":
-                key = _integer("Supply ID to delete: ")
+                key = _integer(_describe_prompt("supply ID to delete", kind="integer", example="50"))
                 if key is not None:
                     print("Deleted." if tree.delete(key) else "Supply ID not found.")
                     _inventory_shape(tree)
@@ -243,8 +277,8 @@ def _supply_menu(scenario):
                     print(f"{label}: {node.key} {node.item_name} qty={node.quantity}"
                           if node else f"{label}: no supplies.")
             elif choice == "5":
-                low = _integer("Inclusive low ID: ")
-                high = _integer("Inclusive high ID: ")
+                low = _integer(_describe_prompt("inclusive low supply ID", kind="integer", example="20"))
+                high = _integer(_describe_prompt("inclusive high supply ID", kind="integer", example="80"))
                 if low is not None and high is not None:
                     rows = tree.range_query(low, high)
                     for node in rows:
@@ -273,7 +307,7 @@ def _expression_calc():
         build_expression_tree, evaluate_expression, infix_string, infix_to_postfix,
     )
     print("Enter an infix expression; variables are prompted for as needed.")
-    text = _text("Expression (for example: distance * rate + toll): ")
+    text = _text(_describe_prompt("expression", kind="text", example="distance * rate + toll"))
     if text is None:
         return
     try:
@@ -305,11 +339,11 @@ def _avl_menu(scenario):
         print("\n--- RELIEF CAMPS (AVL) ---")
         print("1 Add/update  2 Search  3 Delete  4 Display/balance")
         print("5 Rotation log  6 Expression calculator  7 Stress test  0 Back")
-        choice = input("Action: ").strip()
+        choice = input("Choose a relief-camp action (enter the displayed number): ").strip()
         try:
             if choice == "1":
-                key = _integer("Camp ID: ")
-                name = _text("Camp name: ")
+                key = _integer(_describe_prompt("relief camp ID", kind="integer", example="101"))
+                name = _text(_describe_prompt("relief camp name", kind="text", example="North Shelter"))
                 if key is not None and name is not None:
                     tree.insert(key, name)
                     print(f"Stored camp {key}; AVL height={tree.height()}.")
@@ -318,12 +352,12 @@ def _avl_menu(scenario):
                     if tree.rotation_log:
                         print("Most recent rotation:", tree.rotation_log[-1])
             elif choice == "2":
-                key = _integer("Camp ID: ")
+                key = _integer(_describe_prompt("relief camp ID to find", kind="integer", example="101"))
                 if key is not None:
                     node = tree.search(key)
                     print(f"{node.key}: {node.value}" if node else "Camp not found.")
             elif choice == "3":
-                key = _integer("Camp ID to delete: ")
+                key = _integer(_describe_prompt("relief camp ID to delete", kind="integer", example="101"))
                 if key is not None:
                     print("Deleted." if tree.delete(key) else "Camp not found.")
                     print(f"New height: {tree.height()}")
@@ -368,16 +402,16 @@ def _graph_menu(scenario):
         print("1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge")
         print("5 Adjacency list  6 Matrix  7 Components/isolation/memory")
         print("8 Change directedness  0 Back")
-        choice = input("Action: ").strip()
+        choice = input("Choose a road-graph action (enter the displayed number): ").strip()
         try:
             if choice == "1":
-                name = _text("Vertex name: ")
+                name = _text(_describe_prompt("graph vertex name", kind="text", example="DEPOT"))
                 if name is not None:
                     exists = name in graph.adj_list
                     graph.add_vertex(name)
                     print("Already present." if exists else "Vertex added.")
             elif choice == "2":
-                name = _text("Vertex to remove: ")
+                name = _text(_describe_prompt("graph vertex to remove", kind="text", example="DEPOT"))
                 if name is not None:
                     removed = graph.remove_vertex(name)
                     scenario.depots = [depot for depot in scenario.depots
@@ -385,18 +419,18 @@ def _graph_menu(scenario):
                     print("Vertex and its roads removed." if removed
                           else "Vertex not found.")
             elif choice == "3":
-                source = _text("From vertex (auto-created): ")
-                target = _text("To vertex (auto-created): ")
+                source = _text(_describe_prompt("road connection source vertex name", kind="text", example="DEPOT"))
+                target = _text(_describe_prompt("road connection destination vertex name", kind="text", example="RIVERBEND"))
                 if source is None or target is None:
                     continue
-                unweighted = input("Unweighted edge (weight 1)? [y/N]: ").strip().lower()
-                weight = 1 if unweighted in ("y", "yes") else _number("Edge weight: ")
+                unweighted = input("Choose edge weight (enter y for weight 1 or n to enter a custom number): ").strip().lower()
+                weight = 1 if unweighted in ("y", "yes") else _number(_describe_prompt("road connection weight", kind="number", example="4"))
                 if weight is not None:
                     graph.add_edge(source, target, weight)
                     print(f"Stored {source} -> {target}, weight={weight}.")
             elif choice == "4":
-                source = _text("From vertex: ")
-                target = _text("To vertex: ")
+                source = _text(_describe_prompt("road connection source vertex name to remove", kind="text", example="DEPOT"))
+                target = _text(_describe_prompt("road connection destination vertex name to remove", kind="text", example="RIVERBEND"))
                 if source is not None and target is not None:
                     existed = graph.has_edge(source, target)
                     graph.remove_edge(source, target)
@@ -416,7 +450,7 @@ def _graph_menu(scenario):
                     if not graph.adj_list[vertex]) or "(none)")
                 graph.memory_report()
             elif choice == "8":
-                directed = input("Directed? [y/N]: ").strip().lower() in ("y", "yes")
+                directed = input("Choose graph type (enter y for directed or n for undirected): ").strip().lower() in ("y", "yes")
                 if directed == graph.directed:
                     print("The graph already has that directedness.")
                     continue
@@ -469,13 +503,13 @@ def _bfs(scenario):
     graph = scenario.graph
     print("BFS minimizes the number of edges, not total edge weight.")
     print("Vertices:", ", ".join(graph.vertices) or "(empty)")
-    source = _text("Starting location: ")
+    source = _text(_describe_prompt("starting graph vertex name", kind="text", example="DEPOT"))
     if source is None:
         return
     if source not in graph.adj_list:
         print(f"Unknown start vertex '{source}'.")
         return
-    raw = input("Depot vertices (comma-separated; blank uses saved depots): ").strip()
+    raw = input("Enter depot vertex list (text, e.g. DEPOT, RIVERBEND; comma-separated; blank uses saved depots): ").strip()
     depots = ([item.strip() for item in raw.split(",") if item.strip()]
               if raw else scenario.depots)
     if not depots:
@@ -504,8 +538,8 @@ def _bfs(scenario):
 def _dijkstra(scenario):
     from graph import INF, dijkstra, dijkstra_path, demonstrate_negative_weight_failure
     graph = scenario.graph
-    source = _text("Source vertex: ")
-    target = _text("Destination vertex: ")
+    source = _text(_describe_prompt("source vertex name", kind="text", example="DEPOT"))
+    target = _text(_describe_prompt("destination vertex name", kind="text", example="RIVERBEND"))
     if source is None or target is None:
         return
     if source not in graph.adj_list or target not in graph.adj_list:
@@ -537,7 +571,7 @@ def _dfs(scenario):
     if not graph.vertices:
         print("The graph is empty.")
         return
-    start = _text("Start vertex (blank means all components): ", empty=True)
+    start = _text(_describe_prompt("start vertex name (blank means all components)", kind="text", example="DEPOT"), empty=True)
     if start is None:
         return
     if start and start not in graph.adj_list:
@@ -612,17 +646,17 @@ def _schedule(scenario):
         print("\n--- SCHEDULING ---")
         print("1 Add/update task  2 Add prerequisite  3 List dependencies")
         print("4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back")
-        choice = input("Action: ").strip()
+        choice = input("Choose a scheduling action (enter the displayed number): ").strip()
         try:
             if choice == "1":
-                name = _text("Task name: ")
-                duration = _number("Duration >= 0: ", minimum=0)
+                name = _text(_describe_prompt("task name", kind="text", example="Assess affected regions"))
+                duration = _number(_describe_prompt("task duration", kind="number", example="3", minimum=0), minimum=0)
                 if name is not None and duration is not None:
                     dag.add_task(name, duration)
                     print(f"Stored task '{name}'.")
             elif choice == "2":
-                before = _text("Prerequisite task: ")
-                after = _text("Dependent task: ")
+                before = _text(_describe_prompt("prerequisite task name", kind="text", example="Assess affected regions"))
+                after = _text(_describe_prompt("dependent task name", kind="text", example="Deploy teams"))
                 if before is not None and after is not None:
                     if before not in dag._index or after not in dag._index:
                         print("Add both tasks with durations before linking them.")
@@ -671,8 +705,8 @@ def _benchmarks():
     print("Timings are empirical, single-run samples; reported complexity is theoretical.")
     print("Limits: 5,000 tree nodes; 500 graph vertices.")
     try:
-        tree_input = input("Tree sizes comma-separated [1000,2000,5000]: ").strip()
-        graph_input = input("Graph vertex sizes [100,250,500]: ").strip()
+        tree_input = input("Enter tree size list (text, e.g. 1000, 2000, 5000; comma-separated, blank uses defaults): ").strip()
+        graph_input = input("Enter graph vertex size list (text, e.g. 100, 250, 500; comma-separated, blank uses defaults): ").strip()
         tree_sizes = ([int(x.strip()) for x in tree_input.split(",")]
                       if tree_input else [1000, 2000, 5000])
         graph_sizes = ([int(x.strip()) for x in graph_input.split(",")]
@@ -684,7 +718,7 @@ def _benchmarks():
     except ValueError as exc:
         print(f"Invalid size: {exc}")
         return
-    seed = _integer("Seed [42]: ", minimum=0)
+    seed = _integer(_describe_prompt("benchmark seed", kind="integer", example="42", minimum=0), minimum=0)
     tree_rows = run_tree_benchmarks(tree_sizes, seed=42 if seed is None else seed)
     graph_rows = run_graph_benchmarks(graph_sizes, seed=42 if seed is None else seed)
     save_benchmark_results(tree_rows, graph_rows, seed=42 if seed is None else seed)
@@ -692,26 +726,33 @@ def _benchmarks():
 
 def _guided_builder():
     from graph import Graph
-    result_name = _text("Network name: ")
+    result_name = _text(_describe_prompt("network name", kind="text", example="Northern Relief Network"))
     if result_name is None:
         return None
     result = Scenario(result_name)
 
     def locations_under(parent, kind, count):
-        for _ in range(count):
-            name = _text(f"{kind} under {parent}: ")
+        for index in range(count):
+            name = _text(_describe_prompt(
+                f"{kind.lower()} name",
+                kind="text",
+                example="Western Relief Zone" if kind == "Region" else "Riverbend District" if kind == "District" else "RB-01 Central School Shelter",
+                current=index + 1,
+                total=count,
+                parent=parent,
+            ))
             if name is None:
                 raise InterruptedError
             ok, message = result.locations.add_location(parent, name, kind)
             if not ok:
                 raise ValueError(message)
             if kind == "Region":
-                count_d = _integer(f"District count in {name}: ", minimum=0)
+                count_d = _integer(_describe_prompt("district count", kind="integer", example="2", minimum=0, parent=f"region {name}"), minimum=0)
                 if count_d is None:
                     raise InterruptedError
                 locations_under(name, "District", count_d)
             elif kind == "District":
-                count_s = _integer(f"Shelter count in {name}: ", minimum=0)
+                count_s = _integer(_describe_prompt("shelter count", kind="integer", example="2", minimum=0, parent=f"district {name}"), minimum=0)
                 if count_s is None:
                     raise InterruptedError
                 locations_under(name, "Shelter", count_s)
@@ -724,57 +765,57 @@ def _guided_builder():
         count = _integer("Supply record count: ", minimum=0)
         if count is None:
             return None
-        for _ in range(count):
-            key = _integer("Supply ID: ")
-            name = _text("Supply name: ")
-            quantity = _integer("Quantity >= 0: ", minimum=0)
+        for index in range(count):
+            key = _integer(_describe_prompt("supply ID", kind="integer", example="50", current=index + 1, total=count))
+            name = _text(_describe_prompt("supply name", kind="text", example="Rice", current=index + 1, total=count))
+            quantity = _integer(_describe_prompt("supply quantity", kind="integer", example="500", minimum=0, current=index + 1, total=count), minimum=0)
             if key is None or name is None or quantity is None:
                 raise InterruptedError
             if result.supplies.search(key):
                 raise ValueError(f"Duplicate supply ID {key}.")
             result.supplies.insert(key, name, quantity)
-        count = _integer("Relief camp count: ", minimum=0)
+        count = _integer(_describe_prompt("relief camp count", kind="integer", example="2", minimum=0), minimum=0)
         if count is None:
             return None
-        for _ in range(count):
-            key = _integer("Camp ID: ")
-            name = _text("Camp name: ")
+        for index in range(count):
+            key = _integer(_describe_prompt("relief camp ID", kind="integer", example="101", current=index + 1, total=count))
+            name = _text(_describe_prompt("relief camp name", kind="text", example="North Shelter", current=index + 1, total=count))
             if key is None or name is None:
                 raise InterruptedError
             if result.camps.search(key):
                 raise ValueError(f"Duplicate camp ID {key}.")
             result.camps.insert(key, name)
-        directed = input("Directed road graph? [y/N]: ").strip().lower() in ("y", "yes")
+        directed = input("Choose graph type (enter y for directed or n for undirected): ").strip().lower() in ("y", "yes")
         result.graph = Graph(directed=directed)
-        count = _integer("Road-graph vertex count (max 1000): ",
+        count = _integer(_describe_prompt("road graph vertex count", kind="integer", example="13", minimum=0, maximum=1000),
                          minimum=0, maximum=1000)
         if count is None:
             return None
-        for _ in range(count):
-            vertex = _text("Vertex name: ")
+        for index in range(count):
+            vertex = _text(_describe_prompt("graph vertex name", kind="text", example="DEPOT", current=index + 1, total=count))
             if vertex is None:
                 raise InterruptedError
             if vertex in result.graph.adj_list:
                 raise ValueError(f"Duplicate graph vertex '{vertex}'.")
             result.graph.add_vertex(vertex)
-        count = _integer("Road/connection count (max 100000): ",
+        count = _integer(_describe_prompt("road connection count", kind="integer", example="8", minimum=0, maximum=100000),
                          minimum=0, maximum=100000)
         if count is None:
             return None
-        for _ in range(count):
-            source = _text("From vertex: ")
-            target = _text("To vertex: ")
-            weight = _number("Weight: ")
+        for index in range(count):
+            source = _text(_describe_prompt("road connection source vertex name", kind="text", example="DEPOT", current=index + 1, total=count))
+            target = _text(_describe_prompt("road connection destination vertex name", kind="text", example="RIVERBEND", current=index + 1, total=count))
+            weight = _number(_describe_prompt("road connection weight", kind="number", example="4", current=index + 1, total=count))
             if source is None or target is None or weight is None:
                 raise InterruptedError
             if source not in result.graph.adj_list or target not in result.graph.adj_list:
                 raise ValueError("Both edge endpoints must be entered graph vertices.")
             result.graph.add_edge(source, target, weight)
-        count = _integer("Depot count: ", minimum=0)
+        count = _integer(_describe_prompt("depot count", kind="integer", example="2", minimum=0), minimum=0)
         if count is None:
             return None
-        for _ in range(count):
-            depot = _text("Depot vertex: ")
+        for index in range(count):
+            depot = _text(_describe_prompt("depot vertex name", kind="text", example="DEPOT", current=index + 1, total=count))
             if depot is None:
                 raise InterruptedError
             if depot not in result.graph.adj_list:
@@ -782,23 +823,23 @@ def _guided_builder():
             if depot in result.depots:
                 raise ValueError(f"Duplicate depot '{depot}'.")
             result.depots.append(depot)
-        count = _integer("Task count: ", minimum=0)
+        count = _integer(_describe_prompt("task count", kind="integer", example="6", minimum=0), minimum=0)
         if count is None:
             return None
-        for _ in range(count):
-            name = _text("Task name: ")
-            duration = _number("Task duration >= 0: ", minimum=0)
+        for index in range(count):
+            name = _text(_describe_prompt("task name", kind="text", example="Assess affected regions", current=index + 1, total=count))
+            duration = _number(_describe_prompt("task duration", kind="number", example="3", minimum=0, current=index + 1, total=count), minimum=0)
             if name is None or duration is None:
                 raise InterruptedError
             if name in result.tasks._index:
                 raise ValueError(f"Duplicate task '{name}'.")
             result.tasks.add_task(name, duration)
-        count = _integer("Dependency count: ", minimum=0)
+        count = _integer(_describe_prompt("dependency count", kind="integer", example="7", minimum=0), minimum=0)
         if count is None:
             return None
-        for _ in range(count):
-            before = _text("Prerequisite task: ")
-            after = _text("Dependent task: ")
+        for index in range(count):
+            before = _text(_describe_prompt("prerequisite task name", kind="text", example="Assess affected regions", current=index + 1, total=count))
+            after = _text(_describe_prompt("dependent task name", kind="text", example="Deploy teams", current=index + 1, total=count))
             if before is None or after is None:
                 raise InterruptedError
             if before not in result.tasks._index or after not in result.tasks._index:
@@ -820,26 +861,66 @@ def _has_data(scenario):
                 or scenario.tasks.tasks)
 
 
+def _scenario_directory():
+    return os.path.join(os.path.dirname(os.path.abspath(DATA_PATH)), "scenarios")
+
+
+def _numbered_scenarios():
+    directory = _scenario_directory()
+    if not os.path.isdir(directory):
+        return []
+    scenarios = []
+    for filename in os.listdir(directory):
+        match = re.fullmatch(r"([1-9][0-9]*)\.json", filename)
+        path = os.path.join(directory, filename)
+        if match and os.path.isfile(path):
+            scenarios.append((int(match.group(1)), path))
+    return sorted(scenarios)
+
+
 def _save(scenario):
-    overwrite = False
-    if os.path.exists(DATA_PATH):
-        if not _confirm(f"Overwrite existing '{DATA_PATH}'?"):
-            print("Save cancelled.")
-            return
-        overwrite = True
+    directory = _scenario_directory()
     try:
-        scenario.save(DATA_PATH, overwrite=overwrite)
-        print(f"Saved scenario to {DATA_PATH}.")
+        os.makedirs(directory, exist_ok=True)
+        while True:
+            existing = {number for number, _ in _numbered_scenarios()}
+            number = 1
+            while number in existing:
+                number += 1
+            path = os.path.join(directory, f"{number}.json")
+            try:
+                scenario.save(path)
+                break
+            except FileExistsError:
+                continue
+        print(f"Saved scenario as {number}.json to {os.path.abspath(path)}.")
     except (OSError, ValueError) as exc:
         print(f"Save failed: {exc}")
 
 
 def _load(scenario):
+    saved = _numbered_scenarios()
+    options = [(f"{number}.json", path) for number, path in saved]
+    if os.path.isfile(DATA_PATH):
+        options.append(("legacy scenario.json", DATA_PATH))
+    if not options:
+        print("No saved scenarios are available; active scenario is unchanged.")
+        return scenario
+
+    print("\nAvailable scenarios:")
+    for index, (filename, _) in enumerate(options, start=1):
+        print(f"{index}. {filename}")
+    print(f"{len(options) + 1}. Return to main menu")
+    choice = _integer(_describe_prompt("scenario choice", kind="choice", example="1", minimum=1, maximum=len(options) + 1), minimum=1,
+                      maximum=len(options) + 1)
+    if choice is None or choice == len(options) + 1:
+        return scenario
+    filename, path = options[choice - 1]
     if _has_data(scenario) and not _confirm("Replace current in-memory scenario?"):
         return scenario
     try:
-        result = Scenario.load(DATA_PATH)
-        print(f"Loaded '{result.network_name}' from {DATA_PATH}.")
+        result = Scenario.load(path)
+        print(f"Loaded '{result.network_name}' from {filename}.")
         return result
     except (OSError, ValueError) as exc:
         print(f"Load failed; active scenario is unchanged: {exc}")
@@ -871,7 +952,7 @@ def main():
     scenario = Scenario()
     while True:
         _menu(scenario)
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose a main menu option (enter the displayed number): ").strip()
         try:
             if choice == "1":
                 scenario = _builder_action(scenario)

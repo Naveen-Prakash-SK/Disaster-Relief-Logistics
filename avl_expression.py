@@ -476,19 +476,19 @@ def avl_expression_menu():
         print("9.  Expression tree: evaluate postfix")
         print("10. AVL vs BST height comparison (1,000 sorted keys)")
         print("0.  Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose an AVL or expression action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":
-                key = int(input("Camp ID (integer): "))
-                name = input("Camp name: ").strip()
+                key = int(input("Enter relief camp ID (integer, e.g. 101): "))
+                name = input("Enter relief camp name (text, e.g. North Shelter): ").strip()
                 avl.insert(key, name)
                 print(f"Camp {key} inserted.")
                 ok, msg = avl.verify()
                 if not ok:
                     print("WARNING:", msg)
             elif choice == "2":
-                key = int(input("Camp ID to delete: "))
+                key = int(input("Enter relief camp ID to delete (integer, e.g. 101): "))
                 if avl.delete(key):
                     print(f"Camp {key} deleted.")
                 else:
@@ -497,7 +497,7 @@ def avl_expression_menu():
                 if not ok:
                     print("WARNING:", msg)
             elif choice == "3":
-                key = int(input("Camp ID to search: "))
+                key = int(input("Enter relief camp ID to search (integer, e.g. 101): "))
                 node = avl.search(key)
                 if node:
                     print(f"Found: key={node.key}, value={node.value}, "
@@ -553,7 +553,7 @@ def _expression_submenu():
     print("Example: distance rate * toll +")
     print("Operators: + - * /")
     print("Operands: integers, decimals, or variable names.")
-    raw = input("Postfix: ").strip()
+    raw = input("Enter postfix expression (tokens separated by spaces, e.g. distance rate * toll +): ").strip()
     if not raw:
         print("No expression entered.")
         return
@@ -579,7 +579,7 @@ def _expression_submenu():
     if var_names:
         print(f"Variables detected: {', '.join(sorted(var_names))}")
         for v in sorted(var_names):
-            val = input(f"  Value for '{v}': ").strip()
+            val = input(f"  Enter numeric value for variable '{v}' (number, e.g. 2.5): ").strip()
             try:
                 variables[v] = float(val)
             except ValueError:

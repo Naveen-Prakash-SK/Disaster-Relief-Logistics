@@ -208,7 +208,11 @@ class Scenario:
                 json.dump(self.to_dict(), file, indent=2, ensure_ascii=False,
                           allow_nan=False)
                 file.write("\n")
-            os.replace(temporary, path)
+            if overwrite:
+                os.replace(temporary, path)
+            else:
+                os.link(temporary, path)
+                os.remove(temporary)
         except (OSError, TypeError, ValueError):
             if os.path.exists(temporary):
                 os.remove(temporary)

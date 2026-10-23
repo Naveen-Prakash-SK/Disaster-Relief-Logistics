@@ -260,7 +260,7 @@ def scheduling_menu():
         print("6. Attempt topological sort on cyclic graph")
         print("7. Show task dependencies")
         print("0. Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose a scheduling action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":

@@ -266,7 +266,7 @@ def analysis_menu():
         print("3. Run all benchmarks and save results")
         print("4. Complexity notes")
         print("0. Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose an analysis action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":

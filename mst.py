@@ -200,7 +200,7 @@ def mst_menu():
         print("4. Display current graph edges")
         print("5. MST explanation")
         print("0. Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose an MST action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":

@@ -420,22 +420,22 @@ def trees_menu():
         print("13. Supply ID range query")
         print("14. Compare BST height with 1,000 sorted IDs")
         print("0. Return to main menu")
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose a tree action (enter the displayed number): ").strip()
 
         try:
             if choice == "1":
-                name = input("Region name: ").strip()
+                name = input("Enter region name (text, e.g. Western Relief Zone): ").strip()
                 ok, message = location_tree.add_location(
                     location_tree.root.name, name, "Region")
                 print(message)
             elif choice == "2":
-                parent = input("Parent region name: ").strip()
-                name = input("District name: ").strip()
+                parent = input("Enter parent region name (must match an existing region, e.g. Western Relief Zone): ").strip()
+                name = input("Enter district name (text, e.g. Riverbend District): ").strip()
                 ok, message = location_tree.add_location(parent, name, "District")
                 print(message)
             elif choice == "3":
-                parent = input("Parent district name: ").strip()
-                name = input("Shelter name: ").strip()
+                parent = input("Enter parent district name (must match an existing district, e.g. Riverbend District): ").strip()
+                name = input("Enter shelter name (text, e.g. RB-01 Central School Shelter): ").strip()
                 ok, message = location_tree.add_location(parent, name, "Shelter")
                 print(message)
             elif choice == "4":
@@ -445,19 +445,19 @@ def trees_menu():
                 print("Postorder:", " -> ".join(location_tree.postorder()))
                 print("Level-order:", " -> ".join(location_tree.level_order()))
             elif choice == "6":
-                name = input("Location name to delete: ").strip()
+                name = input("Enter location name to delete (must match an existing region, district, or shelter, e.g. RB-01 Central School Shelter): ").strip()
                 ok, message = location_tree.delete_subtree(name)
                 print(message)
             elif choice == "7":
-                key = int(input("Supply ID (integer): "))
-                item = input("Supply item name: ").strip()
-                quantity = int(input("Quantity: "))
+                key = int(input("Enter supply ID (integer, e.g. 50): "))
+                item = input("Enter supply item name (text, e.g. Rice): ").strip()
+                quantity = int(input("Enter supply quantity (integer >= 0, e.g. 500): "))
                 supply_tree.insert(key, item, quantity)
                 print("Supply record inserted/updated.")
             elif choice == "8":
-                _print_supply(supply_tree.search(int(input("Supply ID: "))))
+                _print_supply(supply_tree.search(int(input("Enter supply ID to find (integer, e.g. 50): "))))
             elif choice == "9":
-                key = int(input("Supply ID to delete: "))
+                key = int(input("Enter supply ID to delete (integer, e.g. 50): "))
                 print("Deleted." if supply_tree.delete(key) else "Supply ID not found.")
             elif choice == "10":
                 records = supply_tree.inorder_iterative()
@@ -471,14 +471,14 @@ def trees_menu():
                 print("Maximum:")
                 _print_supply(supply_tree.maximum())
             elif choice == "12":
-                key = int(input("Supply ID: "))
+                key = int(input("Enter supply ID (integer, e.g. 50): "))
                 print("Successor:")
                 _print_supply(supply_tree.successor(key))
                 print("Predecessor:")
                 _print_supply(supply_tree.predecessor(key))
             elif choice == "13":
-                low = int(input("Minimum supply ID: "))
-                high = int(input("Maximum supply ID: "))
+                low = int(input("Enter inclusive minimum supply ID (integer, e.g. 20): "))
+                high = int(input("Enter inclusive maximum supply ID (integer, e.g. 80): "))
                 records = supply_tree.range_query(low, high)
                 if not records:
                     print("No supply records in that range.")
