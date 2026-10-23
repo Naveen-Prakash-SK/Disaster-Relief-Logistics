@@ -1,0 +1,3354 @@
+DISASTER RELIEF LOGISTICS INTERACTIVE DEMONSTRATION SESSION
+Scripted responses were supplied to the real console_app.main() prompt sequence.
+Prompts answered: 416; no scripted answers left unused.
+
+--- PROMPT / INPUT ACTION LOG ---
+Choose an option: 1
+Choose an option: 1
+Network name: Disaster Relief Demonstration Network
+Region count: 0
+Supply record count: 0
+Relief camp count: 0
+Directed road graph? [y/N]: n
+Road-graph vertex count (max 1000): 1
+Vertex name: DEPOT
+Road/connection count (max 100000): 0
+Depot count: 1
+Depot vertex: DEPOT
+Task count: 0
+Dependency count: 0
+Choose an option: 2
+Action: 1
+Region name: Western Relief Zone
+Action: 2
+Parent name: Western Relief Zone
+District name: Riverbend District
+Action: 3
+Parent name: Riverbend District
+Shelter name: RB-01 - Central School Shelter
+Action: 3
+Parent name: Riverbend District
+Shelter name: RB-02 - Community Hall Shelter
+Action: 2
+Parent name: Western Relief Zone
+District name: Hillview District
+Action: 3
+Parent name: Hillview District
+Shelter name: HV-01 - Hillview Government School
+Action: 3
+Parent name: Hillview District
+Shelter name: HV-02 - Hillview Community Centre
+Action: 1
+Region name: Eastern Relief Zone
+Action: 2
+Parent name: Eastern Relief Zone
+District name: Lakeside District
+Action: 3
+Parent name: Lakeside District
+Shelter name: LS-01 - Lakeside Relief Camp
+Action: 3
+Parent name: Lakeside District
+Shelter name: LS-02 - Lakeside Primary School
+Action: 2
+Parent name: Eastern Relief Zone
+District name: Forest Edge District
+Action: 3
+Parent name: Forest Edge District
+Shelter name: FE-01 - Forest Edge School
+Action: 3
+Parent name: Forest Edge District
+Shelter name: FE-02 - Forest Edge Community Hall
+Action: 4
+Action: 5
+Action: 6
+Location name: RB-01
+Action: 6
+Location name: RB-01 - Central School Shelter
+Action: 6
+Location name: LS-02
+Action: 6
+Location name: LS-02 - Lakeside Primary School
+Action: 6
+Location name: UNKNOWN-99
+Action: 1
+Region name: TEMP-DELETE-TEST
+Action: 7
+Location/subtree to delete: TEMP-DELETE-TEST
+Action: 0
+Choose an option: 3
+Action: 1
+Supply ID: 50
+Supply name: Rice
+Quantity (>=0): 500
+Action: 1
+Supply ID: 30
+Supply name: Drinking Water
+Quantity (>=0): 800
+Action: 1
+Supply ID: 70
+Supply name: First Aid Kits
+Quantity (>=0): 120
+Action: 1
+Supply ID: 20
+Supply name: Blankets
+Quantity (>=0): 300
+Action: 1
+Supply ID: 40
+Supply name: Food Packs
+Quantity (>=0): 450
+Action: 1
+Supply ID: 60
+Supply name: Medicines
+Quantity (>=0): 150
+Action: 1
+Supply ID: 80
+Supply name: Hygiene Kits
+Quantity (>=0): 200
+Action: 1
+Supply ID: 10
+Supply name: Baby Supplies
+Quantity (>=0): 75
+Action: 1
+Supply ID: 35
+Supply name: Flashlights
+Quantity (>=0): 90
+Action: 1
+Supply ID: 45
+Supply name: Batteries
+Quantity (>=0): 250
+Action: 1
+Supply ID: 65
+Supply name: Water Purification Tablets
+Quantity (>=0): 100
+Action: 1
+Supply ID: 75
+Supply name: Raincoats
+Quantity (>=0): 180
+Action: 1
+Supply ID: 40
+Supply name: Food Packs - replenishment update
+Quantity (>=0): 500
+Action: 2
+Supply ID to find: 40
+Action: 2
+Supply ID to find: 99
+Action: 1
+Supply ID: 999
+Supply name: Disposable Test Supply
+Quantity (>=0): 1
+Action: 3
+Supply ID to delete: 999
+Action: 4
+Action: 5
+Inclusive low ID: 30
+Inclusive high ID: 70
+Action: 6
+Action: 7
+Action: 0
+Choose an option: 4
+Action: 1
+Camp ID: 40
+Camp name: Riverside Medical Camp (capacity 120)
+Action: 1
+Camp ID: 20
+Camp name: Hilltop Rescue Camp (capacity 80)
+Action: 1
+Camp ID: 60
+Camp name: Lakeside Relief Camp (capacity 150)
+Action: 1
+Camp ID: 10
+Camp name: School Emergency Camp (capacity 60)
+Action: 1
+Camp ID: 30
+Camp name: Community Aid Camp (capacity 100)
+Action: 1
+Camp ID: 50
+Camp name: Mobile Medical Camp (capacity 70)
+Action: 1
+Camp ID: 70
+Camp name: Forest Rescue Camp (capacity 90)
+Action: 1
+Camp ID: 25
+Camp name: Food Distribution Camp (capacity 110)
+Action: 1
+Camp ID: 35
+Camp name: Water Distribution Camp (capacity 130)
+Action: 1
+Camp ID: 55
+Camp name: Emergency Supply Camp (capacity 75)
+Action: 2
+Camp ID: 30
+Action: 2
+Camp ID: 99
+Action: 1
+Camp ID: 30
+Camp name: Community Aid Camp (capacity 105; updated)
+Action: 1
+Camp ID: 999
+Camp name: Disposable Camp Entry (capacity 1)
+Action: 3
+Camp ID to delete: 999
+Action: 4
+Action: 5
+Action: 7
+Action: 6
+Expression (for example: distance * rate + toll): 8
+Action: 9
+Action: 8 + 4 * 3
+Action: 9
+Action: (20 - 5) / 3
+Action: 9
+Action: a * b + c
+Action: 4
+Action: 6
+Expression (for example: distance * rate + toll): 5
+Action: 9
+Action: (10 + 2) * (8 - 3)
+Action: 0
+Choose an option: 5
+Action: 1
+Vertex name: RIVERBEND
+Action: 1
+Vertex name: HILLVIEW
+Action: 1
+Vertex name: LAKESIDE
+Action: 1
+Vertex name: FOREST_EDGE
+Action: 1
+Vertex name: SHELTER_1
+Action: 1
+Vertex name: SHELTER_2
+Action: 1
+Vertex name: MEDICAL_CAMP
+Action: 1
+Vertex name: FOOD_CAMP
+Action: 1
+Vertex name: WATER_CAMP
+Action: 1
+Vertex name: BRIDGE
+Action: 1
+Vertex name: REMOTE_VILLAGE
+Action: 1
+Vertex name: ISOLATED_SHELTER
+Action: 3
+From vertex (auto-created): DEPOT
+To vertex (auto-created): RIVERBEND
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 4
+Action: 3
+From vertex (auto-created): DEPOT
+To vertex (auto-created): HILLVIEW
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 6
+Action: 3
+From vertex (auto-created): RIVERBEND
+To vertex (auto-created): HILLVIEW
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 2
+Action: 3
+From vertex (auto-created): RIVERBEND
+To vertex (auto-created): SHELTER_1
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 5
+Action: 3
+From vertex (auto-created): HILLVIEW
+To vertex (auto-created): SHELTER_2
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 3
+Action: 3
+From vertex (auto-created): HILLVIEW
+To vertex (auto-created): MEDICAL_CAMP
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 7
+Action: 3
+From vertex (auto-created): SHELTER_1
+To vertex (auto-created): MEDICAL_CAMP
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 2
+Action: 3
+From vertex (auto-created): SHELTER_2
+To vertex (auto-created): FOOD_CAMP
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 4
+Action: 3
+From vertex (auto-created): MEDICAL_CAMP
+To vertex (auto-created): FOOD_CAMP
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 3
+Action: 3
+From vertex (auto-created): FOOD_CAMP
+To vertex (auto-created): WATER_CAMP
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 2
+Action: 3
+From vertex (auto-created): WATER_CAMP
+To vertex (auto-created): LAKESIDE
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 5
+Action: 3
+From vertex (auto-created): LAKESIDE
+To vertex (auto-created): FOREST_EDGE
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 4
+Action: 3
+From vertex (auto-created): FOREST_EDGE
+To vertex (auto-created): BRIDGE
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 3
+Action: 3
+From vertex (auto-created): BRIDGE
+To vertex (auto-created): REMOTE_VILLAGE
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 6
+Action: 3
+From vertex (auto-created): LAKESIDE
+To vertex (auto-created): REMOTE_VILLAGE
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: 8
+Action: 5
+Action: 6
+Action: 7
+Action: 8
+Directed? [y/N]: y
+Convert active graph and copy its edges? [y/N]: y
+Action: 3
+From vertex (auto-created): DEPOT
+To vertex (auto-created): BRIDGE
+Unweighted edge (weight 1)? [y/N]: y
+Action: 5
+Action: 4
+From vertex: DEPOT
+To vertex: BRIDGE
+Action: 8
+Directed? [y/N]: n
+Convert active graph and copy its edges? [y/N]: y
+Action: 0
+Choose an option: 6
+Starting location: DEPOT
+Depot vertices (comma-separated; blank uses saved depots): 
+Optional destination to route to (blank skips): FOOD_CAMP
+Choose an option: 7
+Source vertex: DEPOT
+Destination vertex: REMOTE_VILLAGE
+Choose an option: 8
+Start vertex (blank means all components): DEPOT
+Choose an option: 9
+Choose an option: 10
+Choose an option: 11
+Action: 1
+Task name: T1 - Assess affected regions
+Duration >= 0: 2
+Action: 1
+Task name: T2 - Prepare relief supplies
+Duration >= 0: 3
+Action: 1
+Task name: T3 - Arrange transport
+Duration >= 0: 2
+Action: 1
+Task name: T4 - Set up medical camps
+Duration >= 0: 4
+Action: 1
+Task name: T5 - Distribute food and water
+Duration >= 0: 3
+Action: 1
+Task name: T6 - Verify shelter readiness
+Duration >= 0: 1
+Action: 2
+Prerequisite task: T1 - Assess affected regions
+Dependent task: T2 - Prepare relief supplies
+Action: 2
+Prerequisite task: T1 - Assess affected regions
+Dependent task: T3 - Arrange transport
+Action: 2
+Prerequisite task: T2 - Prepare relief supplies
+Dependent task: T4 - Set up medical camps
+Action: 2
+Prerequisite task: T3 - Arrange transport
+Dependent task: T4 - Set up medical camps
+Action: 2
+Prerequisite task: T4 - Set up medical camps
+Dependent task: T5 - Distribute food and water
+Action: 2
+Prerequisite task: T1 - Assess affected regions
+Dependent task: T6 - Verify shelter readiness
+Action: 2
+Prerequisite task: T6 - Verify shelter readiness
+Dependent task: T5 - Distribute food and water
+Action: 3
+Action: 4
+Action: 5
+Action: 6
+Action: 0
+Choose an option: 12
+Tree sizes comma-separated [1000,2000,5000]: 500,1000
+Graph vertex sizes [100,250,500]: 50,100
+Seed [42]: 42
+Choose an option: 13
+Overwrite existing 'D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json'? [y/N]: y
+Choose an option: 14
+Replace current in-memory scenario? [y/N]: y
+Choose an option: 2
+Action: 4
+Action: 5
+Action: 0
+Choose an option: 3
+Action: 6
+Action: 4
+Action: 0
+Choose an option: 4
+Action: 4
+Action: 7
+Action: 0
+Choose an option: 5
+Action: 7
+Action: 5
+Action: 0
+Choose an option: 11
+Action: 3
+Action: 4
+Action: 5
+Action: 0
+Choose an option: 15
+Discard all in-memory data? [y/N]: n
+Choose an option: 16
+Choose a testing action: 1
+Choose a testing action: 2
+Choose a testing action: 3
+Choose a testing action: 4
+Choose a testing action: 5
+Choose a testing action: 6
+Choose a testing action: 7
+Choose an option: 17
+
+--- APPLICATION OUTPUT ---
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- SCENARIO BUILDER ---
+1. Guided disaster scenario builder
+2. Load demonstration scenario
+0. Return to main menu
+Created scenario 'Disaster Relief Demonstration Network'.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 1 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Region 'Western Relief Zone' added under 'Disaster Relief Demonstration Network'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+District 'Riverbend District' added under 'Western Relief Zone'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'RB-01 - Central School Shelter' added under 'Riverbend District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'RB-02 - Community Hall Shelter' added under 'Riverbend District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+District 'Hillview District' added under 'Western Relief Zone'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'HV-01 - Hillview Government School' added under 'Hillview District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'HV-02 - Hillview Community Centre' added under 'Hillview District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Region 'Eastern Relief Zone' added under 'Disaster Relief Demonstration Network'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+District 'Lakeside District' added under 'Eastern Relief Zone'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'LS-01 - Lakeside Relief Camp' added under 'Lakeside District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'LS-02 - Lakeside Primary School' added under 'Lakeside District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+District 'Forest Edge District' added under 'Eastern Relief Zone'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'FE-01 - Forest Edge School' added under 'Forest Edge District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Shelter 'FE-02 - Forest Edge Community Hall' added under 'Forest Edge District'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+      - Shelter: FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+      - Shelter: FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Preorder:    Disaster Relief Demonstration Network -> Western Relief Zone -> Riverbend District -> RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> Hillview District -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> Eastern Relief Zone -> Lakeside District -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> Forest Edge District -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall
+Postorder:   RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> Riverbend District -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> Hillview District -> Western Relief Zone -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> Lakeside District -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall -> Forest Edge District -> Eastern Relief Zone -> Disaster Relief Demonstration Network
+Level-order: Disaster Relief Demonstration Network -> Western Relief Zone -> Eastern Relief Zone -> Riverbend District -> Hillview District -> Lakeside District -> Forest Edge District -> RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Location not found.
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Found Shelter(RB-01 - Central School Shelter).
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Location not found.
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Found Shelter(LS-02 - Lakeside Primary School).
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Location not found.
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Region 'TEMP-DELETE-TEST' added under 'Disaster Relief Demonstration Network'.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+      - Shelter: FE-02 - Forest Edge Community Hall
+  - Region: TEMP-DELETE-TEST
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Deleted 'TEMP-DELETE-TEST' and its entire subtree.
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+      - Shelter: FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 1 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+  70: First Aid Kits (quantity=120)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+  70: First Aid Kits (quantity=120)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+    40: Food Packs (quantity=450)
+  70: First Aid Kits (quantity=120)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+    40: Food Packs (quantity=450)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+    40: Food Packs (quantity=450)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+    80: Hygiene Kits (quantity=200)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs (quantity=450)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+    80: Hygiene Kits (quantity=200)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs (quantity=450)
+      35: Flashlights (quantity=90)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+    80: Hygiene Kits (quantity=200)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs (quantity=450)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+    80: Hygiene Kits (quantity=200)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs (quantity=450)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs (quantity=450)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+      75: Raincoats (quantity=180)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply updated.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs - replenishment update (quantity=500)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+      75: Raincoats (quantity=180)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+40: Food Packs - replenishment update, quantity=500
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply ID not found.
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply added.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs - replenishment update (quantity=500)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+      75: Raincoats (quantity=180)
+      999: Disposable Test Supply (quantity=1)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Deleted.
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs - replenishment update (quantity=500)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+      75: Raincoats (quantity=180)
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Minimum: 10 Baby Supplies qty=75
+Maximum: 80 Hygiene Kits qty=200
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+30: Drinking Water qty=800
+35: Flashlights qty=90
+40: Food Packs - replenishment update qty=500
+45: Batteries qty=250
+50: Rice qty=500
+60: Medicines qty=150
+65: Water Purification Tablets qty=100
+70: First Aid Kits qty=120
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+10: Baby Supplies qty=75
+20: Blankets qty=300
+30: Drinking Water qty=800
+35: Flashlights qty=90
+40: Food Packs - replenishment update qty=500
+45: Batteries qty=250
+50: Rice qty=500
+60: Medicines qty=150
+65: Water Purification Tablets qty=100
+70: First Aid Kits qty=120
+75: Raincoats qty=180
+80: Hygiene Kits qty=200
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Supply BST, shown by depth:
+50: Rice (quantity=500)
+  30: Drinking Water (quantity=800)
+    20: Blankets (quantity=300)
+      10: Baby Supplies (quantity=75)
+    40: Food Packs - replenishment update (quantity=500)
+      35: Flashlights (quantity=90)
+      45: Batteries (quantity=250)
+  70: First Aid Kits (quantity=120)
+    60: Medicines (quantity=150)
+      65: Water Purification Tablets (quantity=100)
+    80: Hygiene Kits (quantity=200)
+      75: Raincoats (quantity=180)
+Height (nodes): 4
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 1 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 40; AVL height=1.
+AVL root: 40 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 20; AVL height=2.
+AVL root: 40 (h=2)
+│   ├── 20 (h=1)
+│   └── (empty)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 60; AVL height=2.
+AVL root: 40 (h=2)
+│   ├── 20 (h=1)
+│   └── 60 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 10; AVL height=3.
+AVL root: 40 (h=3)
+│   ├── 20 (h=2)
+│   │   ├── 10 (h=1)
+│   │   └── (empty)
+│   └── 60 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 30; AVL height=3.
+AVL root: 40 (h=3)
+│   ├── 20 (h=2)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=1)
+│   └── 60 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 50; AVL height=3.
+AVL root: 40 (h=3)
+│   ├── 20 (h=2)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=1)
+│   └── 60 (h=2)
+│       ├── 50 (h=1)
+│       └── (empty)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 70; AVL height=3.
+AVL root: 40 (h=3)
+│   ├── 20 (h=2)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=1)
+│   └── 60 (h=2)
+│       ├── 50 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 25; AVL height=4.
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── (empty)
+│   └── 60 (h=2)
+│       ├── 50 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 35; AVL height=4.
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── 35 (h=1)
+│   └── 60 (h=2)
+│       ├── 50 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 55; AVL height=4.
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── 35 (h=1)
+│   └── 60 (h=3)
+│       ├── 50 (h=2)
+│       │   ├── (empty)
+│       │   └── 55 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+30: Community Aid Camp (capacity 100)
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Camp not found.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 30; AVL height=4.
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── 35 (h=1)
+│   └── 60 (h=3)
+│       ├── 50 (h=2)
+│       │   ├── (empty)
+│       │   └── 55 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Stored camp 999; AVL height=4.
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── 35 (h=1)
+│   └── 60 (h=3)
+│       ├── 50 (h=2)
+│       │   ├── (empty)
+│       │   └── 55 (h=1)
+│       └── 70 (h=2)
+│           ├── (empty)
+│           └── 999 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Deleted.
+New height: 4
+AVL root: 40 (h=4)
+│   ├── 20 (h=3)
+│   │   ├── 10 (h=1)
+│   │   └── 30 (h=2)
+│   │       ├── 25 (h=1)
+│   │       └── 35 (h=1)
+│   └── 60 (h=3)
+│       ├── 50 (h=2)
+│       │   ├── (empty)
+│       │   └── 55 (h=1)
+│       └── 70 (h=1)
+AVL invariants verified.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+40: Riverside Medical Camp (capacity 120), height=4, balance=0
+  20: Hilltop Rescue Camp (capacity 80), height=3, balance=-1
+    10: School Emergency Camp (capacity 60), height=1, balance=0
+    30: Community Aid Camp (capacity 105; updated), height=2, balance=0
+      25: Food Distribution Camp (capacity 110), height=1, balance=0
+      35: Water Distribution Camp (capacity 130), height=1, balance=0
+  60: Lakeside Relief Camp (capacity 150), height=3, balance=1
+    50: Mobile Medical Camp (capacity 70), height=2, balance=-1
+      55: Emergency Supply Camp (capacity 75), height=1, balance=0
+    70: Forest Rescue Camp (capacity 90), height=1, balance=0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+No rotations recorded yet.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+AVL checks: 10000/10000; height=13.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Enter an infix expression; variables are prompted for as needed.
+Postfix: 8
+Expression tree: 8
+Calculated result: 8.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+40: Riverside Medical Camp (capacity 120), height=4, balance=0
+  20: Hilltop Rescue Camp (capacity 80), height=3, balance=-1
+    10: School Emergency Camp (capacity 60), height=1, balance=0
+    30: Community Aid Camp (capacity 105; updated), height=2, balance=0
+      25: Food Distribution Camp (capacity 110), height=1, balance=0
+      35: Water Distribution Camp (capacity 130), height=1, balance=0
+  60: Lakeside Relief Camp (capacity 150), height=3, balance=1
+    50: Mobile Medical Camp (capacity 70), height=2, balance=-1
+      55: Emergency Supply Camp (capacity 75), height=1, balance=0
+    70: Forest Rescue Camp (capacity 90), height=1, balance=0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Enter an infix expression; variables are prompted for as needed.
+Postfix: 5
+Expression tree: 5
+Calculated result: 5.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Choose a listed action.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 1 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- ROAD GRAPH (undirected; V=1, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=2, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=3, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=4, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=5, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=6, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=7, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=8, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=9, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=10, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=11, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=12, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Vertex added.
+
+--- ROAD GRAPH (undirected; V=13, E=0) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored DEPOT -> RIVERBEND, weight=4.0.
+
+--- ROAD GRAPH (undirected; V=13, E=1) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored DEPOT -> HILLVIEW, weight=6.0.
+
+--- ROAD GRAPH (undirected; V=13, E=2) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored RIVERBEND -> HILLVIEW, weight=2.0.
+
+--- ROAD GRAPH (undirected; V=13, E=3) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored RIVERBEND -> SHELTER_1, weight=5.0.
+
+--- ROAD GRAPH (undirected; V=13, E=4) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored HILLVIEW -> SHELTER_2, weight=3.0.
+
+--- ROAD GRAPH (undirected; V=13, E=5) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored HILLVIEW -> MEDICAL_CAMP, weight=7.0.
+
+--- ROAD GRAPH (undirected; V=13, E=6) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored SHELTER_1 -> MEDICAL_CAMP, weight=2.0.
+
+--- ROAD GRAPH (undirected; V=13, E=7) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored SHELTER_2 -> FOOD_CAMP, weight=4.0.
+
+--- ROAD GRAPH (undirected; V=13, E=8) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored MEDICAL_CAMP -> FOOD_CAMP, weight=3.0.
+
+--- ROAD GRAPH (undirected; V=13, E=9) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored FOOD_CAMP -> WATER_CAMP, weight=2.0.
+
+--- ROAD GRAPH (undirected; V=13, E=10) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored WATER_CAMP -> LAKESIDE, weight=5.0.
+
+--- ROAD GRAPH (undirected; V=13, E=11) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored LAKESIDE -> FOREST_EDGE, weight=4.0.
+
+--- ROAD GRAPH (undirected; V=13, E=12) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored FOREST_EDGE -> BRIDGE, weight=3.0.
+
+--- ROAD GRAPH (undirected; V=13, E=13) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored BRIDGE -> REMOTE_VILLAGE, weight=6.0.
+
+--- ROAD GRAPH (undirected; V=13, E=14) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored LAKESIDE -> REMOTE_VILLAGE, weight=8.0.
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Adjacency List:
+  DEPOT -> [RIVERBEND(w=4.0), HILLVIEW(w=6.0)]
+  RIVERBEND -> [DEPOT(w=4.0), HILLVIEW(w=2.0), SHELTER_1(w=5.0)]
+  HILLVIEW -> [DEPOT(w=6.0), RIVERBEND(w=2.0), SHELTER_2(w=3.0), MEDICAL_CAMP(w=7.0)]
+  LAKESIDE -> [WATER_CAMP(w=5.0), FOREST_EDGE(w=4.0), REMOTE_VILLAGE(w=8.0)]
+  FOREST_EDGE -> [LAKESIDE(w=4.0), BRIDGE(w=3.0)]
+  SHELTER_1 -> [RIVERBEND(w=5.0), MEDICAL_CAMP(w=2.0)]
+  SHELTER_2 -> [HILLVIEW(w=3.0), FOOD_CAMP(w=4.0)]
+  MEDICAL_CAMP -> [HILLVIEW(w=7.0), SHELTER_1(w=2.0), FOOD_CAMP(w=3.0)]
+  FOOD_CAMP -> [SHELTER_2(w=4.0), MEDICAL_CAMP(w=3.0), WATER_CAMP(w=2.0)]
+  WATER_CAMP -> [FOOD_CAMP(w=2.0), LAKESIDE(w=5.0)]
+  BRIDGE -> [FOREST_EDGE(w=3.0), REMOTE_VILLAGE(w=6.0)]
+  REMOTE_VILLAGE -> [BRIDGE(w=6.0), LAKESIDE(w=8.0)]
+  ISOLATED_SHELTER -> []
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Adjacency Matrix:
+        DEPOT  RIVERBEND  HILLVIEW  LAKESIDE  FOREST_EDGE  SHELTER_1  SHELTER_2  MEDICAL_CAMP  FOOD_CAMP  WATER_CAMP  BRIDGE  REMOTE_VILLAGE  ISOLATED_SHELTER
+  DEPOT      0     4.0     6.0       0       0       0       0       0       0       0       0       0       0
+  RIVERBEND    4.0       0     2.0       0       0     5.0       0       0       0       0       0       0       0
+  HILLVIEW    6.0     2.0       0       0       0       0     3.0     7.0       0       0       0       0       0
+  LAKESIDE      0       0       0       0     4.0       0       0       0       0     5.0       0     8.0       0
+  FOREST_EDGE      0       0       0     4.0       0       0       0       0       0       0     3.0       0       0
+  SHELTER_1      0     5.0       0       0       0       0       0     2.0       0       0       0       0       0
+  SHELTER_2      0       0     3.0       0       0       0       0       0     4.0       0       0       0       0
+  MEDICAL_CAMP      0       0     7.0       0       0     2.0       0       0     3.0       0       0       0       0
+  FOOD_CAMP      0       0       0       0       0       0     4.0     3.0       0     2.0       0       0       0
+  WATER_CAMP      0       0       0     5.0       0       0       0       0     2.0       0       0       0       0
+  BRIDGE      0       0       0       0     3.0       0       0       0       0       0       0     6.0       0
+  REMOTE_VILLAGE      0       0       0     8.0       0       0       0       0       0       0     6.0       0       0
+  ISOLATED_SHELTER      0       0       0       0       0       0       0       0       0       0       0       0       0
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Connected components:
+  DEPOT, RIVERBEND, HILLVIEW, SHELTER_2, FOOD_CAMP, MEDICAL_CAMP, SHELTER_1, WATER_CAMP, LAKESIDE, FOREST_EDGE, BRIDGE, REMOTE_VILLAGE
+  ISOLATED_SHELTER
+Isolated vertices: ISOLATED_SHELTER
+  Vertices: 13,  Edges: 15
+  Adjacency list entries : 30
+  Adjacency matrix cells : 169
+  For sparse graphs (E << V²), the list is more efficient.
+  For dense graphs  (E ≈ V²), the matrix is comparable.
+  Approx adjacency-list object size : 2,736 bytes
+  Approx adjacency-matrix object size: 2,680 bytes
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Graph representation changed. MST needs an undirected graph.
+
+--- ROAD GRAPH (directed; V=13, E=30) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored DEPOT -> BRIDGE, weight=1.
+
+--- ROAD GRAPH (directed; V=13, E=31) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Adjacency List:
+  DEPOT -> [RIVERBEND(w=4.0), HILLVIEW(w=6.0), BRIDGE(w=1)]
+  RIVERBEND -> [DEPOT(w=4.0), HILLVIEW(w=2.0), SHELTER_1(w=5.0)]
+  HILLVIEW -> [DEPOT(w=6.0), RIVERBEND(w=2.0), SHELTER_2(w=3.0), MEDICAL_CAMP(w=7.0)]
+  LAKESIDE -> [WATER_CAMP(w=5.0), FOREST_EDGE(w=4.0), REMOTE_VILLAGE(w=8.0)]
+  FOREST_EDGE -> [LAKESIDE(w=4.0), BRIDGE(w=3.0)]
+  SHELTER_1 -> [RIVERBEND(w=5.0), MEDICAL_CAMP(w=2.0)]
+  SHELTER_2 -> [HILLVIEW(w=3.0), FOOD_CAMP(w=4.0)]
+  MEDICAL_CAMP -> [HILLVIEW(w=7.0), SHELTER_1(w=2.0), FOOD_CAMP(w=3.0)]
+  FOOD_CAMP -> [SHELTER_2(w=4.0), MEDICAL_CAMP(w=3.0), WATER_CAMP(w=2.0)]
+  WATER_CAMP -> [LAKESIDE(w=5.0), FOOD_CAMP(w=2.0)]
+  BRIDGE -> [FOREST_EDGE(w=3.0), REMOTE_VILLAGE(w=6.0)]
+  REMOTE_VILLAGE -> [LAKESIDE(w=8.0), BRIDGE(w=6.0)]
+  ISOLATED_SHELTER -> []
+
+--- ROAD GRAPH (directed; V=13, E=31) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Road removed.
+
+--- ROAD GRAPH (directed; V=13, E=30) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Warning: each directed road becomes bidirectional. Opposing roads must have matching weights.
+Graph representation changed. MST needs an undirected graph.
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+BFS minimizes the number of edges, not total edge weight.
+Vertices: DEPOT, RIVERBEND, HILLVIEW, LAKESIDE, FOREST_EDGE, SHELTER_1, SHELTER_2, MEDICAL_CAMP, FOOD_CAMP, WATER_CAMP, BRIDGE, REMOTE_VILLAGE, ISOLATED_SHELTER
+Nearest depot: DEPOT, edge count=0
+Route: DEPOT
+Route: DEPOT -> HILLVIEW -> SHELTER_2 -> FOOD_CAMP (3 edges)
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+Dijkstra step-by-step from 'DEPOT':
+Iter      Selected      Dist  Distance estimates
+   1         DEPOT         0  DEPOT:0, RIVERBEND:∞, HILLVIEW:∞, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:∞, SHELTER_2:∞, MEDICAL_CAMP:∞, FOOD_CAMP:∞, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   2     RIVERBEND       4.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:∞, SHELTER_2:∞, MEDICAL_CAMP:∞, FOOD_CAMP:∞, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   3      HILLVIEW       6.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:∞, MEDICAL_CAMP:∞, FOOD_CAMP:∞, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   4     SHELTER_1       9.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:13.0, FOOD_CAMP:∞, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   5     SHELTER_2       9.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:∞, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   6  MEDICAL_CAMP      11.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   7     FOOD_CAMP      13.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:∞, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   8    WATER_CAMP      15.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:∞, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:15.0, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+   9      LAKESIDE      20.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:20.0, FOREST_EDGE:∞, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:15.0, BRIDGE:∞, REMOTE_VILLAGE:∞, ISOLATED_SHELTER:∞
+  10   FOREST_EDGE      24.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:20.0, FOREST_EDGE:24.0, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:15.0, BRIDGE:∞, REMOTE_VILLAGE:28.0, ISOLATED_SHELTER:∞
+  11        BRIDGE      27.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:20.0, FOREST_EDGE:24.0, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:15.0, BRIDGE:27.0, REMOTE_VILLAGE:28.0, ISOLATED_SHELTER:∞
+  12  REMOTE_VILLAGE      28.0  DEPOT:0, RIVERBEND:4.0, HILLVIEW:6.0, LAKESIDE:20.0, FOREST_EDGE:24.0, SHELTER_1:9.0, SHELTER_2:9.0, MEDICAL_CAMP:11.0, FOOD_CAMP:13.0, WATER_CAMP:15.0, BRIDGE:27.0, REMOTE_VILLAGE:28.0, ISOLATED_SHELTER:∞
+
+Final distance table:
+               DEPOT |            0 | predecessor=None
+           RIVERBEND |          4.0 | predecessor=DEPOT
+            HILLVIEW |          6.0 | predecessor=DEPOT
+            LAKESIDE |         20.0 | predecessor=WATER_CAMP
+         FOREST_EDGE |         24.0 | predecessor=LAKESIDE
+           SHELTER_1 |          9.0 | predecessor=RIVERBEND
+           SHELTER_2 |          9.0 | predecessor=HILLVIEW
+        MEDICAL_CAMP |         11.0 | predecessor=SHELTER_1
+           FOOD_CAMP |         13.0 | predecessor=SHELTER_2
+          WATER_CAMP |         15.0 | predecessor=FOOD_CAMP
+              BRIDGE |         27.0 | predecessor=FOREST_EDGE
+      REMOTE_VILLAGE |         28.0 | predecessor=LAKESIDE
+    ISOLATED_SHELTER |  unreachable | predecessor=None
+Shortest route: DEPOT -> HILLVIEW -> SHELTER_2 -> FOOD_CAMP -> WATER_CAMP -> LAKESIDE -> REMOTE_VILLAGE (weight 28.0)
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+DFS order: DEPOT -> RIVERBEND -> HILLVIEW -> SHELTER_2 -> FOOD_CAMP -> MEDICAL_CAMP -> SHELTER_1 -> WATER_CAMP -> LAKESIDE -> FOREST_EDGE -> BRIDGE -> REMOTE_VILLAGE -> ISOLATED_SHELTER
+DEPOT: discover=1, finish=24, parent=None
+RIVERBEND: discover=2, finish=23, parent=DEPOT
+HILLVIEW: discover=3, finish=22, parent=RIVERBEND
+SHELTER_2: discover=4, finish=21, parent=HILLVIEW
+FOOD_CAMP: discover=5, finish=20, parent=SHELTER_2
+MEDICAL_CAMP: discover=6, finish=9, parent=FOOD_CAMP
+SHELTER_1: discover=7, finish=8, parent=MEDICAL_CAMP
+WATER_CAMP: discover=10, finish=19, parent=FOOD_CAMP
+LAKESIDE: discover=11, finish=18, parent=WATER_CAMP
+FOREST_EDGE: discover=12, finish=17, parent=LAKESIDE
+BRIDGE: discover=13, finish=16, parent=FOREST_EDGE
+REMOTE_VILLAGE: discover=14, finish=15, parent=BRIDGE
+ISOLATED_SHELTER: discover=25, finish=26, parent=None
+Edge classification:
+  DEPOT -> RIVERBEND: tree
+  RIVERBEND -> DEPOT: back
+  RIVERBEND -> HILLVIEW: tree
+  HILLVIEW -> DEPOT: back
+  HILLVIEW -> RIVERBEND: back
+  HILLVIEW -> SHELTER_2: tree
+  SHELTER_2 -> HILLVIEW: back
+  SHELTER_2 -> FOOD_CAMP: tree
+  FOOD_CAMP -> SHELTER_2: back
+  FOOD_CAMP -> MEDICAL_CAMP: tree
+  MEDICAL_CAMP -> HILLVIEW: back
+  MEDICAL_CAMP -> SHELTER_1: tree
+  SHELTER_1 -> RIVERBEND: back
+  SHELTER_1 -> MEDICAL_CAMP: back
+  MEDICAL_CAMP -> FOOD_CAMP: back
+  FOOD_CAMP -> WATER_CAMP: tree
+  WATER_CAMP -> LAKESIDE: tree
+  LAKESIDE -> WATER_CAMP: back
+  LAKESIDE -> FOREST_EDGE: tree
+  FOREST_EDGE -> LAKESIDE: back
+  FOREST_EDGE -> BRIDGE: tree
+  BRIDGE -> FOREST_EDGE: back
+  BRIDGE -> REMOTE_VILLAGE: tree
+  REMOTE_VILLAGE -> LAKESIDE: back
+  REMOTE_VILLAGE -> BRIDGE: back
+  LAKESIDE -> REMOTE_VILLAGE: forward
+  WATER_CAMP -> FOOD_CAMP: back
+  HILLVIEW -> MEDICAL_CAMP: forward
+  RIVERBEND -> SHELTER_1: forward
+  DEPOT -> HILLVIEW: forward
+Connected components:
+  DEPOT, RIVERBEND, HILLVIEW, SHELTER_2, FOOD_CAMP, MEDICAL_CAMP, SHELTER_1, WATER_CAMP, LAKESIDE, FOREST_EDGE, BRIDGE, REMOTE_VILLAGE
+  ISOLATED_SHELTER
+Isolated vertices: ISOLATED_SHELTER
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Prim selects the cheapest edge connecting the current tree to an unvisited vertex.
+Select DEPOT -- RIVERBEND (4.0); running total=4.0
+Select RIVERBEND -- HILLVIEW (2.0); running total=6.0
+Select HILLVIEW -- SHELTER_2 (3.0); running total=9.0
+Select SHELTER_2 -- FOOD_CAMP (4.0); running total=13.0
+Select FOOD_CAMP -- WATER_CAMP (2.0); running total=15.0
+Select FOOD_CAMP -- MEDICAL_CAMP (3.0); running total=18.0
+Select MEDICAL_CAMP -- SHELTER_1 (2.0); running total=20.0
+Select WATER_CAMP -- LAKESIDE (5.0); running total=25.0
+Select LAKESIDE -- FOREST_EDGE (4.0); running total=29.0
+Select FOREST_EDGE -- BRIDGE (3.0); running total=32.0
+Select BRIDGE -- REMOTE_VILLAGE (6.0); running total=38.0
+Prim: 11 edges, total weight=38.0.
+Kruskal: 11 edges, total weight=38.0; costs agree.
+Forest components: 2
+  DEPOT, RIVERBEND, HILLVIEW, SHELTER_2, FOOD_CAMP, WATER_CAMP, MEDICAL_CAMP, SHELTER_1, LAKESIDE, FOREST_EDGE, BRIDGE, REMOTE_VILLAGE
+  ISOLATED_SHELTER
+Disconnected graph: this is a minimum spanning forest.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Kruskal accepts edges that join different components.
+Select FOOD_CAMP -- WATER_CAMP (2.0); running total=2.0
+Select RIVERBEND -- HILLVIEW (2.0); running total=4.0
+Select SHELTER_1 -- MEDICAL_CAMP (2.0); running total=6.0
+Select FOREST_EDGE -- BRIDGE (3.0); running total=9.0
+Select HILLVIEW -- SHELTER_2 (3.0); running total=12.0
+Select MEDICAL_CAMP -- FOOD_CAMP (3.0); running total=15.0
+Select DEPOT -- RIVERBEND (4.0); running total=19.0
+Select LAKESIDE -- FOREST_EDGE (4.0); running total=23.0
+Select SHELTER_2 -- FOOD_CAMP (4.0); running total=27.0
+Select LAKESIDE -- WATER_CAMP (5.0); running total=32.0
+Reject RIVERBEND -- SHELTER_1 (5.0); would form a cycle
+Select BRIDGE -- REMOTE_VILLAGE (6.0); running total=38.0
+Reject DEPOT -- HILLVIEW (6.0); would form a cycle
+Reject HILLVIEW -- MEDICAL_CAMP (7.0); would form a cycle
+Reject LAKESIDE -- REMOTE_VILLAGE (8.0); would form a cycle
+Kruskal: 11 edges, total weight=38.0.
+Prim: 11 edges, total weight=38.0; costs agree.
+Forest components: 2
+  DEPOT, RIVERBEND, HILLVIEW, LAKESIDE, FOREST_EDGE, SHELTER_1, SHELTER_2, MEDICAL_CAMP, FOOD_CAMP, WATER_CAMP, BRIDGE, REMOTE_VILLAGE
+  ISOLATED_SHELTER
+Disconnected graph: this is a minimum spanning forest.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T1 - Assess affected regions'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T2 - Prepare relief supplies'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T3 - Arrange transport'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T4 - Set up medical camps'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T5 - Distribute food and water'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored task 'T6 - Verify shelter readiness'.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T1 - Assess affected regions -> T2 - Prepare relief supplies.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T1 - Assess affected regions -> T3 - Arrange transport.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T2 - Prepare relief supplies -> T4 - Set up medical camps.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T3 - Arrange transport -> T4 - Set up medical camps.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T4 - Set up medical camps -> T5 - Distribute food and water.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T1 - Assess affected regions -> T6 - Verify shelter readiness.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Stored dependency T6 - Verify shelter readiness -> T5 - Distribute food and water.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+T1 - Assess affected regions (2.0) -> T2 - Prepare relief supplies, T3 - Arrange transport, T6 - Verify shelter readiness
+T2 - Prepare relief supplies (3.0) -> T4 - Set up medical camps
+T3 - Arrange transport (2.0) -> T4 - Set up medical camps
+T4 - Set up medical camps (4.0) -> T5 - Distribute food and water
+T5 - Distribute food and water (3.0) -> (none)
+T6 - Verify shelter readiness (1.0) -> T5 - Distribute food and water
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Kahn: T1 - Assess affected regions -> T2 - Prepare relief supplies -> T3 - Arrange transport -> T6 - Verify shelter readiness -> T4 - Set up medical camps -> T5 - Distribute food and water
+DFS:  T1 - Assess affected regions -> T6 - Verify shelter readiness -> T3 - Arrange transport -> T2 - Prepare relief supplies -> T4 - Set up medical camps -> T5 - Distribute food and water
+Valid schedule.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+T1 - Assess affected regions: start=0, finish=2.0
+T2 - Prepare relief supplies: start=2.0, finish=5.0
+T3 - Arrange transport: start=2.0, finish=4.0
+T6 - Verify shelter readiness: start=2.0, finish=3.0
+T4 - Set up medical camps: start=5.0, finish=9.0
+T5 - Distribute food and water: start=9.0, finish=12.0
+Critical path: T1 - Assess affected regions -> T2 - Prepare relief supplies -> T4 - Set up medical camps -> T5 - Distribute food and water; duration=12.0.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+No cycle; the dependency schedule is feasible.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Timings are empirical, single-run samples; reported complexity is theoretical.
+Limits: 5,000 tree nodes; 500 graph vertices.
+
+--- Tree Benchmarks: BST vs AVL ---
+      n     Type    Input     Time (s)   Height
+-------------------------------------------------------
+    500      BST   sorted     0.010806      500
+    500      AVL   sorted     0.002518        9
+    500      BST   random     0.000461       19
+    500      AVL   random     0.002371       11
+   1000      BST   sorted     0.037275     1000
+   1000      AVL   sorted     0.006983       10
+   1000      BST   random     0.000996       21
+   1000      AVL   random     0.008640       12
+
+--- Graph Benchmarks: Prim vs Kruskal ---
+     V        E     Type     Prim (s)    Kruskal (s)     Cost
+-----------------------------------------------------------------
+    50      100   sparse     0.000381       0.000684     1283
+    50      625    dense     0.000402       0.004141      300
+   100      200   sparse     0.000795       0.000931     2381
+   100     2500    dense     0.001218       0.018395      323
+
+Benchmark CSV saved to: D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\results\benchmark_results.csv
+Benchmark summary saved to: D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\results\benchmark_summary.md
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Saved scenario to D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Loaded 'Disaster Relief Demonstration Network' from D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+- Network: Disaster Relief Demonstration Network
+  - Region: Western Relief Zone
+    - District: Riverbend District
+      - Shelter: RB-01 - Central School Shelter
+      - Shelter: RB-02 - Community Hall Shelter
+    - District: Hillview District
+      - Shelter: HV-01 - Hillview Government School
+      - Shelter: HV-02 - Hillview Community Centre
+  - Region: Eastern Relief Zone
+    - District: Lakeside District
+      - Shelter: LS-01 - Lakeside Relief Camp
+      - Shelter: LS-02 - Lakeside Primary School
+    - District: Forest Edge District
+      - Shelter: FE-01 - Forest Edge School
+      - Shelter: FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+Preorder:    Disaster Relief Demonstration Network -> Western Relief Zone -> Riverbend District -> RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> Hillview District -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> Eastern Relief Zone -> Lakeside District -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> Forest Edge District -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall
+Postorder:   RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> Riverbend District -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> Hillview District -> Western Relief Zone -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> Lakeside District -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall -> Forest Edge District -> Eastern Relief Zone -> Disaster Relief Demonstration Network
+Level-order: Disaster Relief Demonstration Network -> Western Relief Zone -> Eastern Relief Zone -> Riverbend District -> Hillview District -> Lakeside District -> Forest Edge District -> RB-01 - Central School Shelter -> RB-02 - Community Hall Shelter -> HV-01 - Hillview Government School -> HV-02 - Hillview Community Centre -> LS-01 - Lakeside Relief Camp -> LS-02 - Lakeside Primary School -> FE-01 - Forest Edge School -> FE-02 - Forest Edge Community Hall
+
+--- LOCATION HIERARCHY: Disaster Relief Demonstration Network ---
+1 Add region  2 Add district  3 Add shelter
+4 Display  5 Traversals  6 Search  7 Delete subtree  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+10: Baby Supplies qty=75
+20: Blankets qty=300
+30: Drinking Water qty=800
+35: Flashlights qty=90
+40: Food Packs - replenishment update qty=500
+45: Batteries qty=250
+50: Rice qty=500
+60: Medicines qty=150
+65: Water Purification Tablets qty=100
+70: First Aid Kits qty=120
+75: Raincoats qty=180
+80: Hygiene Kits qty=200
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+Minimum: 10 Baby Supplies qty=75
+Maximum: 80 Hygiene Kits qty=200
+
+--- SUPPLY INVENTORY (BST) ---
+1 Insert/update  2 Search  3 Delete  4 Min/max
+5 Range  6 Inorder  7 Tree shape/height  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+30: Community Aid Camp (capacity 105; updated), height=4, balance=-1
+  20: Hilltop Rescue Camp (capacity 80), height=2, balance=0
+    10: School Emergency Camp (capacity 60), height=1, balance=0
+    25: Food Distribution Camp (capacity 110), height=1, balance=0
+  55: Emergency Supply Camp (capacity 75), height=3, balance=0
+    40: Riverside Medical Camp (capacity 120), height=2, balance=0
+      35: Water Distribution Camp (capacity 130), height=1, balance=0
+      50: Mobile Medical Camp (capacity 70), height=1, balance=0
+    60: Lakeside Relief Camp (capacity 150), height=2, balance=-1
+      70: Forest Rescue Camp (capacity 90), height=1, balance=0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+AVL checks: 10000/10000; height=13.
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Connected components:
+  DEPOT, RIVERBEND, HILLVIEW, SHELTER_2, FOOD_CAMP, MEDICAL_CAMP, SHELTER_1, WATER_CAMP, LAKESIDE, FOREST_EDGE, BRIDGE, REMOTE_VILLAGE
+  ISOLATED_SHELTER
+Isolated vertices: ISOLATED_SHELTER
+  Vertices: 13,  Edges: 15
+  Adjacency list entries : 30
+  Adjacency matrix cells : 169
+  For sparse graphs (E << V²), the list is more efficient.
+  For dense graphs  (E ≈ V²), the matrix is comparable.
+  Approx adjacency-list object size : 2,736 bytes
+  Approx adjacency-matrix object size: 2,680 bytes
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Adjacency List:
+  DEPOT -> [RIVERBEND(w=4.0), HILLVIEW(w=6.0)]
+  RIVERBEND -> [DEPOT(w=4.0), HILLVIEW(w=2.0), SHELTER_1(w=5.0)]
+  HILLVIEW -> [DEPOT(w=6.0), RIVERBEND(w=2.0), SHELTER_2(w=3.0), MEDICAL_CAMP(w=7.0)]
+  LAKESIDE -> [WATER_CAMP(w=5.0), FOREST_EDGE(w=4.0), REMOTE_VILLAGE(w=8.0)]
+  FOREST_EDGE -> [LAKESIDE(w=4.0), BRIDGE(w=3.0)]
+  SHELTER_1 -> [RIVERBEND(w=5.0), MEDICAL_CAMP(w=2.0)]
+  SHELTER_2 -> [HILLVIEW(w=3.0), FOOD_CAMP(w=4.0)]
+  MEDICAL_CAMP -> [HILLVIEW(w=7.0), SHELTER_1(w=2.0), FOOD_CAMP(w=3.0)]
+  FOOD_CAMP -> [SHELTER_2(w=4.0), MEDICAL_CAMP(w=3.0), WATER_CAMP(w=2.0)]
+  WATER_CAMP -> [LAKESIDE(w=5.0), FOOD_CAMP(w=2.0)]
+  BRIDGE -> [FOREST_EDGE(w=3.0), REMOTE_VILLAGE(w=6.0)]
+  REMOTE_VILLAGE -> [LAKESIDE(w=8.0), BRIDGE(w=6.0)]
+  ISOLATED_SHELTER -> []
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+T1 - Assess affected regions (2.0) -> T2 - Prepare relief supplies, T3 - Arrange transport, T6 - Verify shelter readiness
+T2 - Prepare relief supplies (3.0) -> T4 - Set up medical camps
+T3 - Arrange transport (2.0) -> T4 - Set up medical camps
+T4 - Set up medical camps (4.0) -> T5 - Distribute food and water
+T5 - Distribute food and water (3.0) -> (none)
+T6 - Verify shelter readiness (1.0) -> T5 - Distribute food and water
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+Kahn: T1 - Assess affected regions -> T2 - Prepare relief supplies -> T3 - Arrange transport -> T6 - Verify shelter readiness -> T4 - Set up medical camps -> T5 - Distribute food and water
+DFS:  T1 - Assess affected regions -> T6 - Verify shelter readiness -> T3 - Arrange transport -> T2 - Prepare relief supplies -> T4 - Set up medical camps -> T5 - Distribute food and water
+Valid schedule.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+T1 - Assess affected regions: start=0, finish=2.0
+T2 - Prepare relief supplies: start=2.0, finish=5.0
+T3 - Arrange transport: start=2.0, finish=4.0
+T6 - Verify shelter readiness: start=2.0, finish=3.0
+T4 - Set up medical camps: start=5.0, finish=9.0
+T5 - Distribute food and water: start=9.0, finish=12.0
+Critical path: T1 - Assess affected regions -> T2 - Prepare relief supplies -> T4 - Set up medical camps -> T5 - Distribute food and water; duration=12.0.
+
+--- SCHEDULING ---
+1 Add/update task  2 Add prerequisite  3 List dependencies
+4 Both topological sorts  5 Timings/critical path  6 Cycle check  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Reset cancelled.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+=== Running all automated tests ===
+
+test_delete_and_rebalance (tests.TestAVLTree.test_delete_and_rebalance) ... ok
+test_insert_and_search (tests.TestAVLTree.test_insert_and_search) ... ok
+test_ll_rotation (tests.TestAVLTree.test_ll_rotation)
+Insert keys that trigger an LL (right) rotation. ... ok
+test_lr_rotation (tests.TestAVLTree.test_lr_rotation)
+Insert keys that trigger an LR rotation. ... ok
+test_rl_rotation (tests.TestAVLTree.test_rl_rotation)
+Insert keys that trigger an RL rotation. ... ok
+test_rr_rotation (tests.TestAVLTree.test_rr_rotation)
+Insert keys that trigger an RR (left) rotation. ... ok
+test_sorted_insert_height (tests.TestAVLTree.test_sorted_insert_height)
+AVL with 1000 sorted keys should have O(log n) height. ... ok
+test_verify_after_random_ops (tests.TestAVLTree.test_verify_after_random_ops)
+10,000 random insert/delete operations. ... ok
+test_custom_sizes_seed_and_csv_metadata (tests.TestBenchmarkConfiguration.test_custom_sizes_seed_and_csv_metadata) ... ok
+test_union_find (tests.TestDisjointSet.test_union_find) ... ok
+test_union_same_set (tests.TestDisjointSet.test_union_same_set) ... ok
+test_empty_avl (tests.TestEmptyStructures.test_empty_avl) ... ok
+test_empty_bst (tests.TestEmptyStructures.test_empty_bst) ... ok
+test_empty_expression (tests.TestEmptyStructures.test_empty_expression) ... ok
+test_empty_graph (tests.TestEmptyStructures.test_empty_graph) ... ok
+test_complex_expression (tests.TestExpressionTree.test_complex_expression) ... ok
+test_division_by_zero (tests.TestExpressionTree.test_division_by_zero) ... ok
+test_infix_expression_unary_and_invalid_input (tests.TestExpressionTree.test_infix_expression_unary_and_invalid_input) ... ok
+test_infix_preserves_right_child_grouping (tests.TestExpressionTree.test_infix_preserves_right_child_grouping) ... ok
+test_invalid_postfix_extra_operands (tests.TestExpressionTree.test_invalid_postfix_extra_operands) ... ok
+test_invalid_postfix_too_few_operands (tests.TestExpressionTree.test_invalid_postfix_too_few_operands) ... ok
+test_simple_expression (tests.TestExpressionTree.test_simple_expression) ... ok
+test_undefined_variable (tests.TestExpressionTree.test_undefined_variable) ... ok
+test_add_district_under_region (tests.TestGeneralTree.test_add_district_under_region) ... ok
+test_add_region (tests.TestGeneralTree.test_add_region) ... ok
+test_add_shelter_under_district (tests.TestGeneralTree.test_add_shelter_under_district) ... ok
+test_delete_subtree (tests.TestGeneralTree.test_delete_subtree) ... ok
+test_duplicate_name (tests.TestGeneralTree.test_duplicate_name) ... ok
+test_invalid_hierarchy (tests.TestGeneralTree.test_invalid_hierarchy) ... ok
+test_traversals (tests.TestGeneralTree.test_traversals) ... ok
+test_bfs_dijkstra_agree_uniform_weight (tests.TestGraph.test_bfs_dijkstra_agree_uniform_weight)
+On a graph where every edge has weight 1, BFS and Dijkstra ... ok
+test_bfs_nearest_depot (tests.TestGraph.test_bfs_nearest_depot) ... ok
+test_bfs_route_length (tests.TestGraph.test_bfs_route_length) ... ok
+test_bfs_unreachable (tests.TestGraph.test_bfs_unreachable) ... ok
+test_connected_components (tests.TestGraph.test_connected_components) ... ok
+test_dfs_timestamps (tests.TestGraph.test_dfs_timestamps) ... ok
+test_dijkstra_negative_weight_rejected (tests.TestGraph.test_dijkstra_negative_weight_rejected) ... ok
+test_dijkstra_shortest_path (tests.TestGraph.test_dijkstra_shortest_path) ... ok
+test_dijkstra_unreachable (tests.TestGraph.test_dijkstra_unreachable) ... ok
+test_edge_exists (tests.TestGraph.test_edge_exists) ... ok
+test_remove_vertex_cleans_incident_edges (tests.TestGraph.test_remove_vertex_cleans_incident_edges) ... ok
+test_sample_graph_conditions (tests.TestGraph.test_sample_graph_conditions) ... ok
+test_scc_directed (tests.TestGraph.test_scc_directed) ... ok
+test_undirected_self_loop_count (tests.TestGraph.test_undirected_self_loop_count) ... ok
+test_vertex_count (tests.TestGraph.test_vertex_count) ... ok
+test_build_save_restart_load_and_run_route (tests.TestInteractiveScenarioWorkflow.test_build_save_restart_load_and_run_route) ... ok
+test_directed_to_undirected_rejects_conflicting_weights (tests.TestInteractiveScenarioWorkflow.test_directed_to_undirected_rejects_conflicting_weights) ... ok
+test_undirected_to_directed_preserves_both_directions (tests.TestInteractiveScenarioWorkflow.test_undirected_to_directed_preserves_both_directions) ... ok
+test_disconnected_forest (tests.TestMST.test_disconnected_forest) ... ok
+test_equal_weights (tests.TestMST.test_equal_weights)
+All edges same weight — MST should use V-1 edges. ... ok
+test_merge_sort_edges (tests.TestMST.test_merge_sort_edges) ... ok
+test_prim_kruskal_agree (tests.TestMST.test_prim_kruskal_agree) ... ok
+test_single_vertex (tests.TestMST.test_single_vertex) ... ok
+test_guided_builder_scenario_drives_algorithms (tests.TestScenarioPersistence.test_guided_builder_scenario_drives_algorithms) ... Created scenario 'User Network'.
+ok
+test_json_save_load_and_overwrite_protection (tests.TestScenarioPersistence.test_json_save_load_and_overwrite_protection) ... ok
+test_rejects_edges_to_missing_vertices (tests.TestScenarioPersistence.test_rejects_edges_to_missing_vertices) ... ok
+test_rejects_invalid_location_hierarchy (tests.TestScenarioPersistence.test_rejects_invalid_location_hierarchy) ... ok
+test_rejects_negative_supply_quantity (tests.TestScenarioPersistence.test_rejects_negative_supply_quantity) ... ok
+test_round_trip_normalizes_task_names (tests.TestScenarioPersistence.test_round_trip_normalizes_task_names) ... ok
+test_sample_round_trip_preserves_records_and_algorithms (tests.TestScenarioPersistence.test_sample_round_trip_preserves_records_and_algorithms) ... ok
+test_critical_path (tests.TestScheduling.test_critical_path) ... ok
+test_cycle_detection (tests.TestScheduling.test_cycle_detection) ... ok
+test_dfs_topo_acyclic (tests.TestScheduling.test_dfs_topo_acyclic) ... ok
+test_earliest_start_times (tests.TestScheduling.test_earliest_start_times) ... ok
+test_empty_critical_path (tests.TestScheduling.test_empty_critical_path) ... ok
+test_kahn_acyclic (tests.TestScheduling.test_kahn_acyclic) ... ok
+test_delete_leaf (tests.TestSupplyBST.test_delete_leaf) ... ok
+test_delete_one_child (tests.TestSupplyBST.test_delete_one_child) ... ok
+test_delete_two_children (tests.TestSupplyBST.test_delete_two_children) ... ok
+test_height (tests.TestSupplyBST.test_height) ... ok
+test_inorder_sorted (tests.TestSupplyBST.test_inorder_sorted) ... ok
+test_iterative_traversals_match_recursive (tests.TestSupplyBST.test_iterative_traversals_match_recursive) ... ok
+test_minimum_maximum (tests.TestSupplyBST.test_minimum_maximum) ... ok
+test_negative_quantity_rejected (tests.TestSupplyBST.test_negative_quantity_rejected) ... ok
+test_range_query (tests.TestSupplyBST.test_range_query) ... ok
+test_search_existing (tests.TestSupplyBST.test_search_existing) ... ok
+test_search_missing (tests.TestSupplyBST.test_search_missing) ... ok
+test_skewed_tree_iterative_queries (tests.TestSupplyBST.test_skewed_tree_iterative_queries) ... ok
+test_sorted_insert_height (tests.TestSupplyBST.test_sorted_insert_height)
+Insert 1000 sorted keys — height should equal 1000. ... ok
+test_successor_predecessor (tests.TestSupplyBST.test_successor_predecessor) ... ok
+
+----------------------------------------------------------------------
+Ran 80 tests in 5.269s
+
+OK
+
+Tests run: 80
+Passed: 80
+Failures: 0
+Errors: 0
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+=== Running tree tests ===
+
+test_add_district_under_region (tests.TestGeneralTree.test_add_district_under_region) ... ok
+test_add_region (tests.TestGeneralTree.test_add_region) ... ok
+test_add_shelter_under_district (tests.TestGeneralTree.test_add_shelter_under_district) ... ok
+test_delete_subtree (tests.TestGeneralTree.test_delete_subtree) ... ok
+test_duplicate_name (tests.TestGeneralTree.test_duplicate_name) ... ok
+test_invalid_hierarchy (tests.TestGeneralTree.test_invalid_hierarchy) ... ok
+test_traversals (tests.TestGeneralTree.test_traversals) ... ok
+test_delete_leaf (tests.TestSupplyBST.test_delete_leaf) ... ok
+test_delete_one_child (tests.TestSupplyBST.test_delete_one_child) ... ok
+test_delete_two_children (tests.TestSupplyBST.test_delete_two_children) ... ok
+test_height (tests.TestSupplyBST.test_height) ... ok
+test_inorder_sorted (tests.TestSupplyBST.test_inorder_sorted) ... ok
+test_iterative_traversals_match_recursive (tests.TestSupplyBST.test_iterative_traversals_match_recursive) ... ok
+test_minimum_maximum (tests.TestSupplyBST.test_minimum_maximum) ... ok
+test_negative_quantity_rejected (tests.TestSupplyBST.test_negative_quantity_rejected) ... ok
+test_range_query (tests.TestSupplyBST.test_range_query) ... ok
+test_search_existing (tests.TestSupplyBST.test_search_existing) ... ok
+test_search_missing (tests.TestSupplyBST.test_search_missing) ... ok
+test_skewed_tree_iterative_queries (tests.TestSupplyBST.test_skewed_tree_iterative_queries) ... ok
+test_sorted_insert_height (tests.TestSupplyBST.test_sorted_insert_height)
+Insert 1000 sorted keys — height should equal 1000. ... ok
+test_successor_predecessor (tests.TestSupplyBST.test_successor_predecessor) ... ok
+test_delete_and_rebalance (tests.TestAVLTree.test_delete_and_rebalance) ... ok
+test_insert_and_search (tests.TestAVLTree.test_insert_and_search) ... ok
+test_ll_rotation (tests.TestAVLTree.test_ll_rotation)
+Insert keys that trigger an LL (right) rotation. ... ok
+test_lr_rotation (tests.TestAVLTree.test_lr_rotation)
+Insert keys that trigger an LR rotation. ... ok
+test_rl_rotation (tests.TestAVLTree.test_rl_rotation)
+Insert keys that trigger an RL rotation. ... ok
+test_rr_rotation (tests.TestAVLTree.test_rr_rotation)
+Insert keys that trigger an RR (left) rotation. ... ok
+test_sorted_insert_height (tests.TestAVLTree.test_sorted_insert_height)
+AVL with 1000 sorted keys should have O(log n) height. ... ok
+test_verify_after_random_ops (tests.TestAVLTree.test_verify_after_random_ops)
+10,000 random insert/delete operations. ... ok
+test_complex_expression (tests.TestExpressionTree.test_complex_expression) ... ok
+test_division_by_zero (tests.TestExpressionTree.test_division_by_zero) ... ok
+test_infix_expression_unary_and_invalid_input (tests.TestExpressionTree.test_infix_expression_unary_and_invalid_input) ... ok
+test_infix_preserves_right_child_grouping (tests.TestExpressionTree.test_infix_preserves_right_child_grouping) ... ok
+test_invalid_postfix_extra_operands (tests.TestExpressionTree.test_invalid_postfix_extra_operands) ... ok
+test_invalid_postfix_too_few_operands (tests.TestExpressionTree.test_invalid_postfix_too_few_operands) ... ok
+test_simple_expression (tests.TestExpressionTree.test_simple_expression) ... ok
+test_undefined_variable (tests.TestExpressionTree.test_undefined_variable) ... ok
+test_empty_avl (tests.TestEmptyStructures.test_empty_avl) ... ok
+test_empty_bst (tests.TestEmptyStructures.test_empty_bst) ... ok
+test_empty_expression (tests.TestEmptyStructures.test_empty_expression) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 5.256s
+
+OK
+
+Tests run: 40
+Passed: 40
+Failures: 0
+Errors: 0
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+=== Running graph algorithm tests ===
+
+test_bfs_dijkstra_agree_uniform_weight (tests.TestGraph.test_bfs_dijkstra_agree_uniform_weight)
+On a graph where every edge has weight 1, BFS and Dijkstra ... ok
+test_bfs_nearest_depot (tests.TestGraph.test_bfs_nearest_depot) ... ok
+test_bfs_route_length (tests.TestGraph.test_bfs_route_length) ... ok
+test_bfs_unreachable (tests.TestGraph.test_bfs_unreachable) ... ok
+test_connected_components (tests.TestGraph.test_connected_components) ... ok
+test_dfs_timestamps (tests.TestGraph.test_dfs_timestamps) ... ok
+test_dijkstra_negative_weight_rejected (tests.TestGraph.test_dijkstra_negative_weight_rejected) ... ok
+test_dijkstra_shortest_path (tests.TestGraph.test_dijkstra_shortest_path) ... ok
+test_dijkstra_unreachable (tests.TestGraph.test_dijkstra_unreachable) ... ok
+test_edge_exists (tests.TestGraph.test_edge_exists) ... ok
+test_remove_vertex_cleans_incident_edges (tests.TestGraph.test_remove_vertex_cleans_incident_edges) ... ok
+test_sample_graph_conditions (tests.TestGraph.test_sample_graph_conditions) ... ok
+test_scc_directed (tests.TestGraph.test_scc_directed) ... ok
+test_undirected_self_loop_count (tests.TestGraph.test_undirected_self_loop_count) ... ok
+test_vertex_count (tests.TestGraph.test_vertex_count) ... ok
+test_disconnected_forest (tests.TestMST.test_disconnected_forest) ... ok
+test_equal_weights (tests.TestMST.test_equal_weights)
+All edges same weight — MST should use V-1 edges. ... ok
+test_merge_sort_edges (tests.TestMST.test_merge_sort_edges) ... ok
+test_prim_kruskal_agree (tests.TestMST.test_prim_kruskal_agree) ... ok
+test_single_vertex (tests.TestMST.test_single_vertex) ... ok
+test_union_find (tests.TestDisjointSet.test_union_find) ... ok
+test_union_same_set (tests.TestDisjointSet.test_union_same_set) ... ok
+test_empty_graph (tests.TestEmptyStructures.test_empty_graph) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.004s
+
+OK
+
+Tests run: 23
+Passed: 23
+Failures: 0
+Errors: 0
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+=== Running scheduling tests ===
+
+test_critical_path (tests.TestScheduling.test_critical_path) ... ok
+test_cycle_detection (tests.TestScheduling.test_cycle_detection) ... ok
+test_dfs_topo_acyclic (tests.TestScheduling.test_dfs_topo_acyclic) ... ok
+test_earliest_start_times (tests.TestScheduling.test_earliest_start_times) ... ok
+test_empty_critical_path (tests.TestScheduling.test_empty_critical_path) ... ok
+test_kahn_acyclic (tests.TestScheduling.test_kahn_acyclic) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+
+Tests run: 6
+Passed: 6
+Failures: 0
+Errors: 0
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+=== Running scenario persistence tests ===
+
+test_guided_builder_scenario_drives_algorithms (tests.TestScenarioPersistence.test_guided_builder_scenario_drives_algorithms) ... Created scenario 'User Network'.
+ok
+test_json_save_load_and_overwrite_protection (tests.TestScenarioPersistence.test_json_save_load_and_overwrite_protection) ... ok
+test_rejects_edges_to_missing_vertices (tests.TestScenarioPersistence.test_rejects_edges_to_missing_vertices) ... ok
+test_rejects_invalid_location_hierarchy (tests.TestScenarioPersistence.test_rejects_invalid_location_hierarchy) ... ok
+test_rejects_negative_supply_quantity (tests.TestScenarioPersistence.test_rejects_negative_supply_quantity) ... ok
+test_round_trip_normalizes_task_names (tests.TestScenarioPersistence.test_round_trip_normalizes_task_names) ... ok
+test_sample_round_trip_preserves_records_and_algorithms (tests.TestScenarioPersistence.test_sample_round_trip_preserves_records_and_algorithms) ... ok
+test_custom_sizes_seed_and_csv_metadata (tests.TestBenchmarkConfiguration.test_custom_sizes_seed_and_csv_metadata) ... ok
+test_build_save_restart_load_and_run_route (tests.TestInteractiveScenarioWorkflow.test_build_save_restart_load_and_run_route) ... ok
+test_directed_to_undirected_rejects_conflicting_weights (tests.TestInteractiveScenarioWorkflow.test_directed_to_undirected_rejects_conflicting_weights) ... ok
+test_undirected_to_directed_preserves_both_directions (tests.TestInteractiveScenarioWorkflow.test_undirected_to_directed_preserves_both_directions) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.017s
+
+OK
+
+Tests run: 11
+Passed: 11
+Failures: 0
+Errors: 0
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+Last run: scenario persistence tests
+Tests: 11; passed: 11; failures: 0; errors: 0
+Elapsed: 0.018s; result: PASS
+
+--- TESTING AND DIAGNOSTICS ---
+1. Run all automated tests
+2. Run tree tests
+3. Run graph algorithm tests
+4. Run scheduling tests
+5. Run scenario persistence tests
+6. View last test summary
+7. Return to main menu
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Exiting Disaster Relief Logistics. Goodbye!
+
+--- SCHEDULING AND CRITICAL PATH ---
+1. Topological sort (Kahn) — acyclic example
+2. Topological sort (DFS) — acyclic example
+3. Detect cycle — cyclic example
+4. Earliest start times — acyclic example
+5. Critical path — acyclic example
+6. Attempt topological sort on cyclic graph
+7. Show task dependencies
+0. Return to main menu
+Cycle detected!
+  Cycle: A -> B -> C -> A
+
+--- SCHEDULING AND CRITICAL PATH ---
+1. Topological sort (Kahn) — acyclic example
+2. Topological sort (DFS) — acyclic example
+3. Detect cycle — cyclic example
+4. Earliest start times — acyclic example
+5. Critical path — acyclic example
+6. Attempt topological sort on cyclic graph
+7. Show task dependencies
+0. Return to main menu
+
+--- SEPARATE BUILT-IN CYCLE DEMONSTRATION INPUTS ---
+Choose an option: 3
+Choose an option: 0
+
+--- VERIFIED SAVED SCENARIO ---
+Path: D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json
+Locations: 14; supplies: 12; camps: 10
+Graph: 13 vertices, 15 edges, undirected; depots: ['DEPOT']
+Tasks: 6; dependencies: 7
+
+
+--- NEGATIVE-WEIGHT MENU DEMONSTRATION (LOADED COPY; NOT SAVED) ---
+Choose an option: 14
+Choose an option: 5
+Action: 3
+From vertex (auto-created): DEPOT
+To vertex (auto-created): ISOLATED_SHELTER
+Unweighted edge (weight 1)? [y/N]: n
+Edge weight: -1
+Action: 0
+Choose an option: 7
+Source vertex: DEPOT
+Destination vertex: REMOTE_VILLAGE
+Show the negative-edge failure explanation? [y/N]: y
+Choose an option: 5
+Action: 4
+From vertex: DEPOT
+To vertex: ISOLATED_SHELTER
+Action: 0
+Choose an option: 17
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Loaded 'Disaster Relief Demonstration Network' from D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Stored DEPOT -> ISOLATED_SHELTER, weight=-1.0.
+
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Dijkstra rejected this graph: Dijkstra's algorithm does not support negative edge weights.
+Negative weights can cause Dijkstra to miss shorter paths that
+go through already-finalised vertices. Use Bellman-Ford instead.
+The algorithm's result is not valid when negative edges exist.
+
+--- Dijkstra failure with negative edge weights ---
+Graph: A --(1)--> B --(−3)--> C, A --(2)--> C
+Correct shortest A->C: A->B->C = 1 + (−3) = −2
+Dijkstra finalises C with dist=2 via A->C, missing the
+cheaper path through B because it never revisits C.
+
+Explanation:
+  Dijkstra's greedy strategy assumes that once a vertex is
+  finalised (extracted with minimum distance), no shorter
+  path to it exists. Negative edges violate this assumption
+  because a later path through a negative edge could produce
+  a smaller total distance.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Road removed.
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Exiting Disaster Relief Logistics. Goodbye!
+
+Verified the saved JSON still has 15 edges and no negative weights.
+
+
+--- NEGATIVE-WEIGHT DEMO VIA python main.py ---
+Input sequence: 14 | 5 | 3 | DEPOT | ISOLATED_SHELTER | n | -1 | 0 | 7 | DEPOT | REMOTE_VILLAGE | y | 5 | 4 | DEPOT | ISOLATED_SHELTER | 0 | 17
+
+==================================================================
+DISASTER RELIEF LOGISTICS � INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Loaded 'Disaster Relief Demonstration Network' from D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS � INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: 
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: From vertex (auto-created): To vertex (auto-created): Unweighted edge (weight 1)? [y/N]: Edge weight: Stored DEPOT -> ISOLATED_SHELTER, weight=-1.0.
+
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: 
+==================================================================
+DISASTER RELIEF LOGISTICS � INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Source vertex: Destination vertex: Dijkstra rejected this graph: Dijkstra's algorithm does not support negative edge weights.
+Negative weights can cause Dijkstra to miss shorter paths that
+go through already-finalised vertices. Use Bellman-Ford instead.
+The algorithm's result is not valid when negative edges exist.
+Show the negative-edge failure explanation? [y/N]: 
+--- Dijkstra failure with negative edge weights ---
+Action failed: 'charmap' codec can't encode character '\u2212' in position 23: character maps to <undefined>
+
+==================================================================
+DISASTER RELIEF LOGISTICS � INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: 
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: From vertex: To vertex: Road removed.
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: 
+==================================================================
+DISASTER RELIEF LOGISTICS � INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Exiting Disaster Relief Logistics. Goodbye!
+
+Verified the saved JSON still has 15 edges and no negative weights.
+
+
+--- CORRECTIVE VERIFIED MENU RUNS ---
+Initial script used a stale expression-action number; these corrective runs use the inspected current option 6.
+The first default-console-encoding negative demo could not print U+2212; the successful rerun sets PYTHONIOENCODING=utf-8.
+
+--- Expression calculator correction ---
+Inputs: 14 | 4 | 6 | 8 + 4 * 3 | 6 | (20 - 5) / 3 | 6 | a * b + c | 4 | 6 | 5 | 6 | (10 + 2) * (8 - 3) | 0 | 17
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Loaded 'Disaster Relief Demonstration Network' from D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: 
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Action: Enter an infix expression; variables are prompted for as needed.
+Expression (for example: distance * rate + toll): Postfix: 8 4 3 * +
+Expression tree: 8 + 4 * 3
+Calculated result: 20.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Action: Enter an infix expression; variables are prompted for as needed.
+Expression (for example: distance * rate + toll): Postfix: 20 5 - 3 /
+Expression tree: (20 - 5) / 3
+Calculated result: 5.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Action: Enter an infix expression; variables are prompted for as needed.
+Expression (for example: distance * rate + toll): Postfix: a b * c +
+Expression tree: a * b + c
+Value for a: Value for b: Value for c: Calculated result: 29.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Action: Enter an infix expression; variables are prompted for as needed.
+Expression (for example: distance * rate + toll): Postfix: 10 2 + 8 3 - *
+Expression tree: (10 + 2) * (8 - 3)
+Calculated result: 60.0
+
+--- RELIEF CAMPS (AVL) ---
+1 Add/update  2 Search  3 Delete  4 Display/balance
+5 Rotation log  6 Expression calculator  7 Stress test  0 Back
+Action: 
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Exiting Disaster Relief Logistics. Goodbye!
+
+--- Negative edge rejection with UTF-8 output ---
+Inputs: 14 | 5 | 3 | DEPOT | ISOLATED_SHELTER | n | -1 | 0 | 7 | DEPOT | REMOTE_VILLAGE | y | 5 | 4 | DEPOT | ISOLATED_SHELTER | 0 | 17
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Network | undirected graph | 0 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Loaded 'Disaster Relief Demonstration Network' from D:\1.KPR\2nd year\DSA\DisasterReliefLogistics\data\scenario.json.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: 
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: From vertex (auto-created): To vertex (auto-created): Unweighted edge (weight 1)? [y/N]: Edge weight: Stored DEPOT -> ISOLATED_SHELTER, weight=-1.0.
+
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: 
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Source vertex: Destination vertex: Dijkstra rejected this graph: Dijkstra's algorithm does not support negative edge weights.
+Negative weights can cause Dijkstra to miss shorter paths that
+go through already-finalised vertices. Use Bellman-Ford instead.
+The algorithm's result is not valid when negative edges exist.
+Show the negative-edge failure explanation? [y/N]: 
+--- Dijkstra failure with negative edge weights ---
+Graph: A --(1)--> B --(−3)--> C, A --(2)--> C
+Correct shortest A->C: A->B->C = 1 + (−3) = −2
+Dijkstra finalises C with dist=2 via A->C, missing the
+cheaper path through B because it never revisits C.
+
+Explanation:
+  Dijkstra's greedy strategy assumes that once a vertex is
+  finalised (extracted with minimum distance), no shorter
+  path to it exists. Negative edges violate this assumption
+  because a later path through a negative edge could produce
+  a smaller total distance.
+
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: 
+--- ROAD GRAPH (undirected; V=13, E=16) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: From vertex: To vertex: Road removed.
+
+--- ROAD GRAPH (undirected; V=13, E=15) ---
+1 Add vertex  2 Remove vertex  3 Add/update edge  4 Remove edge
+5 Adjacency list  6 Matrix  7 Components/isolation/memory
+8 Change directedness  0 Back
+Action: 
+==================================================================
+DISASTER RELIEF LOGISTICS — INTERACTIVE CONSOLE
+Scenario: Disaster Relief Demonstration Network | undirected graph | 13 vertices
+==================================================================
+ 1. Guided disaster scenario builder
+ 2. Location hierarchy (General Tree)
+ 3. Supply inventory (BST)
+ 4. Relief camps (AVL) and expression calculator
+ 5. Build and view road network
+ 6. BFS nearest depot
+ 7. Dijkstra shortest route
+ 8. DFS and connectivity analysis
+ 9. Prim minimum spanning forest
+10. Kruskal minimum spanning forest
+11. Scheduling and critical path
+12. Benchmarking and performance analysis
+13. Save scenario
+14. Load scenario
+15. Reset scenario
+16. Testing and diagnostics
+17. Exit
+Choose an option: Exiting Disaster Relief Logistics. Goodbye!
