@@ -3,7 +3,7 @@
 **DSA Assignment II — Project-Based Assessment**  
 **Team 8 | KPR Institute of Engineering and Technology**  
 **Department of Artificial Intelligence and Data Science**  
-**II Year, Section C | Course: Data Structures and Algorithms**
+**II Year, Section B | Course: Data Structures and Algorithms**
 
 ---
 
