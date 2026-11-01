@@ -4,11 +4,11 @@
 
 **Command:** `python -m unittest -v`
 
-**Total Tests:** 80
-**Passed:** 80
+**Total Tests:** 86
+**Passed:** 86
 **Failed:** 0  
 **Errors:** 0  
-**Time:** 5.621 seconds (final workspace run).
+**Time:** 5.207 seconds (final verification run).
 
 ## Detailed Results
 
@@ -61,7 +61,7 @@
 | test_invalid_hierarchy | ✓ OK |
 | test_traversals | ✓ OK |
 
-### TestGraph (15 tests)
+### TestGraph (16 tests)
 | Test | Status |
 |------|--------|
 | test_bfs_dijkstra_agree_uniform_weight | ✓ OK |
@@ -69,6 +69,7 @@
 | test_bfs_route_length | ✓ OK |
 | test_bfs_unreachable | ✓ OK |
 | test_connected_components | ✓ OK |
+| test_dfs_edge_classifications | ✓ OK |
 | test_dfs_timestamps | ✓ OK |
 | test_dijkstra_negative_weight_rejected | ✓ OK |
 | test_dijkstra_shortest_path | ✓ OK |
@@ -107,10 +108,10 @@ iterative traversal, range query and deletion on a 1,500-node skewed tree.
 
 Seven scenario persistence tests validate JSON round-trip, invalid records,
 structural reconstruction and task-name normalization. One benchmark test
-checks custom sizes, deterministic seed and CSV metadata. One interactive
-workflow class includes tests for bidirectional-preserving graph conversion,
-conflicting directed-edge weights, and building/saving/restarting/loading a
-scenario before calculating a route.
+checks assignment-style repeated timings, the exact dense edge count,
+deterministic seed and CSV metadata. Eight interactive workflow tests include
+bidirectional-preserving graph conversion, conflicting directed-edge weights,
+and building/saving/restarting/loading a scenario before calculating a route.
 
 ## Coverage Summary
 
@@ -120,12 +121,12 @@ scenario before calculating a route.
 | trees.py (BST) | 14 | ✓ |
 | avl_expression.py (AVL) | 8 | ✓ |
 | avl_expression.py (Expr) | 8 | ✓ |
-| graph.py (Graph + algos) | 15 | ✓ |
+| graph.py (Graph + algos) | 16 | ✓ |
 | mst.py (Prim + Kruskal) | 5 | ✓ |
 | scheduling.py | 6 | ✓ |
 | mst.py (Union-Find) | 2 | ✓ |
 | Edge cases | 4 | ✓ |
 | Scenario persistence | 7 | ✓ |
 | Benchmark configuration | 1 | ✓ |
-| Interactive workflow and graph conversion | 3 | ✓ |
-| **Total** | **80** | **✓** |
+| Interactive workflow and graph conversion | 8 | ✓ |
+| **Total** | **86** | **✓** |

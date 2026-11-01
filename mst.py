@@ -56,28 +56,57 @@ def merge_sort_edges(edges):
     This is the manual sorting implementation required by the assignment.
     Ties broken by (u, v) for determinism.
     """
-    if len(edges) <= 1:
-        return list(edges)
+    source = list(edges)
+    length = len(source)
+    if length <= 1:
+        return source
 
-    mid = len(edges) // 2
-    left = merge_sort_edges(edges[:mid])
-    right = merge_sort_edges(edges[mid:])
+    labels = {}
+    for edge in source:
+        for vertex in edge[:2]:
+            if vertex not in labels:
+                labels[vertex] = str(vertex)
 
-    merged = []
-    i = j = 0
-    while i < len(left) and j < len(right):
-        # Compare by weight, then by (u, v) for stability.
-        lw = (left[i][2], str(left[i][0]), str(left[i][1]))
-        rw = (right[j][2], str(right[j][0]), str(right[j][1]))
-        if lw <= rw:
-            merged.append(left[i])
-            i += 1
-        else:
-            merged.append(right[j])
-            j += 1
-    merged.extend(left[i:])
-    merged.extend(right[j:])
-    return merged
+    def comes_before_or_ties(left, right):
+        if left[2] != right[2]:
+            return left[2] < right[2]
+        left_source = labels[left[0]]
+        right_source = labels[right[0]]
+        if left_source != right_source:
+            return left_source < right_source
+        return labels[left[1]] <= labels[right[1]]
+
+    target = [None] * length
+    width = 1
+    while width < length:
+        for start in range(0, length, 2 * width):
+            middle = min(start + width, length)
+            end = min(start + 2 * width, length)
+            left = start
+            right = middle
+            output = start
+
+            while left < middle and right < end:
+                if comes_before_or_ties(source[left], source[right]):
+                    target[output] = source[left]
+                    left += 1
+                else:
+                    target[output] = source[right]
+                    right += 1
+                output += 1
+
+            while left < middle:
+                target[output] = source[left]
+                left += 1
+                output += 1
+            while right < end:
+                target[output] = source[right]
+                right += 1
+                output += 1
+
+        source, target = target, source
+        width *= 2
+    return source
 
 
 # ============================================================================

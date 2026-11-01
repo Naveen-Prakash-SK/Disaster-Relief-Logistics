@@ -190,14 +190,16 @@ schedules.
 
 | Function | Purpose, inputs, and result |
 |---|---|
-| `run_tree_benchmarks(sizes=None, seed=42) -> list[tuple]` | Measures BST/AVL insertion on sorted and reproducibly seeded random data. Defaults to `1000, 5000, 20000`. |
-| `run_graph_benchmarks(vertex_sizes=None, seed=42) -> list[tuple]` | Builds seeded connected sparse/dense graphs and measures Prim/Kruskal. Defaults to `200, 1000, 2000`; 2,000-vertex dense runs are capped at 50,000 edges. |
-| `save_benchmark_results(tree_rows, graph_rows, seed=42) -> None` | Writes CSV and Markdown summary, including seed and one-run count. |
+| `run_tree_benchmarks(sizes=None, seed=42, repetitions=5) -> list[dict]` | Measures insertion, successful search, and deletion for BST and AVL with sorted and seeded random keys. Defaults to `1000, 5000, 20000`; each row includes average/minimum/maximum timings, deletion setup time, height, and AVL verification. |
+| `run_graph_benchmarks(vertex_sizes=None, seed=42, repetitions=5) -> list[dict]` | Builds connected seeded graphs with the exact requested edge count and measures Prim/Kruskal. Defaults to `200, 1000, 2000`; no dense-size cap is applied. |
+| `save_benchmark_results(tree_rows, graph_rows, seed=42, output_dir=None) -> None` | Writes measured CSV data and a Markdown summary. A supplied output directory writes separate tree and graph CSV files. |
+| `run_final_audit_benchmarks(repetitions=5, seed=42)` | Runs all assignment benchmark sizes and writes the separated CSVs and summary to `results/final_audit/`. |
 
 Measurements use `time.perf_counter()` and are empirical, machine/load
-dependent samples; they do not prove asymptotic complexity. The console
-supports user sizes up to 5,000 tree nodes and 500 graph vertices, with an
-optional random seed.
+dependent averages; setup is excluded from graph algorithm timings. The graph
+memory measurement is a shallow container-size estimate rather than total or
+peak process memory. The console accepts up to 20,000 tree nodes and 2,000
+graph vertices, with an optional random seed.
 
 ## Scenario Records (`scenario.py`)
 

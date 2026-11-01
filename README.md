@@ -90,8 +90,9 @@ DisasterReliefLogistics/
 ├── docs/
 ├── report/
 ├── results/
+│   ├── final_audit/
+├── FINAL_AUDIT_REPORT.md
 ├── README.md
-└── .gitignore
 ```
 
 ## Installation and Execution
@@ -146,6 +147,20 @@ The project studies the following theoretical complexities:
 
 These are theoretical bounds under the corresponding algorithm and representation assumptions. Empirical benchmark timings can vary by machine and workload.
 
+Run the complete assignment-sized benchmark (five repetitions per
+configuration, seed 42) and write its results without replacing the existing
+historical benchmark files:
+
+```bash
+python -c "import analysis; analysis.run_final_audit_benchmarks()"
+```
+
+The command benchmarks tree sizes 1,000, 5,000, and 20,000, and graph sizes
+200, 1,000, and 2,000 with sparse and dense workloads. Dense graphs target
+approximately \(V^2/4\) edges, including 1,000,000 edges at 2,000 vertices.
+Results are written to `results/final_audit/`. The graph memory field is a
+shallow Python-container estimate, not total process or peak algorithm memory.
+
 ## Reports and Documentation
 
 See the `docs/` directory for function explanations and the `report/` and `results/` directories for project documentation, test reports, and benchmark outputs.
@@ -165,4 +180,3 @@ See the `docs/` directory for function explanations and the `report/` and `resul
 **Project:** Disaster Relief Logistics System
 
 ---
-

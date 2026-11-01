@@ -1,14 +1,10 @@
-"""Algorithm Analysis — empirical timing, complexity notes, benchmarks.
-
-Measures actual elapsed times using time.perf_counter().
-Generates CSV and summary reports. Workloads use deterministic seeds;
-timings are single-run samples and vary by machine and system load.
-"""
+"""Algorithm analysis, repeated empirical benchmarks, and complexity notes."""
 
 import os
 import time
 import random
 import csv
+import sys
 
 
 # ============================================================================
@@ -17,21 +13,100 @@ import csv
 
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            "results")
+FINAL_AUDIT_DIR = os.path.join(RESULTS_DIR, "final_audit")
+DEFAULT_REPETITIONS = 5
 
 
-def _ensure_results_dir():
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+def _ensure_results_dir(directory):
+    os.makedirs(directory, exist_ok=True)
 
 
-def _measure(func, *args, repetitions=3, **kwargs):
-    """Run func(*args) repeatedly and return average elapsed seconds."""
-    total = 0.0
-    result = None
+def _statistics(samples):
+    return {
+        "avg": sum(samples) / len(samples),
+        "min": min(samples),
+        "max": max(samples),
+    }
+
+
+def _new_benchmark_tree(structure):
+    if structure == "BST":
+        from trees import SupplyBST
+        return SupplyBST()
+    from avl_expression import AVLTree
+    return AVLTree()
+
+
+def _insert_benchmark_key(tree, structure, key):
+    if structure == "BST":
+        tree.insert(key, f"s{key}", key)
+    else:
+        tree.insert(key, f"c{key}")
+
+
+def _measure_tree_case(n, structure, input_order, keys, repetitions, seed):
+    insert_samples = []
+    search_samples = []
+    delete_samples = []
+    delete_setup_samples = []
+    heights = []
+
     for _ in range(repetitions):
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        total += time.perf_counter() - start
-    return total / repetitions, result
+        tree = _new_benchmark_tree(structure)
+        started = time.perf_counter()
+        for key in keys:
+            _insert_benchmark_key(tree, structure, key)
+        insert_samples.append(time.perf_counter() - started)
+        heights.append(tree.height())
+
+        if structure == "AVL":
+            valid, message = tree.verify()
+            if not valid:
+                raise RuntimeError(f"AVL invariant check failed: {message}")
+
+        started = time.perf_counter()
+        for key in keys:
+            tree.search(key)
+        search_samples.append(time.perf_counter() - started)
+
+        delete_tree = _new_benchmark_tree(structure)
+        started = time.perf_counter()
+        for key in keys:
+            _insert_benchmark_key(delete_tree, structure, key)
+        delete_setup_samples.append(time.perf_counter() - started)
+
+        started = time.perf_counter()
+        for key in keys:
+            delete_tree.delete(key)
+        delete_samples.append(time.perf_counter() - started)
+        if delete_tree.root is not None:
+            raise RuntimeError(
+                f"{structure} deletion benchmark left nodes behind.")
+        if structure == "AVL":
+            valid, message = delete_tree.verify()
+            if not valid:
+                raise RuntimeError(
+                    f"AVL invariant check failed after deletion: {message}")
+
+    metrics = {}
+    for operation, samples in (
+            ("insert", insert_samples), ("search", search_samples),
+            ("delete", delete_samples),
+            ("delete_setup", delete_setup_samples)):
+        for statistic, value in _statistics(samples).items():
+            metrics[f"{operation}_{statistic}_s"] = value
+    return {
+        "n": n,
+        "structure": structure,
+        "input_order": input_order,
+        **metrics,
+        "height_after_insert_avg": sum(heights) / len(heights),
+        "height_after_insert_min": min(heights),
+        "height_after_insert_max": max(heights),
+        "avl_verified": structure == "AVL",
+        "seed": seed,
+        "repetitions": repetitions,
+    }
 
 
 # ============================================================================
@@ -90,33 +165,36 @@ def _bench_avl_random(n, seed=42):
     return elapsed, h
 
 
-def run_tree_benchmarks(sizes=None, seed=42):
+def run_tree_benchmarks(sizes=None, seed=42,
+                        repetitions=DEFAULT_REPETITIONS):
     """BST vs AVL for requested sizes using a reproducible random seed."""
     if sizes is None:
         sizes = [1000, 5000, 20000]
+    if repetitions < 1:
+        raise ValueError("repetitions must be at least 1.")
     rows = []
     print("\n--- Tree Benchmarks: BST vs AVL ---")
-    print(f"{'n':>7} {'Type':>8} {'Input':>8} "
-          f"{'Time (s)':>12} {'Height':>8}")
-    print("-" * 55)
+    print(f"Average timings over {repetitions} repetitions; "
+          "setup for deletion is excluded from deletion time.")
+    print(f"{'n':>7} {'Type':>8} {'Input':>8} {'Insert avg (s)':>15} "
+          f"{'Search avg (s)':>15} {'Delete avg (s)':>15} {'Height':>8}")
+    print("-" * 85)
     for n in sizes:
-        # Sorted input
-        t_bst_s, h_bst_s = _bench_bst_sorted(n)
-        t_avl_s, h_avl_s = _bench_avl_sorted(n)
-        # Random input
-        t_bst_r, h_bst_r = _bench_bst_random(n, seed=seed)
-        t_avl_r, h_avl_r = _bench_avl_random(n, seed=seed)
-
-        entries = [
-            (n, "BST", "sorted", t_bst_s, h_bst_s),
-            (n, "AVL", "sorted", t_avl_s, h_avl_s),
-            (n, "BST", "random", t_bst_r, h_bst_r),
-            (n, "AVL", "random", t_avl_r, h_avl_r),
-        ]
-        for entry in entries:
-            nn, tp, inp, t, h = entry
-            print(f"{nn:>7} {tp:>8} {inp:>8} {t:>12.6f} {h:>8}")
-            rows.append(entry)
+        if n < 1:
+            raise ValueError("Tree sizes must be positive.")
+        sorted_keys = list(range(1, n + 1))
+        random_keys = random.Random(seed).sample(range(1, n * 10 + 1), n)
+        for input_order, keys in (
+                ("sorted", sorted_keys), ("random", random_keys)):
+            for structure in ("BST", "AVL"):
+                row = _measure_tree_case(
+                    n, structure, input_order, keys, repetitions, seed)
+                print(f"{n:>7} {structure:>8} {input_order:>8} "
+                      f"{row['insert_avg_s']:>15.6f} "
+                      f"{row['search_avg_s']:>15.6f} "
+                      f"{row['delete_avg_s']:>15.6f} "
+                      f"{row['height_after_insert_avg']:>8.1f}")
+                rows.append(row)
     return rows
 
 
@@ -125,8 +203,12 @@ def run_tree_benchmarks(sizes=None, seed=42):
 # ============================================================================
 
 def _build_random_graph(V, E, seed=42):
-    """Build a random undirected weighted graph with V vertices and ~E edges."""
+    """Build a connected random graph with exactly V vertices and E edges."""
     from graph import Graph
+    max_edges = V * (V - 1) // 2
+    if V < 1 or E < max(0, V - 1) or E > max_edges:
+        raise ValueError(
+            f"Cannot build a connected simple graph with V={V}, E={E}.")
     rng = random.Random(seed)
     g = Graph(directed=False)
     for i in range(V):
@@ -146,7 +228,7 @@ def _build_random_graph(V, E, seed=42):
 
     # Add remaining edges.
     attempts = 0
-    max_attempts = E * 5
+    max_attempts = max(E * 10, V * 100)
     while len(edge_set) < E and attempts < max_attempts:
         u = rng.randint(0, V - 1)
         v = rng.randint(0, V - 1)
@@ -158,44 +240,106 @@ def _build_random_graph(V, E, seed=42):
                 g.add_edge(f"v{u}", f"v{v}", w)
         attempts += 1
 
+    if len(edge_set) != E:
+        raise RuntimeError(
+            f"Generated {len(edge_set)} of {E} requested graph edges.")
     return g
 
 
-def run_graph_benchmarks(vertex_sizes=None, seed=42):
+def _graph_container_bytes(graph):
+    """Approximate shallow Python container sizes (not a full heap profile)."""
+    size = sys.getsizeof(graph.vertices) + sys.getsizeof(graph._index)
+    size += sys.getsizeof(graph.adj_list) + sys.getsizeof(graph._edge_set)
+    size += sys.getsizeof(graph.adj_matrix)
+    size += sum(sys.getsizeof(neighbours)
+                for neighbours in graph.adj_list.values())
+    size += sum(sys.getsizeof(row) for row in graph.adj_matrix)
+    return size
+
+
+def _mst_samples(algorithm, graph, repetitions):
+    samples = []
+    costs = []
+    for _ in range(repetitions):
+        started = time.perf_counter()
+        _, cost, components = algorithm(graph)
+        samples.append(time.perf_counter() - started)
+        if len(components) != 1:
+            raise RuntimeError("The generated benchmark graph is disconnected.")
+        costs.append(cost)
+    return samples, costs
+
+
+def run_graph_benchmarks(vertex_sizes=None, seed=42,
+                         repetitions=DEFAULT_REPETITIONS):
     """Prim vs Kruskal on sparse and dense graphs for requested sizes."""
     from mst import prim_mst, kruskal_mst
 
     if vertex_sizes is None:
         vertex_sizes = [200, 1000, 2000]
+    if repetitions < 1:
+        raise ValueError("repetitions must be at least 1.")
     configs = []
     for V in vertex_sizes:
+        if V < 5:
+            raise ValueError("Graph benchmark sizes must be at least 5.")
         E_sparse = 2 * V
         E_dense = V * V // 4
         configs.append((V, E_sparse, "sparse"))
-        if V <= 1000:
-            configs.append((V, E_dense, "dense"))
-        else:
-            configs.append((V, min(E_dense, 50000), "dense*"))
+        configs.append((V, E_dense, "dense"))
 
     rows = []
     print("\n--- Graph Benchmarks: Prim vs Kruskal ---")
-    print(f"{'V':>6} {'E':>8} {'Type':>8} "
-          f"{'Prim (s)':>12} {'Kruskal (s)':>14} {'Cost':>8}")
-    print("-" * 65)
+    print(f"Average algorithm timings over {repetitions} repetitions; "
+          "graph setup excluded.")
+    print(f"{'V':>6} {'E':>9} {'Type':>8} {'Prim avg (s)':>14} "
+          f"{'Kruskal avg (s)':>16} {'MST cost':>12} {'Density':>10}")
+    print("-" * 85)
 
     for V, E, gtype in configs:
+        setup_started = time.perf_counter()
         g = _build_random_graph(V, E, seed=seed)
+        setup_s = time.perf_counter() - setup_started
         actual_E = g.edge_count()
-
-        t_prim, (pe, pc, _) = _measure(prim_mst, g, repetitions=1)
-        t_kruskal, (ke, kc, _) = _measure(kruskal_mst, g, repetitions=1)
-
-        print(f"{V:>6} {actual_E:>8} {gtype:>8} "
-              f"{t_prim:>12.6f} {t_kruskal:>14.6f} {pc:>8}")
-        rows.append((V, actual_E, gtype, t_prim, t_kruskal, pc, kc))
-
-        if pc != kc:
-            print(f"  ⚠ Cost mismatch: Prim={pc}, Kruskal={kc}")
+        if actual_E != E:
+            raise RuntimeError(
+                f"Expected {E} edges but generated {actual_E}.")
+        memory_bytes = _graph_container_bytes(g)
+        prim_samples, prim_costs = _mst_samples(prim_mst, g, repetitions)
+        kruskal_samples, kruskal_costs = _mst_samples(
+            kruskal_mst, g, repetitions)
+        if prim_costs != kruskal_costs:
+            raise RuntimeError(
+                f"Prim and Kruskal costs differ for V={V}, E={E}.")
+        prim_stats = _statistics(prim_samples)
+        kruskal_stats = _statistics(kruskal_samples)
+        mst_cost = prim_costs[0]
+        possible_edges = V * (V - 1) // 2
+        density = actual_E / possible_edges
+        row = {
+            "vertices": V,
+            "edges": actual_E,
+            "graph_type": gtype,
+            "density": density,
+            "setup_s": setup_s,
+            "memory_bytes_shallow": memory_bytes,
+            "prim_avg_s": prim_stats["avg"],
+            "prim_min_s": prim_stats["min"],
+            "prim_max_s": prim_stats["max"],
+            "kruskal_avg_s": kruskal_stats["avg"],
+            "kruskal_min_s": kruskal_stats["min"],
+            "kruskal_max_s": kruskal_stats["max"],
+            "mst_cost_prim": mst_cost,
+            "mst_cost_kruskal": mst_cost,
+            "costs_match": True,
+            "seed": seed,
+            "repetitions": repetitions,
+        }
+        print(f"{V:>6} {actual_E:>9} {gtype:>8} "
+              f"{row['prim_avg_s']:>14.6f} "
+              f"{row['kruskal_avg_s']:>16.6f} "
+              f"{mst_cost:>12} {density:>10.6f}")
+        rows.append(row)
 
     return rows
 
@@ -204,53 +348,111 @@ def run_graph_benchmarks(vertex_sizes=None, seed=42):
 # SAVE RESULTS
 # ============================================================================
 
-def save_benchmark_results(tree_rows, graph_rows, seed=42):
-    """Write results to CSV and summary markdown."""
-    _ensure_results_dir()
+TREE_FIELDS = [
+    "n", "structure", "input_order",
+    "insert_avg_s", "insert_min_s", "insert_max_s",
+    "search_avg_s", "search_min_s", "search_max_s",
+    "delete_avg_s", "delete_min_s", "delete_max_s",
+    "delete_setup_avg_s", "delete_setup_min_s", "delete_setup_max_s",
+    "height_after_insert_avg", "height_after_insert_min",
+    "height_after_insert_max", "avl_verified", "seed", "repetitions",
+]
+GRAPH_FIELDS = [
+    "vertices", "edges", "graph_type", "density", "setup_s",
+    "memory_bytes_shallow", "prim_avg_s", "prim_min_s", "prim_max_s",
+    "kruskal_avg_s", "kruskal_min_s", "kruskal_max_s",
+    "mst_cost_prim", "mst_cost_kruskal", "costs_match", "seed",
+    "repetitions",
+]
 
-    csv_path = os.path.join(RESULTS_DIR, "benchmark_results.csv")
-    with open(csv_path, "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["category", "n_or_V", "type", "input_or_E",
-                         "time_s", "height_or_cost",
-                         "time2_s", "cost2", "seed", "runs"])
-        for n, tp, inp, t, h in tree_rows:
-            writer.writerow(["tree", n, tp, inp, f"{t:.6f}", h, "", "",
-                             seed, 1])
-        for V, E, gtype, tp, tk, pc, kc in graph_rows:
-            writer.writerow(["graph", V, gtype, E,
-                             f"{tp:.6f}", pc, f"{tk:.6f}", kc, seed, 1])
-    print(f"\nBenchmark CSV saved to: {csv_path}")
 
-    md_path = os.path.join(RESULTS_DIR, "benchmark_summary.md")
-    with open(md_path, "w") as f:
-        f.write("# Benchmark Summary\n\n")
-        f.write(f"Workloads use deterministic seed {seed}. Each displayed time is a "
-                "single `time.perf_counter()` sample, not an average; elapsed "
-                "times vary by machine and system load. Reproduce with the "
-                "benchmark command in `README.md`.\n\n")
-        f.write("## Tree Benchmarks: BST vs AVL\n\n")
-        f.write("| n | Type | Input | Time (s) | Height |\n")
-        f.write("|---|------|-------|----------|--------|\n")
-        for n, tp, inp, t, h in tree_rows:
-            f.write(f"| {n} | {tp} | {inp} | {t:.6f} | {h} |\n")
-        f.write("\n## Graph Benchmarks: Prim vs Kruskal\n\n")
-        f.write("| V | E | Type | Prim (s) | Kruskal (s) | Cost |\n")
-        f.write("|---|---|------|----------|-------------|------|\n")
-        for V, E, gtype, tp, tk, pc, kc in graph_rows:
-            f.write(f"| {V} | {E} | {gtype} | {tp:.6f} | "
-                    f"{tk:.6f} | {pc} |\n")
-        f.write("\n### Observations\n\n")
-        f.write("- BST with sorted input degenerates to O(n) height, "
-                "while AVL maintains O(log n).\n")
-        f.write("- With random input, BST height is closer to "
-                "O(log n) on average.\n")
-        f.write("- Array-based Prim is O(V^2), efficient for dense graphs.\n")
-        f.write("- Kruskal with merge sort is O(E log E), "
-                "efficient for sparse graphs.\n")
-        f.write("- Both Prim and Kruskal produce the same MST cost "
-                "on connected graphs.\n")
+def _write_csv(path, rows, fields):
+    with open(path, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def save_benchmark_results(tree_rows, graph_rows, seed=42, output_dir=None):
+    """Write measured benchmark data; a supplied directory gets audit names."""
+    directory = RESULTS_DIR if output_dir is None else output_dir
+    _ensure_results_dir(directory)
+    if output_dir is None:
+        combined_path = os.path.join(directory, "benchmark_results.csv")
+        with open(combined_path, "w", newline="", encoding="utf-8") as file:
+            fields = ["category"] + TREE_FIELDS + GRAPH_FIELDS
+            writer = csv.DictWriter(file, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(
+                {"category": "tree", **row} for row in tree_rows)
+            writer.writerows(
+                {"category": "graph", **row} for row in graph_rows)
+        print(f"\nBenchmark CSV saved to: {combined_path}")
+    else:
+        tree_path = os.path.join(directory, "tree_benchmark_results.csv")
+        graph_path = os.path.join(directory, "graph_benchmark_results.csv")
+        _write_csv(tree_path, tree_rows, TREE_FIELDS)
+        _write_csv(graph_path, graph_rows, GRAPH_FIELDS)
+        print(f"\nTree benchmark CSV saved to: {tree_path}")
+        print(f"Graph benchmark CSV saved to: {graph_path}")
+
+    md_path = os.path.join(directory, "benchmark_summary.md")
+    repetitions = sorted({
+        row["repetitions"] for row in tree_rows + graph_rows
+    })
+    with open(md_path, "w", encoding="utf-8") as file:
+        file.write("# Benchmark Summary\n\n")
+        file.write(f"Workloads use deterministic seed {seed}. "
+                   f"Repetitions per configuration: "
+                   f"{', '.join(map(str, repetitions))}. Displayed "
+                   "algorithm times are arithmetic means of actual "
+                   "`time.perf_counter()` measurements; setup is excluded "
+                   "from algorithm timings. Results vary by machine and "
+                   "system load.\n\n")
+        file.write("## Tree Benchmarks: BST vs AVL\n\n")
+        file.write("| n | Structure | Input order | Insert avg (s) | "
+                   "Search avg (s) | Delete avg (s) | Height after insert |\n")
+        file.write("|---:|---|---|---:|---:|---:|---:|\n")
+        for row in tree_rows:
+            file.write(
+                f"| {row['n']} | {row['structure']} | "
+                f"{row['input_order']} | {row['insert_avg_s']:.9f} | "
+                f"{row['search_avg_s']:.9f} | {row['delete_avg_s']:.9f} | "
+                f"{row['height_after_insert_avg']:.1f} |\n")
+        file.write("\n## Graph Benchmarks: Prim vs Kruskal\n\n")
+        file.write("| V | E | Type | Density | Setup (s) | Prim avg (s) | "
+                   "Kruskal avg (s) | MST cost | Shallow graph bytes |\n")
+        file.write("|---:|---:|---|---:|---:|---:|---:|---:|---:|\n")
+        for row in graph_rows:
+            file.write(
+                f"| {row['vertices']} | {row['edges']} | "
+                f"{row['graph_type']} | {row['density']:.6f} | "
+                f"{row['setup_s']:.6f} | {row['prim_avg_s']:.9f} | "
+                f"{row['kruskal_avg_s']:.9f} | "
+                f"{row['mst_cost_prim']} | "
+                f"{row['memory_bytes_shallow']} |\n")
+        file.write("\nGraph memory is a shallow `sys.getsizeof` estimate of "
+                   "the project's graph containers; it excludes referenced "
+                   "vertex, edge, tuple, and numeric objects, plus transient "
+                   "algorithm allocations.\n\n")
+        file.write("### Observations\n\n")
+        file.write("- Sorted input shows how an unbalanced BST can degenerate; "
+                   "AVL measurements are accompanied by invariant checks.\n")
+        file.write("- Benchmark graphs are generated as connected graphs with "
+                   "exactly the requested edge count.\n")
+        file.write("- Prim and Kruskal costs were checked on every repetition.\n")
     print(f"Benchmark summary saved to: {md_path}")
+
+
+def run_final_audit_benchmarks(repetitions=DEFAULT_REPETITIONS, seed=42):
+    """Run and save the full required benchmark sizes to the audit folder."""
+    tree_rows = run_tree_benchmarks(
+        [1000, 5000, 20000], seed=seed, repetitions=repetitions)
+    graph_rows = run_graph_benchmarks(
+        [200, 1000, 2000], seed=seed, repetitions=repetitions)
+    save_benchmark_results(
+        tree_rows, graph_rows, seed=seed, output_dir=FINAL_AUDIT_DIR)
+    return tree_rows, graph_rows
 
 
 # ============================================================================
@@ -318,8 +520,8 @@ def _print_complexity_notes():
 4. Kruskal: O(E log E)
    - Edge sorting (merge sort): O(E log E).
    - Union-Find operations: nearly O(E α(V)) ≈ O(E).
-   - Correctness: Cycle property — the heaviest edge in any cycle
-     is not in the MST.
+   - Correctness: Each selected lightest edge crossing the current
+     component cut is safe by the cut property.
 
 5. BST insertion: O(h) per operation.
    - Best case: balanced tree, h = O(log n).

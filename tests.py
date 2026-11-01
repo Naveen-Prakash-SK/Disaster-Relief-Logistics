@@ -107,12 +107,12 @@ class TestSupplyBST(unittest.TestCase):
         self.assertIsNone(self.bst.search(20))
 
     def test_delete_one_child(self):
-        # Delete 30 (has left child 20 and right child 40)
+        # Remove 30's right child so deleting 30 exercises the one-child case.
+        self.assertTrue(self.bst.delete(40))
         self.assertTrue(self.bst.delete(30))
         self.assertIsNone(self.bst.search(30))
-        # Children should still be reachable.
+        self.assertIsNone(self.bst.search(40))
         self.assertIsNotNone(self.bst.search(20))
-        self.assertIsNotNone(self.bst.search(40))
 
     def test_delete_two_children(self):
         self.assertTrue(self.bst.delete(50))
@@ -386,6 +386,21 @@ class TestGraph(unittest.TestCase):
             self.assertIn(v, fin)
             self.assertLess(disc[v], fin[v])
 
+    def test_dfs_edge_classifications(self):
+        from graph import Graph, dfs_full
+        graph = Graph(directed=True)
+        for vertex in ("A", "B", "C", "D"):
+            graph.add_vertex(vertex)
+        for source, target in (
+                ("A", "B"), ("B", "A"), ("B", "D"),
+                ("A", "C"), ("C", "D"), ("A", "D")):
+            graph.add_edge(source, target)
+        _, _, _, edge_types, _ = dfs_full(graph)
+        self.assertEqual(
+            set(edge_types.values()),
+            {"tree", "back", "forward", "cross"},
+        )
+
     def test_connected_components(self):
         from graph import connected_components_undirected
         comps = connected_components_undirected(self.g)
@@ -515,6 +530,11 @@ class TestMST(unittest.TestCase):
         sorted_e = merge_sort_edges(edges)
         weights = [e[2] for e in sorted_e]
         self.assertEqual(weights, [1, 3, 5])
+        tied = [("B", "Z", 2), ("A", "Z", 2), ("A", "B", 2)]
+        self.assertEqual(
+            merge_sort_edges(tied),
+            [("A", "B", 2), ("A", "Z", 2), ("B", "Z", 2)],
+        )
 
 
 # ============================================================================
@@ -718,7 +738,15 @@ class TestBenchmarkConfiguration(unittest.TestCase):
                     rows = list(csv.DictReader(file))
         self.assertEqual(len(rows), 6)
         self.assertTrue(all(row["seed"] == "7" for row in rows))
-        self.assertTrue(all(row["runs"] == "1" for row in rows))
+        self.assertTrue(all(row["repetitions"] == "5" for row in rows))
+        tree_rows = [row for row in trees if row["structure"] == "BST"]
+        self.assertTrue(all("search_avg_s" in row for row in tree_rows))
+        self.assertTrue(all("delete_avg_s" in row for row in tree_rows))
+        self.assertEqual(
+            {(row["graph_type"], row["edges"]) for row in graphs},
+            {("sparse", 20), ("dense", 25)},
+        )
+        self.assertTrue(all(row["costs_match"] for row in graphs))
 
 
 class TestInteractiveScenarioWorkflow(unittest.TestCase):

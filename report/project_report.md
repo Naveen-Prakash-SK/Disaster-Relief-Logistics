@@ -63,7 +63,7 @@ main.py ──┬── console_app.py     (Shared interactive scenario)
           ├── mst.py             (Prim, Kruskal, Union-Find)
           ├── scheduling.py      (Topological Sort, Critical Path)
           ├── analysis.py        (Benchmarks, Complexity Notes)
-          └── tests.py           (80 Automated Tests)
+          └── tests.py           (86 Automated Tests)
 ```
 
 ### Data Structures
@@ -159,8 +159,8 @@ T(n) = T(n') + O(1) where n' ≤ n-1 and h = O(log n) → O(log n)
 See [test_results.md](test_results.md) for complete test output.
 
 ### Summary
-- **80 automated tests** across 12 test classes
-- All tests pass (0 failures, 0 errors)
+- **86 automated tests** across 12 test classes
+- Final run: all 86 tests pass (0 failures, 0 errors)
 - Tests cover: General Tree, BST, AVL, Expression Tree, Graph/BFS/DFS/SCC/Dijkstra, MST, Scheduling, Union-Find, Empty structures
 
 ### Test Categories
@@ -170,59 +170,29 @@ See [test_results.md](test_results.md) for complete test output.
 | TestSupplyBST | 14 | Search, delete cases, min/max, range query, iterative traversals and skewed-tree operations |
 | TestAVLTree | 8 | All rotations, delete rebalance, stress test |
 | TestExpressionTree | 8 | Evaluation, infix grouping, unary minus, errors |
-| TestGraph | 15 | BFS, DFS, Dijkstra, SCC, disconnected graph and graph representation conditions |
+| TestGraph | 16 | BFS, DFS edge classifications, Dijkstra, SCC and disconnected graph |
 | TestMST | 5 | Prim/Kruskal agreement, disconnected, merge sort |
 | TestScheduling | 6 | Topological sort, cycle detection, critical path, empty DAG |
 | TestDisjointSet | 2 | Union-find correctness |
 | TestEmptyStructures | 4 | Edge cases |
 | TestScenarioPersistence | 7 | JSON round-trip, validation, graph/task reconstruction |
 | TestBenchmarkConfiguration | 1 | Custom sizes, seed and CSV metadata |
-| TestInteractiveScenarioWorkflow | 3 | Guided entry, persistence, routes and graph conversion |
+| TestInteractiveScenarioWorkflow | 8 | Guided entry, persistence, routes and graph conversion |
 
 ---
 
 ## 9. Benchmark Tables and Interpretation
 
-### Tree Benchmarks: BST vs AVL
+The final assignment-sized benchmark (five repetitions per configuration,
+seed 42) is recorded in [`results/final_audit/benchmark_summary.md`](../results/final_audit/benchmark_summary.md).
+The CSV files contain per-configuration averages and observed minimum/maximum
+timings calculated over five repetitions. The 2,000-vertex dense graph contains the full
+1,000,000 requested edges (not a capped substitute).
 
-| n | Type | Input | Time (s) | Height |
-|---|------|-------|----------|--------|
-| 1,000 | BST | sorted | 0.032684 | 1,000 |
-| 1,000 | AVL | sorted | 0.007379 | 10 |
-| 1,000 | BST | random | 0.001781 | 21 |
-| 1,000 | AVL | random | 0.009604 | 12 |
-| 5,000 | BST | sorted | 0.892764 | 5,000 |
-| 5,000 | AVL | sorted | 0.046385 | 13 |
-| 5,000 | BST | random | 0.008043 | 28 |
-| 5,000 | AVL | random | 0.051774 | 15 |
-| 20,000 | BST | sorted | 13.358428 | 20,000 |
-| 20,000 | AVL | sorted | 0.185719 | 15 |
-| 20,000 | BST | random | 0.036685 | 35 |
-| 20,000 | AVL | random | 0.195739 | 17 |
-
-**Observations:**
-- BST with sorted input shows O(n) height degradation (degenerate linked list)
-- AVL maintains O(log n) height regardless of input order
-- BST sorted insertion time grows quadratically; AVL remains near-linear
-- With random input, BST height is reasonable but AVL is consistently lower
-
-### Graph Benchmarks: Prim vs Kruskal
-
-| V | E | Type | Prim (s) | Kruskal (s) | Cost |
-|---|---|------|----------|-------------|------|
-| 200 | 400 | sparse | 0.004157 | 0.003964 | 5,340 |
-| 200 | 10,000 | dense | 0.006723 | 0.083455 | 343 |
-| 1,000 | 2,000 | sparse | 0.086595 | 0.012993 | 28,937 |
-| 1,000 | 250,000 | dense | 0.147201 | 6.450146 | 1,007 |
-| 2,000 | 4,000 | sparse | 0.380274 | 0.041227 | 58,334 |
-| 2,000 | 50,000 | dense* | 0.332871 | 0.637205 | 5,782 |
-
-**Observations:**
-- Array-based Prim is O(V²) — time depends on V, not E. Better for dense graphs.
-- Kruskal is O(E log E) — fast for sparse graphs, slow when E is large.
-- Both produce identical MST costs, confirming correctness.
-- For V=1000 dense: Prim (0.147201s) outperforms Kruskal (6.450146s).
-- These are single-run timings on deterministic inputs; elapsed times vary by environment and system load.
+**Measured highlights:**
+- At 20,000 sorted IDs, BST insertion averaged 23.962121 s and search 19.476735 s; the AVL averages were 0.172499 s and 0.017115 s. Heights were 20,000 and 15.
+- At 2,000 vertices and 1,000,000 edges, Prim averaged 0.728644 s and Kruskal 49.093195 s. Both returned MST cost 1,999 in all five repetitions.
+- Timings exclude graph construction. Reported graph memory is a shallow container-size estimate, not total or peak process memory.
 
 ---
 
@@ -258,7 +228,7 @@ Scenario: Disaster Relief Network | undirected graph | 0 vertices
 17. Exit
 ```
 
-This menu was observed by launching `python main.py` with `0` as input.
+This menu was observed by launching `python main.py` with `17` as input.
 The automated workflow test separately verifies building and saving a
 scenario, restarting, loading it, and calculating a route.
 
@@ -267,10 +237,11 @@ scenario, restarting, loading it, and calculating a route.
 ## 11. Limitations and Conclusion
 
 ### Limitations
-1. Dense graph benchmarks for V=2000 use reduced edge count (50,000 instead of 1,000,000) to keep runtime practical
-2. Recursive BST traversal helpers may hit Python's recursion limit on highly skewed trees; interactive display, range query and deletion are iterative.
-3. No graphical visualisation — text-based output only (as specified)
-4. Sample data is synthetic; real disaster data would require external integration
+1. The graph ADT stores adjacency list and matrix simultaneously; it does not offer a selectable single-representation mode. Its memory report is an approximate shallow-container comparison.
+2. Recursive BST traversal helpers may hit Python's recursion limit on highly skewed trees; iterative traversal, range query and deletion paths are available.
+3. Recursive DFS, connected-components, and SCC implementations have not been stress-tested beyond Python's recursion limit.
+4. No graphical visualisation — text-based output only.
+5. Sample data is synthetic; real disaster data would require external integration.
 
 ### Conclusion
 The system successfully demonstrates all required data structures and algorithms:
@@ -278,7 +249,7 @@ The system successfully demonstrates all required data structures and algorithms
 - Graph algorithms (BFS, DFS, SCC, Dijkstra, Prim, Kruskal) on a realistic sample network
 - Scheduling with topological sort, cycle detection and critical path
 - Empirical benchmarks confirming theoretical complexity predictions
-- 80 automated tests covering data structures, algorithms, persistence and interactive workflows
+- 86 automated tests covering data structures, algorithms, persistence and interactive workflows
 
 The modular architecture allows independent testing and extension of each component.
 

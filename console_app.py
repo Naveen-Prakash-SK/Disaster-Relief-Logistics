@@ -702,19 +702,19 @@ def _benchmarks():
     from analysis import (
         run_graph_benchmarks, run_tree_benchmarks, save_benchmark_results,
     )
-    print("Timings are empirical, single-run samples; reported complexity is theoretical.")
-    print("Limits: 5,000 tree nodes; 500 graph vertices.")
+    print("Timings are empirical averages over five runs; setup is excluded.")
+    print("Maximums: 20,000 tree nodes; 2,000 graph vertices.")
     try:
-        tree_input = input("Enter tree size list (text, e.g. 1000, 2000, 5000; comma-separated, blank uses defaults): ").strip()
-        graph_input = input("Enter graph vertex size list (text, e.g. 100, 250, 500; comma-separated, blank uses defaults): ").strip()
+        tree_input = input("Enter tree sizes (e.g. 1000, 5000, 20000; blank uses assignment defaults): ").strip()
+        graph_input = input("Enter graph vertex sizes (e.g. 200, 1000, 2000; blank uses assignment defaults): ").strip()
         tree_sizes = ([int(x.strip()) for x in tree_input.split(",")]
-                      if tree_input else [1000, 2000, 5000])
+                      if tree_input else [1000, 5000, 20000])
         graph_sizes = ([int(x.strip()) for x in graph_input.split(",")]
-                       if graph_input else [100, 250, 500])
-        if any(not 1 <= size <= 5000 for size in tree_sizes):
-            raise ValueError("Tree sizes must be from 1 through 5000.")
-        if any(not 2 <= size <= 500 for size in graph_sizes):
-            raise ValueError("Graph sizes must be from 2 through 500.")
+                       if graph_input else [200, 1000, 2000])
+        if any(not 1 <= size <= 20000 for size in tree_sizes):
+            raise ValueError("Tree sizes must be from 1 through 20000.")
+        if any(not 5 <= size <= 2000 for size in graph_sizes):
+            raise ValueError("Graph sizes must be from 5 through 2000.")
     except ValueError as exc:
         print(f"Invalid size: {exc}")
         return
