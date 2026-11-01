@@ -255,13 +255,3 @@ The modular architecture allows independent testing and extension of each compon
 
 ---
 
-## 12. Team Contribution Table
-
-| Reg. No. | Name | Contribution | Percentage |
-|----------|------|-------------|------------|
-| 25AD101 | (To be filled) | (To be updated by team) | — |
-| 25AD105 | (To be filled) | (To be updated by team) | — |
-| 25AD116 | (To be filled) | (To be updated by team) | — |
-| 25AD203 | (To be filled) | (To be updated by team) | — |
-
-> **Note:** This table should be updated by team members with their actual contributions before submission.
